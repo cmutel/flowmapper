@@ -215,7 +215,6 @@ UNITS_NORMALIZATION = {
     "metric ton*km": "ton_kilometer",
     "mj": "megajoule",
     "my": "meter_year",
-    "nm3": "cubic_meter",
     "p": "unit",
     "personkm": "person_kilometer",
     "person*km": "person_kilometer",
@@ -227,6 +226,10 @@ UNITS_NORMALIZATION = {
     'metric ton*km': "ton_kilometer",
     'person*km': "person_kilometer",
     'wh': 'watt_hour',
+    'normal cubic meter': 'normal_cubic_meter',
+    'nm3': 'normal_cubic_meter',
+    'standard cubic meter': 'standard_cubic_meter',
+    'sm3': 'standard_cubic_meter',
 }
 
 ECOINVENT_UUID_39_310_MAPPING = {

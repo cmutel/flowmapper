@@ -7,6 +7,8 @@ import importlib.resources as resource
 from .utils import normalize_str
 from .constants import UNITS_NORMALIZATION
 
+# Default pint units are at
+# https://github.com/hgrecco/pint/blob/master/pint/default_en.txt
 ureg = UnitRegistry()
 
 with resource.as_file(resource.files('flowmapper').joinpath('data/units.txt')) as filepath:

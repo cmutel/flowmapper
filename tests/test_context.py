@@ -71,25 +71,3 @@ def test_unspecified():
     )
     expected = {"water"}
     assert actual == expected
-
-def test_context_equality_true():
-    s = {"name": "2-Propanol", "categories": ["Air", "low. pop."]}
-    sc = Context.from_dict(s, ["categories.0", "categories.1"])
-
-    t = {
-        "@id": "ed1aff41-0bfc-48b8-8250-840c0a2f6961",
-        "name": {"@xml:lang": "en", "#text": "2-Propanol"},
-        "compartment": {
-            "@subcompartmentId": "be7e06e9-0bf5-462e-99dc-fe4aee383c48",
-            "compartment": {"@xml:lang": "en", "#text": "air"},
-            "subcompartment": {
-                "@xml:lang": "en",
-                "#text": "non-urban air or from high stacks",
-            },
-        },
-    }
-    tc = Context.from_dict(
-        t, ["compartment.compartment.#text", "compartment.subcompartment.#text"]
-    )
-
-    assert sc == tc

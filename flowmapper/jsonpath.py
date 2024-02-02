@@ -1,8 +1,5 @@
+from typing import Literal
 from glom import Coalesce, glom
-
-
-def extract(expr, data):
-    return glom(data, Coalesce(expr, default = ''))
 
 def root(spec):
     result = None
@@ -14,3 +11,12 @@ def root(spec):
         except TypeError:
             pass
     return result
+
+def extract(spec, data, type: Literal['value', 'object'] = 'value'):
+    if spec and type == 'value':
+        return glom(data, Coalesce(spec, default = ''))
+    if spec and type == 'object' and data.get(root(spec)):
+        key = root(spec)
+        return {key: data[key]}
+    else:
+        return None

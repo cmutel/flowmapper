@@ -3,7 +3,7 @@ import math
 
 
 def test_get_conversion_factor(field_mapping):
-    s = Flow.from_dict(
+    s = Flow(
         {
             "name": "Protactinium-234",
             "unit": "Bq",
@@ -12,7 +12,7 @@ def test_get_conversion_factor(field_mapping):
         field_mapping["source"],
     )
 
-    t = Flow.from_dict(
+    t = Flow(
         {
             "@id": "fb13070e-06f1-4964-832f-a23945b880cc",
             "@unitId": "4923348e-591b-4772-b224-d19df86f04c9",
@@ -36,12 +36,12 @@ def test_get_conversion_factor(field_mapping):
 
 
 def test_get_conversion_factor_water(field_mapping):
-    s = Flow.from_dict(
+    s = Flow(
         {"name": "Water", "unit": "kg", "categories": ["Emissions to water", ""]},
         field_mapping["source"],
     )
 
-    t = Flow.from_dict(
+    t = Flow(
         {
             "@id": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
             "@unitId": "de5b3c87-0e35-4fb0-9765-4f3ba34c99e5",
@@ -62,7 +62,7 @@ def test_get_conversion_factor_water(field_mapping):
 
 
 def test_get_conversion_factor_m3y(field_mapping):
-    s = Flow.from_dict(
+    s = Flow(
         {
             "name": "Volume occupied, reservoir",
             "unit": "m3y",
@@ -71,7 +71,7 @@ def test_get_conversion_factor_m3y(field_mapping):
         field_mapping["source"],
     )
 
-    t = Flow.from_dict(
+    t = Flow(
         {
             "@id": "9a9d71c7-79f7-42d0-af47-282d22a7cf07",
             "@unitId": "481b9712-c417-44f1-bfba-38d58088173c",
@@ -92,7 +92,7 @@ def test_get_conversion_factor_m3y(field_mapping):
 
 
 def test_get_conversion_factor_m2a(field_mapping):
-    s = Flow.from_dict(
+    s = Flow(
         {
             "name": "Occupation, annual crop",
             "unit": "m2a",
@@ -101,7 +101,7 @@ def test_get_conversion_factor_m2a(field_mapping):
         field_mapping["source"],
     )
 
-    t = Flow.from_dict(
+    t = Flow(
         {
             "@id": "c5aafa60-495c-461c-a1d4-b262a34c45b9",
             "@unitId": "eb955b7c-7bed-401f-9c76-5db716ca3640",
@@ -122,7 +122,7 @@ def test_get_conversion_factor_m2a(field_mapping):
 
 
 def test_get_conversion_factor_nan(field_mapping):
-    s = Flow.from_dict(
+    s = Flow(
         {
             "name": "Radium-226/kg",
             "unit": "kg",
@@ -131,7 +131,7 @@ def test_get_conversion_factor_nan(field_mapping):
         field_mapping["source"],
     )
 
-    t = Flow.from_dict(
+    t = Flow(
         {
             "@id": "74a0aabb-e11b-4f3b-8921-45e447b33393",
             "@unitId": "4923348e-591b-4772-b224-d19df86f04c9",

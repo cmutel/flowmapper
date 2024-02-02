@@ -33,8 +33,8 @@ def test_match_identical_cas_numbers(fields):
         "Second CAS": "71-31-8; 19986-23-3; 71-23-8; 64118-40-7; 4712-36-1; 142583-61-7; 71-23-8",
     }
 
-    s = Flow.from_dict(source, fields['source'])
-    t = Flow.from_dict(target, fields['target'])
+    s = Flow(source, fields['source'])
+    t = Flow(target, fields['target'])
 
     match = match_identical_cas_numbers(s, t)
     assert match
@@ -69,8 +69,8 @@ def test_match_missing_cas_numbers(fields):
         "Second CAS": "71-31-8; 19986-23-3; 71-23-8; 64118-40-7; 4712-36-1; 142583-61-7; 71-23-8",
     }
 
-    s = Flow.from_dict(source, fields['source'])
-    t = Flow.from_dict(target, fields['target'])
+    s = Flow(source, fields['source'])
+    t = Flow(target, fields['target'])
 
     match = match_identical_cas_numbers(s, t)
     assert not match

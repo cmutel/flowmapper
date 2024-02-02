@@ -1,10 +1,12 @@
+import copy
 import json
 from collections import Counter
 from pathlib import Path
 import hashlib
 import re
-from typing import Optional
+from typing import Optional, Union
 import unicodedata
+from randonneur import migrate_datasets
 try:
     import tomllib
 except ModuleNotFoundError:
@@ -52,6 +54,35 @@ def read_flowlist(filepath: Path):
         result = json.load(fs)
     return result
 
+def read_migration_files(*filepaths: Union[str, Path]):
+    """
+    Read and aggregate migration data from multiple JSON files.
+
+    This function opens and reads a series of JSON files, each containing migration data as a list of dicts without the change type.
+    It aggregates all changes into a single list and returns it wrapped in a dictionary 
+    under the change type 'update'.
+
+    Parameters
+    ----------
+    *filepaths : Path
+        Variable length argument list of Path objects.
+
+    Returns
+    -------
+    dict
+        A dictionary containing a single key 'update', which maps to a list. This list is 
+        an aggregation of the data from all the JSON files read.
+    """
+    migration_data = []
+    
+    for filepath in filepaths:
+        filepath = Path(filepath)
+        with open(filepath, 'r') as fs:
+            migration_data.extend(json.load(fs))
+    
+    result = {'update': migration_data}
+    return result
+
 def rm_parentheses_roman_numerals(s: str):
     pattern = r'\(\s*([ivxlcdm]+)\s*\)'
     return re.sub(pattern, r'\1', s)
@@ -74,3 +105,18 @@ def extract_country_code(s: str) -> tuple[str, Optional[str]]:
 
 def normalize_str(s):
     return unicodedata.normalize('NFC', s).strip().lower()
+
+def transform_flow(flow, transformation):
+    result = copy.copy(flow)
+    result.update(transformation['target'])
+    return result
+
+def matcher(source, target):
+    return all(target.get(key) == value for key, value in source.items())
+
+def find_transformation(flow, transformations):
+    if not transformations:
+        return None
+    for transformation in transformations['update']:
+        if matcher(transformation['source'], flow):
+            return transformation

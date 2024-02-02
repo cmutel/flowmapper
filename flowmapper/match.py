@@ -1,13 +1,4 @@
 import logging
-from tqdm import tqdm
-
-from .constants import (
-    MINOR_LAND_NAME_DIFFERENCES_MAPPING,
-    MISSING_FOSSIL_AND_BIOGENIC_CARBON_MAPPING,
-    RANDOM_NAME_DIFFERENCES_MAPPING,
-    NAME_DIFFERENCES_WITH_UNIT_CONVERSION_MAPPING,
-    ECOINVENT_UUID_39_310_MAPPING,
-)
 from .flow import Flow
 from .utils import rm_parentheses_roman_numerals, extract_country_code, rm_roman_numerals_ionic_state
 
@@ -15,16 +6,16 @@ logger = logging.getLogger(__name__)
 
 def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: dict):
     source_result = {
-                     **s.name.raw_object, 
-                     **s.context.raw_object,
-                     **s.unit.raw_object
+                     **s.name_raw_object,
+                     **s.context_raw_object,
+                     **s.unit_raw_object
     }
     if s.uuid:
-        source_result.update({s.fields['uuid']: s.uuid})
+        source_result.update(**s.uuid_raw_object)
     
     target_result = {
                 'uuid': t.uuid,
-                'name': t.name.raw_value,
+                'name': t.name_raw_value,
                 'context': t.context.raw_value,
                 'unit': t.unit.raw_value
             }
@@ -41,11 +32,6 @@ def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: 
 
 def match_identical_uuid(s: Flow, t: Flow, comment: str = 'Identical uuid'):
     is_match = True if s.uuid and t.uuid and s.uuid == t.uuid else False
-    if is_match:
-        return {'comment': comment}
-
-def match_mapped_uuid(s: Flow, t: Flow, comment: str = 'Mapped uuid differences'):
-    is_match = True if s.uuid and t.uuid and ECOINVENT_UUID_39_310_MAPPING.get(s.uuid) == t.uuid else False
     if is_match:
         return {'comment': comment}
 
@@ -124,31 +110,14 @@ def match_emissions_with_suffix_ion(s: Flow, t: Flow):
         or match_identical_names_except_missing_comma_for_suffix(s, t, suffix = 'ion', comment = 'Match emissions with suffix ion and inconsistent comma')
     )
 
-def match_minor_random_name_differences(s: Flow, t: Flow):
-    return match_mapped_name_differences(s, t, mapping = RANDOM_NAME_DIFFERENCES_MAPPING, comment = 'Minor random name differences')
-
-def match_minor_land_name_differences(s: Flow, t: Flow):
-    return match_mapped_name_differences(s, t, mapping = MINOR_LAND_NAME_DIFFERENCES_MAPPING, comment = 'Minor land name differences')
-
-def match_missing_fossil_and_biogenic_carbon(s: Flow, t: Flow):
-    return match_mapped_name_differences(s, t, mapping = MISSING_FOSSIL_AND_BIOGENIC_CARBON_MAPPING, comment = 'Missing biogenic and fossil carbon')
-
-def match_mapped_name_differences_with_unit_conversion(s: Flow, t: Flow):
-    return match_mapped_name_differences(s, t, mapping = NAME_DIFFERENCES_WITH_UNIT_CONVERSION_MAPPING, comment = 'Mapped name differences with unit conversions')
-
 def match_rules(): 
     return [
             match_identical_uuid,
-            match_mapped_uuid,
             match_identical_names,
             match_resources_with_suffix_in_ground,
-            match_minor_random_name_differences,
             match_emissions_with_suffix_ion,
-            match_minor_land_name_differences,
-            match_missing_fossil_and_biogenic_carbon,
             match_names_with_roman_numerals_in_parentheses,
             match_names_with_country_codes,
-            match_mapped_name_differences_with_unit_conversion,
             match_identical_cas_numbers,
             match_non_ionic_state,
             match_biogenic_to_non_fossil,

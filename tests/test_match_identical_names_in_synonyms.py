@@ -30,8 +30,8 @@ def test_match_identical_names_in_synonyms(field_mapping):
         ],
     }
 
-    s = Flow.from_dict(source, field_mapping["source"])
-    t = Flow.from_dict(target, field_mapping["target"])
+    s = Flow(source, field_mapping["source"])
+    t = Flow(target, field_mapping["target"])
 
     match = match_identical_names_in_synonyms(s, t)
     assert match

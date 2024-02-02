@@ -21,8 +21,8 @@ def test_match_identical_names(fields):
         "FlowUUID": "cc6a1abb-b123-4ca6-8f16-38209df609be",
     }
 
-    s = Flow.from_dict(source, fields['source'])
-    t = Flow.from_dict(target, fields['target'])
+    s = Flow(source, fields['source'])
+    t = Flow(target, fields['target'])
 
     match = match_identical_names(s, t)
     assert match
@@ -48,8 +48,8 @@ def test_match_identical_names_jsonpath(field_mapping):
         },
     }
 
-    s = Flow.from_dict(source, field_mapping['source'])
-    t = Flow.from_dict(target, field_mapping['target'])
+    s = Flow(source, field_mapping['source'])
+    t = Flow(target, field_mapping['target'])
     
     match = match_identical_names(s, t)
     assert not match

@@ -1,0 +1,78 @@
+# serializer version: 1
+# name: test_transform_flow_with_conversion_factor
+  list([
+    dict({
+      'comment': 'Identical names',
+      'conversion_factor': 1.0,
+      'source': dict({
+        'categories': list([
+          'Air',
+          '(unspecified)',
+        ]),
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+      }),
+      'target': dict({
+        'context': 'air/unspecified',
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+        'uuid': '09db39be-d9a6-4fc3-8d25-1f80b23e9131',
+      }),
+    }),
+    dict({
+      'comment': 'Identical names',
+      'conversion_factor': 1.0,
+      'source': dict({
+        'categories': list([
+          'Air',
+          'high. pop.',
+        ]),
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+      }),
+      'target': dict({
+        'context': 'air/unspecified',
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+        'uuid': '09db39be-d9a6-4fc3-8d25-1f80b23e9131',
+      }),
+    }),
+    dict({
+      'comment': 'Identical names',
+      'conversion_factor': 1.2142857142857142,
+      'source': dict({
+        'categories': list([
+          'Emissions to air',
+          'low. pop.',
+        ]),
+        'name': 'Ammonia, as N',
+        'unit': 'kg',
+      }),
+      'target': dict({
+        'context': 'air/non-urban air or from high stacks',
+        'name': 'Ammonia',
+        'unit': 'kg',
+        'uuid': '0f440cc0-0f74-446d-99d6-8ff0e97a2444',
+      }),
+    }),
+    dict({
+      'comment': 'Names with country code',
+      'conversion_factor': 1.0,
+      'source': dict({
+        'categories': list([
+          'Emissions to air',
+          'low. pop.',
+        ]),
+        'name': 'Ammonia, FR',
+        'unit': 'kg',
+      }),
+      'target': dict({
+        'context': 'air/non-urban air or from high stacks',
+        'location': 'FR',
+        'name': 'Ammonia',
+        'unit': 'kg',
+        'uuid': '0f440cc0-0f74-446d-99d6-8ff0e97a2444',
+      }),
+    }),
+  ])
+# ---

@@ -1,0 +1,387 @@
+# serializer version: 1
+# name: test_flowmap_export_matched
+  list([
+    dict({
+      'CAS': '000110-63-4',
+      'categories': list([
+        'Air',
+        '(unspecified)',
+      ]),
+      'name': '1,4-Butanediol',
+      'unit': 'kg',
+    }),
+    dict({
+      'categories': list([
+        'Emissions to air',
+        'low. pop.',
+      ]),
+      'name': 'Ammonia, FR',
+      'unit': 'kg',
+    }),
+  ])
+# ---
+# name: test_flowmap_export_unmatched
+  list([
+    dict({
+      'CAS': '000110-63-4',
+      'categories': list([
+        'Air',
+        'high. pop.',
+      ]),
+      'name': '1,4-Butanediol',
+      'unit': 'kg',
+    }),
+    dict({
+      'categories': list([
+        'Emissions to air',
+        'low. pop.',
+      ]),
+      'name': 'Cesium-134',
+      'unit': 'kBq',
+    }),
+    dict({
+      'categories': list([
+        'Emissions to soil',
+        '',
+      ]),
+      'name': 'Cesium-134',
+      'unit': 'kBq',
+    }),
+    dict({
+      'categories': list([
+        'Resources',
+        'in ground',
+      ]),
+      'name': 'Zinc, Zn 0.63%, Au 9.7E-4%, Ag 9.7E-4%, Cu 0.38%, Pb 0.014%, in ore',
+      'unit': 'kg',
+    }),
+    dict({
+      'categories': list([
+        'Emissions to air',
+        'low. pop.',
+      ]),
+      'name': 'Ammonia, as N',
+      'unit': 'kg',
+    }),
+  ])
+# ---
+# name: test_flowmap_mappings_ei39_ei310
+  list([
+    dict({
+      'comment': 'Identical uuid',
+      'conversion_factor': 1.0,
+      'source': dict({
+        '@id': '4f777e05-70f9-4a18-a406-d8232325073f',
+        'compartment': dict({
+          '@subcompartmentId': 'be7e06e9-0bf5-462e-99dc-fe4aee383c48',
+          'compartment': dict({
+            '#text': 'air',
+            '@xml:lang': 'en',
+          }),
+          'subcompartment': dict({
+            '#text': 'non-urban air or from high stacks',
+            '@xml:lang': 'en',
+          }),
+        }),
+        'name': dict({
+          '#text': '2,4-D amines',
+          '@xml:lang': 'en',
+        }),
+        'unitName': dict({
+          '#text': 'kg',
+          '@xml:lang': 'en',
+        }),
+      }),
+      'target': dict({
+        'context': 'air/non-urban air or from high stacks',
+        'name': '2,4-D dimethylamine salt',
+        'unit': 'kg',
+        'uuid': 'b6b4201e-0561-5992-912f-e729fbf04e41',
+      }),
+    }),
+  ])
+# ---
+# name: test_flowmap_mappings_ei_ei
+  list([
+    dict({
+      'comment': 'Identical uuid',
+      'conversion_factor': 1.0,
+      'source': dict({
+        '@id': '09db39be-d9a6-4fc3-8d25-1f80b23e9131',
+        'compartment': dict({
+          '@subcompartmentId': '7011f0aa-f5f9-4901-8c10-884ad8296812',
+          'compartment': dict({
+            '#text': 'air',
+            '@xml:lang': 'en',
+          }),
+          'subcompartment': dict({
+            '#text': 'unspecified',
+            '@xml:lang': 'en',
+          }),
+        }),
+        'name': dict({
+          '#text': '1,4-Butanediol',
+          '@xml:lang': 'en',
+        }),
+        'unitName': dict({
+          '#text': 'kg',
+          '@xml:lang': 'en',
+        }),
+      }),
+      'target': dict({
+        'context': 'air/unspecified',
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+        'uuid': '09db39be-d9a6-4fc3-8d25-1f80b23e9131',
+      }),
+    }),
+    dict({
+      'comment': 'Identical uuid',
+      'conversion_factor': 1.0,
+      'source': dict({
+        '@id': '0f440cc0-0f74-446d-99d6-8ff0e97a2444',
+        'compartment': dict({
+          '@subcompartmentId': 'be7e06e9-0bf5-462e-99dc-fe4aee383c48',
+          'compartment': dict({
+            '#text': 'air',
+            '@xml:lang': 'en',
+          }),
+          'subcompartment': dict({
+            '#text': 'non-urban air or from high stacks',
+            '@xml:lang': 'en',
+          }),
+        }),
+        'name': dict({
+          '#text': 'Ammonia',
+          '@xml:lang': 'en',
+        }),
+        'unitName': dict({
+          '#text': 'kg',
+          '@xml:lang': 'en',
+        }),
+      }),
+      'target': dict({
+        'context': 'air/non-urban air or from high stacks',
+        'name': 'Ammonia',
+        'unit': 'kg',
+        'uuid': '0f440cc0-0f74-446d-99d6-8ff0e97a2444',
+      }),
+    }),
+  ])
+# ---
+# name: test_flowmap_nomatch_multiple_rules
+  list([
+    dict({
+      'CAS': '000110-63-4',
+      'categories': list([
+        'Air',
+        '(unspecified)',
+      ]),
+      'name': '1,4-Butanediol',
+      'unit': 'kg',
+    }),
+    dict({
+      'CAS': '000110-63-4',
+      'categories': list([
+        'Air',
+        'high. pop.',
+      ]),
+      'name': '1,4-Butanediol',
+      'unit': 'kg',
+    }),
+  ])
+# ---
+# name: test_flowmap_nomatch_rule
+  list([
+    dict({
+      'CAS': '000110-63-4',
+      'categories': list([
+        'Air',
+        'high. pop.',
+      ]),
+      'name': '1,4-Butanediol',
+      'unit': 'kg',
+    }),
+  ])
+# ---
+# name: test_flowmap_nomatch_rule_false
+  list([
+    dict({
+      'CAS': '000110-63-4',
+      'categories': list([
+        'Air',
+        '(unspecified)',
+      ]),
+      'name': '1,4-Butanediol',
+      'unit': 'kg',
+    }),
+    dict({
+      'CAS': '000110-63-4',
+      'categories': list([
+        'Air',
+        'high. pop.',
+      ]),
+      'name': '1,4-Butanediol',
+      'unit': 'kg',
+    }),
+    dict({
+      'categories': list([
+        'Emissions to air',
+        'low. pop.',
+      ]),
+      'name': 'Cesium-134',
+      'unit': 'kBq',
+    }),
+    dict({
+      'categories': list([
+        'Emissions to soil',
+        '',
+      ]),
+      'name': 'Cesium-134',
+      'unit': 'kBq',
+    }),
+    dict({
+      'categories': list([
+        'Resources',
+        'in ground',
+      ]),
+      'name': 'Zinc, Zn 0.63%, Au 9.7E-4%, Ag 9.7E-4%, Cu 0.38%, Pb 0.014%, in ore',
+      'unit': 'kg',
+    }),
+    dict({
+      'categories': list([
+        'Emissions to air',
+        'low. pop.',
+      ]),
+      'name': 'Ammonia, FR',
+      'unit': 'kg',
+    }),
+    dict({
+      'categories': list([
+        'Emissions to air',
+        'low. pop.',
+      ]),
+      'name': 'Ammonia, as N',
+      'unit': 'kg',
+    }),
+  ])
+# ---
+# name: test_flowmap_remove_duplicates
+  list([
+    1,4-Butanediol (in kg) <Air/(unspecified)> [uuid:None],
+    1,4-Butanediol (in kg) <Air/high. pop.> [uuid:None],
+    Cesium-134 (in kBq) <Emissions to air/low. pop.> [uuid:None],
+    Cesium-134 (in kBq) <Emissions to soil/> [uuid:None],
+    Zinc, Zn 0.63%, Au 9.7E-4%, Ag 9.7E-4%, Cu 0.38%, Pb 0.014%, in ore (in kg) <Resources/in ground> [uuid:None],
+    Ammonia, FR (in kg) <Emissions to air/low. pop.> [uuid:None],
+    Ammonia, as N (in kg) <Emissions to air/low. pop.> [uuid:None],
+  ])
+# ---
+# name: test_flowmap_to_randonneur
+  list([
+    dict({
+      'comment': 'Identical names',
+      'conversion_factor': 1.0,
+      'source': dict({
+        'categories': list([
+          'Air',
+          '(unspecified)',
+        ]),
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+      }),
+      'target': dict({
+        'context': 'air/unspecified',
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+        'uuid': '09db39be-d9a6-4fc3-8d25-1f80b23e9131',
+      }),
+    }),
+    dict({
+      'comment': 'Names with country code',
+      'conversion_factor': 1.0,
+      'source': dict({
+        'categories': list([
+          'Emissions to air',
+          'low. pop.',
+        ]),
+        'name': 'Ammonia, FR',
+        'unit': 'kg',
+      }),
+      'target': dict({
+        'context': 'air/non-urban air or from high stacks',
+        'location': 'FR',
+        'name': 'Ammonia',
+        'unit': 'kg',
+        'uuid': '0f440cc0-0f74-446d-99d6-8ff0e97a2444',
+      }),
+    }),
+  ])
+# ---
+# name: test_flowmap_to_randonneur_export
+  list([
+    dict({
+      'comment': 'Identical names',
+      'conversion_factor': 1.0,
+      'source': dict({
+        'categories': list([
+          'Air',
+          '(unspecified)',
+        ]),
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+      }),
+      'target': dict({
+        'context': 'air/unspecified',
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+        'uuid': '09db39be-d9a6-4fc3-8d25-1f80b23e9131',
+      }),
+    }),
+    dict({
+      'comment': 'Names with country code',
+      'conversion_factor': 1.0,
+      'source': dict({
+        'categories': list([
+          'Emissions to air',
+          'low. pop.',
+        ]),
+        'name': 'Ammonia, FR',
+        'unit': 'kg',
+      }),
+      'target': dict({
+        'context': 'air/non-urban air or from high stacks',
+        'location': 'FR',
+        'name': 'Ammonia',
+        'unit': 'kg',
+        'uuid': '0f440cc0-0f74-446d-99d6-8ff0e97a2444',
+      }),
+    }),
+  ])
+# ---
+# name: test_flowmap_with_custom_rules_match
+  list([
+    dict({
+      'comment': 'Identical names',
+      'conversion_factor': 1.0,
+      'source': dict({
+        'categories': list([
+          'Air',
+          '(unspecified)',
+        ]),
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+      }),
+      'target': dict({
+        'context': 'air/unspecified',
+        'name': '1,4-Butanediol',
+        'unit': 'kg',
+        'uuid': '09db39be-d9a6-4fc3-8d25-1f80b23e9131',
+      }),
+    }),
+  ])
+# ---
+# name: test_flowmap_with_custom_rules_no_match
+  list([
+  ])
+# ---

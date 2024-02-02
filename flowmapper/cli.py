@@ -9,8 +9,9 @@ import logging
 import json
 from pathlib import Path
 from enum import Enum
+from randonneur import migrate_datasets
 from .flow import Flow
-from .utils import read_field_mapping, read_flowlist
+from .utils import read_field_mapping, read_flowlist, read_migration_files
 from .flowmap import Flowmap
 try:
     import tomllib
@@ -47,6 +48,7 @@ def map(
     fields: Annotated[Path, typer.Option(help='Relationship between fields in source and target flowlists')],
     output_dir: Annotated[Path, typer.Option(help='Directory to save mapping and diagnostics files')] = Path('.'),
     format: Annotated[OutputFormat, typer.Option(help='Mapping file output format', case_sensitive=False)] = 'all',
+    transformations: Annotated[list[Path], typer.Option("--transformations", "-t", help='Randonneur data migration file with changes to be applied to source flows before matching')] = None,
     unmatched_source: Annotated[bool, typer.Option(help='Write original source unmatched flows into separate file?')] = True,
     unmatched_target: Annotated[bool, typer.Option(help='Write original target unmatched flows into separate file?')] = True,
     matched_source: Annotated[bool, typer.Option(help='Write original source matched flows into separate file?')] = False,
@@ -57,8 +59,10 @@ def map(
     """
     output_dir.mkdir(parents=True, exist_ok=True)
     field_mapping = read_field_mapping(fields)
-    source_flows = [Flow.from_dict(flow, field_mapping['source']) for flow in read_flowlist(source)]
-    target_flows = [Flow.from_dict(flow, field_mapping['target']) for flow in read_flowlist(target)]
+    if transformations:
+            transformations = read_migration_files(*transformations)
+    source_flows = [Flow(flow, field_mapping['source'], transformations) for flow in read_flowlist(source)]
+    target_flows = [Flow(flow, field_mapping['target']) for flow in read_flowlist(target)]
 
     flowmap = Flowmap(source_flows, target_flows)
     flowmap.statistics()
@@ -82,11 +86,9 @@ def map(
             json.dump([flow.raw for flow in flowmap.unmatched_target], fs, indent=True)
 
     if format.value == 'randonneur':
-        with open(output_dir / f'{stem}.json', 'w') as fs:
-            json.dump(flowmap.to_randonneur(), fs, indent=2)
+        flowmap.to_randonneur(output_dir / f'{stem}.json')
     elif format.value == 'glad':
-        flowmap.to_glad().to_excel(output_dir / f'{stem}.xlsx', index = False)
+        flowmap.to_glad(output_dir / f'{stem}.xlsx')
     else:
-        with open(output_dir / f'{stem}.json', 'w') as fs:
-            json.dump(flowmap.to_randonneur(), fs, indent=2)
-        flowmap.to_glad().to_excel(output_dir / f'{stem}.xlsx', index = False)
+        flowmap.to_randonneur(output_dir / f'{stem}.json')
+        flowmap.to_glad(output_dir / f'{stem}.xlsx')

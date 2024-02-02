@@ -11,20 +11,31 @@ class Context:
 
     @classmethod
     def from_dict(cls, d, spec):
-        key = jp.root(spec)
-        value = cls.ensure_list(jp.extract(spec, d))
-        result = Context(
-            value = cls.normalize_contexts(value),
-            raw_value = '/'.join(value),
-            raw_object = {key: d.get(key)},
-        )
-        return result
+        if not spec:
+            return Context(None)
+        else:
+            key = jp.root(spec)
+            value = cls.ensure_list(jp.extract(spec, d))
+            result = Context(
+                value = cls.normalize_contexts(value),
+                raw_value = '/'.join(value),
+                raw_object = {key: d.get(key)},
+            )
+            return result
 
     def to_dict(self):
         return asdict(self)
 
     def __eq__(self, other):
-        return self.value == other.value
+        if self and other and isinstance(other, Context):
+            return self.value == other.value
+        elif self and other:
+            return self.value == other
+        else:
+            return False
+
+    def __bool__(self):
+        return bool(self.value)
 
     def __hash__(self):
         return hash(self.value)

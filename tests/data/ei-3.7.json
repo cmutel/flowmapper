@@ -26,5 +26,29 @@
           "@xml:lang": "en",
           "#text": "Butylene glycol"
         }
+      },
+      {
+        "@id": "0f440cc0-0f74-446d-99d6-8ff0e97a2444",
+        "@unitId": "487df68b-4994-4027-8fdc-a4dc298257b7",
+        "@casNumber": "007664-41-7",
+        "name": {
+          "@xml:lang": "en",
+          "#text": "Ammonia"
+        },
+        "unitName": {
+          "@xml:lang": "en",
+          "#text": "kg"
+        },
+        "compartment": {
+          "@subcompartmentId": "be7e06e9-0bf5-462e-99dc-fe4aee383c48",
+          "compartment": {
+            "@xml:lang": "en",
+            "#text": "air"
+          },
+          "subcompartment": {
+            "@xml:lang": "en",
+            "#text": "non-urban air or from high stacks"
+          }
+        }
       }
 ]

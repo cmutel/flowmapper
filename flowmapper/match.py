@@ -76,6 +76,14 @@ def match_identical_names_except_missing_suffix(s: Flow, t: Flow, suffix, commen
     if is_match:
         return {'comment': comment}
 
+def match_identical_names_except_missing_comma_for_suffix(s: Flow, t: Flow, suffix, comment = 'Identical names except missing comma for suffix'):
+    tn, sn, w_comma = t.name.value, s.name.value, f", {suffix}"
+    if suffix in tn and suffix in sn:
+        t_normalized = (tn.replace(w_comma, "") if w_comma in tn else tn.replace(suffix, "")).strip()
+        s_normalized = (sn.replace(w_comma, "") if w_comma in sn else sn.replace(suffix, "")).strip()
+        if t_normalized == s_normalized and s.context == t.context:
+            return {'comment': comment}
+
 def match_mapped_name_differences(s: Flow, t: Flow, mapping, comment = 'Mapped name differences'):    
     is_match = mapping.get(s.name) == t.name and s.context == t.context
     
@@ -111,7 +119,10 @@ def match_resources_with_suffix_in_ground(s: Flow, t: Flow):
     return match_identical_names_except_missing_suffix(s, t, suffix = 'in ground', comment = 'Resources with suffix in ground')
 
 def match_emissions_with_suffix_ion(s: Flow, t: Flow):
-    return match_identical_names_except_missing_suffix(s, t, suffix = 'ion', comment = 'Match emissions with suffix ion')
+    return (
+        match_identical_names_except_missing_suffix(s, t, suffix = 'ion', comment = 'Match emissions with suffix ion')
+        or match_identical_names_except_missing_comma_for_suffix(s, t, suffix = 'ion', comment = 'Match emissions with suffix ion and inconsistent comma')
+    )
 
 def match_minor_random_name_differences(s: Flow, t: Flow):
     return match_mapped_name_differences(s, t, mapping = RANDOM_NAME_DIFFERENCES_MAPPING, comment = 'Minor random name differences')

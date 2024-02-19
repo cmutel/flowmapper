@@ -1,18 +1,24 @@
 from __future__ import annotations
-from dataclasses import asdict, dataclass, field
-from typing import Any
-import flowmapper.jsonpath as jp
-from pint import UnitRegistry, errors
+
 import importlib.resources as resource
-from .utils import normalize_str
+from dataclasses import asdict, dataclass, field
+
+from pint import UnitRegistry, errors
+
+import flowmapper.jsonpath as jp
+
 from .constants import UNITS_NORMALIZATION
+from .utils import normalize_str
 
 # Default pint units are at
 # https://github.com/hgrecco/pint/blob/master/pint/default_en.txt
 ureg = UnitRegistry()
 
-with resource.as_file(resource.files('flowmapper').joinpath('data/units.txt')) as filepath:
+with resource.as_file(
+    resource.files("flowmapper").joinpath("data/units.txt")
+) as filepath:
     ureg.load_definitions(filepath)
+
 
 @dataclass
 class Unit:
@@ -30,9 +36,9 @@ class Unit:
         key = jp.root(spec)
         value = jp.extract(spec, d)
         result = Unit(
-            value = None,
-            raw_value = value,
-            raw_object = {key: d.get(key)},
+            value=None,
+            raw_value=value,
+            raw_object={key: d.get(key)},
         )
         return result
 
@@ -49,7 +55,7 @@ class Unit:
             try:
                 result = ureg(self.value).to(ureg(to.value)).magnitude
             except errors.DimensionalityError:
-                result = float('nan')
+                result = float("nan")
         return result
 
     @staticmethod

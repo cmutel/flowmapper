@@ -1,7 +1,9 @@
 from dataclasses import asdict, dataclass, field
-from .constants import CONTEXT_MAPPING
 
 import flowmapper.jsonpath as jp
+
+from .constants import CONTEXT_MAPPING
+
 
 @dataclass
 class Context:
@@ -17,9 +19,9 @@ class Context:
             key = jp.root(spec)
             value = cls.ensure_list(jp.extract(spec, d))
             result = Context(
-                value = cls.normalize_contexts(value),
-                raw_value = '/'.join(value),
-                raw_object = {key: d.get(key)},
+                value=cls.normalize_contexts(value),
+                raw_value="/".join(value),
+                raw_object={key: d.get(key)},
             )
             return result
 
@@ -42,14 +44,16 @@ class Context:
 
     @staticmethod
     def ensure_list(x):
-        return x.split('/') if isinstance(x, str) else x
+        return x.split("/") if isinstance(x, str) else x
 
     @staticmethod
     def normalize_contexts(context: list[str]):
-        result = '/'.join([
-            segment.lower().rstrip('/')
-            for segment in context 
-            if segment and segment.lower() not in {'(unspecified)', 'unspecified'}
-        ])
-        
+        result = "/".join(
+            [
+                segment.lower().rstrip("/")
+                for segment in context
+                if segment and segment.lower() not in {"(unspecified)", "unspecified"}
+            ]
+        )
+
         return CONTEXT_MAPPING.get(result, result)

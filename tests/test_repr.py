@@ -1,16 +1,17 @@
-from flowmapper.flow import Flow
-from flowmapper.flowmap import Flowmap
 from pprint import pprint
 
-    # def __repr__(self) -> str:
-    #     # id_original = f"uuid:{self.uuid_raw_value}" if self.uuid_raw_value else f"id:{self.id}"
-    #     # transformed = "*" if self.raw != self.transformed else ""
-    #     original = f"{self.name_raw_value} (in {self.unit.raw_value}) <{self.context.raw_value}> [uuid:{self.uuid_raw_value}]"
-    #     transformed = f"{self.name.value} (in {self.unit.value}) <{self.context.value}> [uuid:{self.uuid}]"
-    #     if self.raw == self.transformed:
-    #         return original
-    #     else:
-    #         return f"Original: {original}\nTransformed: {transformed}"
+from flowmapper.flow import Flow
+from flowmapper.flowmap import Flowmap
+
+# def __repr__(self) -> str:
+#     # id_original = f"uuid:{self.uuid_raw_value}" if self.uuid_raw_value else f"id:{self.id}"
+#     # transformed = "*" if self.raw != self.transformed else ""
+#     original = f"{self.name_raw_value} (in {self.unit.raw_value}) <{self.context.raw_value}> [uuid:{self.uuid_raw_value}]"
+#     transformed = f"{self.name.value} (in {self.unit.value}) <{self.context.value}> [uuid:{self.uuid}]"
+#     if self.raw == self.transformed:
+#         return original
+#     else:
+#         return f"Original: {original}\nTransformed: {transformed}"
 
 fields = {
     "uuid": "@id",

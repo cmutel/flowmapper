@@ -4,7 +4,7 @@ from .flowmap import Flowmap
 
 __all__ = (
     "__version__",
-    "Flowmap"
+    "Flowmap",
     # Add functions and variables you want exposed in `flowmapper.` namespace here
 )
 

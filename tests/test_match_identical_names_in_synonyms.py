@@ -1,6 +1,7 @@
 from flowmapper.flow import Flow
 from flowmapper.match import match_identical_names_in_synonyms
 
+
 def test_match_identical_names_in_synonyms(field_mapping):
     source = {
         "name": "Sulfuric acid",

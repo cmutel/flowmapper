@@ -1,6 +1,7 @@
 from flowmapper.flow import Flow
 from flowmapper.flowmap import Flowmap
 
+
 def test_match_non_ionic_state():
     fields = {"name": "name", "context": "context", "unit": "unit"}
     s = [
@@ -15,7 +16,7 @@ def test_match_non_ionic_state():
     flowmap = Flowmap(s, t)
     actual = flowmap.to_randonneur()
     expected = [
-                {
+        {
             "source": {"name": "Manganese (II)", "context": "air", "unit": "kg"},
             "target": {
                 "uuid": None,
@@ -31,6 +32,6 @@ def test_match_non_ionic_state():
             "target": {"uuid": None, "name": "Mercury", "context": "air", "unit": "kg"},
             "conversion_factor": 1,
             "comment": "Non-ionic state if no better match",
-        }
+        },
     ]
     assert actual == expected

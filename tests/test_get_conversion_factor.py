@@ -1,5 +1,6 @@
-from flowmapper.flow import Flow
 import math
+
+from flowmapper.flow import Flow
 
 
 def test_get_conversion_factor(field_mapping):

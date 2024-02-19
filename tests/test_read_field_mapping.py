@@ -1,5 +1,6 @@
 from flowmapper.utils import read_field_mapping
 
+
 def test_read_field_mapping():
     expected = {
         "source": {
@@ -13,7 +14,7 @@ def test_read_field_mapping():
         "target": {
             "uuid": "@id",
             "name": "name.#text",
-            "synonyms": ('synonym', ['#text']),
+            "synonyms": ("synonym", ["#text"]),
             "context": "compartment.*.#text",
             "unit": "unitName.#text",
             "cas": "@casNumber",
@@ -21,4 +22,3 @@ def test_read_field_mapping():
     }
     actual = read_field_mapping("tests/data/field_mapping-sp-ei.py")
     assert expected == actual
-

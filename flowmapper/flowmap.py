@@ -8,6 +8,8 @@ import pandas as pd
 from pathlib import Path
 import json
 from collections import Counter
+from pint import UndefinedUnitError
+
 
 class Flowmap:
     """
@@ -113,15 +115,18 @@ class Flowmap:
                 for rule in self.rules:
                     is_match = rule(s, t)
                     if is_match:
-                        all_mappings.append(
-                            {'from': s,
-                             'to': t,
-                             'conversion_factor': s.conversion_factor if s.conversion_factor else s.unit.conversion_factor(t.unit),
-                             'match_rule': rule.__name__,
-                             'match_rule_priority': self.rules.index(rule),
-                             'info': is_match}
-                        )
-                        break
+                        try:
+                            all_mappings.append(
+                                {'from': s,
+                                 'to': t,
+                                 'conversion_factor': s.conversion_factor if s.conversion_factor else s.unit.conversion_factor(t.unit),
+                                 'match_rule': rule.__name__,
+                                 'match_rule_priority': self.rules.index(rule),
+                                 'info': is_match}
+                            )
+                            break
+                        except UndefinedUnitError as exc:
+                            raise UndefinedUnitError(f"\nA unit in this pair is unknown to pint:\n{s}\n{t}\nError message: {exc}")
         result = []
         seen_sources = set()
         sorted_mappings = sorted(all_mappings, key=lambda x: (x['from'], x['match_rule_priority']))

@@ -5,3 +5,4 @@ square_meter_year = m2 * year = m2y = m2a
 cubic_meter_year = m3 * year = m3y = m3a
 standard_cubic_meter = (meter ** 3) = sm3
 normal_cubic_meter = 1.0732 * sm3
+kilo_becquerel = 1000 * bq

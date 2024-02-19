@@ -42,6 +42,7 @@ UNITS_NORMALIZATION = {
     "ha": "hectare",
     "hr": "hour",
     "kbq": "kilobecquerel",
+    "kilo becquerel": "kilobecquerel",
     "kg": "kilogram",
     "kgkm": "kilogram_kilometer",
     "km": "kilometer",

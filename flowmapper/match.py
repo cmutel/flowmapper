@@ -89,6 +89,16 @@ def match_names_with_country_codes(s: Flow, t: Flow, comment = 'Names with count
     if is_match:
         return {'comment': comment, 'location': s_location.upper()}
 
+def match_natural_resources_without_subcategory(s: Flow, t: Flow, comment = 'Natural resource but differing subcategory'):
+    is_match = (
+        s.context.value.split('/')[0] == 'natural resource'
+        and t.context.value.split('/')[0] == 'natural resource'
+        and s.name == t.name
+    )
+
+    if is_match:
+        return {'comment': comment}
+
 def match_non_ionic_state(s: Flow, t: Flow, comment = 'Non-ionic state if no better match'):
     is_match = rm_roman_numerals_ionic_state(s.name.value) == t.name and s.context == t.context
 
@@ -116,6 +126,7 @@ def match_rules():
             match_identical_names,
             match_resources_with_suffix_in_ground,
             match_emissions_with_suffix_ion,
+            match_natural_resources_without_subcategory,
             match_names_with_roman_numerals_in_parentheses,
             match_names_with_country_codes,
             match_identical_cas_numbers,

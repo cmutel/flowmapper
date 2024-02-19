@@ -14,6 +14,7 @@ CONTEXT_MAPPING = {
         'emissions to soil/forestry': 'soil/forestry',
         'emissions to soil/industrial': 'soil/industrial',
         'water/groundwater, long-term': 'water/ground-, long-term',
+        'water/groundwater': 'water/ground-',
         'water/river': 'water/surface water',
         'emissions to water': 'water',
         'emissions to water/groundwater': 'water/ground-',

@@ -346,7 +346,7 @@ COUNTRY_CODES = "|".join(
 )
 
 # Regex to find a two-letter uppercase code following a comma and optional whitespace
-country_code_regex = re.compile(r",\s*({})$".format(COUNTRY_CODES))
+country_code_regex = re.compile(r",\s*({})$".format(COUNTRY_CODES + "|" + COUNTRY_CODES.lower()))
 
 
 def extract_country_code(s: str) -> tuple[str, Optional[str]]:

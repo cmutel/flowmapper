@@ -1,4 +1,5 @@
 CONTEXT_MAPPING = {
+    "air": "air/unspecified",
     "air/high. pop.": "air/urban air close to ground",
     "air/indoor": "air/indoor",
     "air/low. pop.": "air/non-urban air or from high stacks",
@@ -13,7 +14,9 @@ CONTEXT_MAPPING = {
     "emissions to soil/agricultural": "soil/agricultural",
     "emissions to soil/forestry": "soil/forestry",
     "emissions to soil/industrial": "soil/industrial",
+    "water": "water/unspecified",
     "water/groundwater, long-term": "water/ground-, long-term",
+    "water/fossilwater": "water/fossil well",
     "water/groundwater": "water/ground-",
     "water/river": "water/surface water",
     "emissions to water": "water",

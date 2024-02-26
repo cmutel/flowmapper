@@ -279,6 +279,7 @@ COUNTRY_CODES = "|".join(
         "QA",
         "RE",
         "RO",
+        "RS",
         "RU",
         "RW",
         "SA",
@@ -336,6 +337,11 @@ COUNTRY_CODES = "|".join(
         "ZA",
         "ZM",
         "ZW",
+        "RER",
+        "GLO",
+        "OECD",
+        "Europe",
+        "RAF",
     }
 )
 

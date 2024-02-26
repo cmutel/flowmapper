@@ -1,0 +1,586 @@
+[
+  [
+    "Transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refrigerant, freezing {GLO}| market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refri(...)_16 | Cut-off",
+    "Transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refrigerant, freezing {GLO}| transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refrigerant, freezing | Cut-off"
+  ],
+  [
+    "Transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refrigerant, cooling {GLO}| market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refrig(...)_8 | Cut-off",
+    "Transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refrigerant, cooling {GLO}| transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refrigerant, cooling | Cut-off"
+  ],
+  [
+    "Occupation, agriculture",
+    "Occupation, annual crop"
+  ],
+  [
+    "Occupation, dump site, benthos",
+    "Occupation, seabed, unspecified"
+  ],
+  [
+    "Occupation, forest, intensive, normal",
+    "Occupation, forest, intensive"
+  ],
+  [
+    "Occupation, forest, intensive, short-cycle",
+    "Occupation, forest, intensive"
+  ],
+  [
+    "Occupation, forest, used",
+    "Occupation, forest, intensive"
+  ],
+  [
+    "Occupation, grassland/pasture/meadow",
+    "Occupation, pasture, man made"
+  ],
+  [
+    "Occupation, industrial area, benthos",
+    "Occupation, seabed, unspecified"
+  ],
+  [
+    "Occupation, industrial area, built up",
+    "Occupation, industrial area"
+  ],
+  [
+    "Occupation, industrial area, vegetation",
+    "Occupation, industrial area"
+  ],
+  [
+    "Occupation, permanent crop, fruit, intensive",
+    "Occupation, permanent crop, irrigated"
+  ],
+  [
+    "Occupation, sea and ocean",
+    "Occupation, seabed, unspecified"
+  ],
+  [
+    "Occupation, sea and ocean",
+    "Occupation, seabed, unspecified"
+  ],
+  [
+    "Occupation, traffic area",
+    "Occupation, traffic area, road network"
+  ],
+  [
+    "Occupation, traffic area, road embankment",
+    "Occupation, traffic area, road network"
+  ],
+  [
+    "Occupation, unspecified, used",
+    "Occupation, unspecified"
+  ],
+  [
+    "Occupation, water bodies, artificial",
+    "Occupation, river, artificial"
+  ],
+  [
+    "Occupation, water courses, artificial",
+    "Occupation, river, artificial"
+  ],
+  [
+    "Occupation, wetland",
+    "Occupation, inland waterbody, unspecified"
+  ],
+  [
+    "Transformation, from agriculture",
+    "Transformation, from annual crop"
+  ],
+  [
+    "Transformation, from annual crop, non-irrigated, fallow",
+    "Transformation, from pasture, man made"
+  ],
+  [
+    "Transformation, from forest, intensive, clear-cutting",
+    "Transformation, from forest, intensive"
+  ],
+  [
+    "Transformation, from forest, used",
+    "Transformation, from forest, intensive"
+  ],
+  [
+    "Transformation, from grassland",
+    "Transformation, from grassland, natural (non-use)"
+  ],
+  [
+    "Transformation, from grassland/pasture/meadow",
+    "Transformation, from pasture, man made"
+  ],
+  [
+    "Transformation, from industrial area, benthos",
+    "Transformation, from seabed, unspecified"
+  ],
+  [
+    "Transformation, from industrial area, built up",
+    "Transformation, from industrial area"
+  ],
+  [
+    "Transformation, from industrial area, vegetation",
+    "Transformation, from industrial area"
+  ],
+  [
+    "Transformation, from permanent crop, fruit",
+    "Transformation, from permanent crop, irrigated"
+  ],
+  [
+    "Transformation, from tropical rain forest",
+    "Transformation, from forest, extensive"
+  ],
+  [
+    "Transformation, from unspecified, used",
+    "Transformation, from unspecified"
+  ],
+  [
+    "Transformation, to agriculture",
+    "Transformation, to annual crop"
+  ],
+  [
+    "Transformation, to annual crop, fallow",
+    "Transformation, to arable land, unspecified use"
+  ],
+  [
+    "Transformation, to annual crop, non-irrigated, fallow",
+    "Transformation, to annual crop, non-irrigated, extensive"
+  ],
+  [
+    "Transformation, to dump site, benthos",
+    "Transformation, to seabed, unspecified"
+  ],
+  [
+    "Transformation, to forest, intensive, clear-cutting",
+    "Transformation, to forest, intensive"
+  ],
+  [
+    "Transformation, to forest, intensive, normal",
+    "Transformation, to forest, intensive"
+  ],
+  [
+    "Transformation, from arable, organic",
+    "Transformation, from arable land, unspecified use"
+  ],
+  [
+    "Transformation, to forest, intensive, short-cycle",
+    "Transformation, to forest, intensive"
+  ],
+  [
+    "Transformation, to forest, used",
+    "Transformation, to forest, intensive"
+  ],
+  [
+    "Transformation, to grassland/pasture/meadow",
+    "Transformation, to pasture, man made"
+  ],
+  [
+    "Transformation, to industrial area, benthos",
+    "Transformation, to seabed, unspecified"
+  ],
+  [
+    "Transformation, to industrial area, built up",
+    "Transformation, to industrial area"
+  ],
+  [
+    "Transformation, to industrial area, vegetation",
+    "Transformation, to industrial area"
+  ],
+  [
+    "Transformation, to permanent crop, fruit, intensive",
+    "Transformation, to permanent crop, irrigated"
+  ],
+  [
+    "Transformation, to sea and ocean",
+    "Transformation, to seabed, unspecified"
+  ],
+  [
+    "Transformation, to traffic area, road embankment",
+    "Transformation, to traffic area, road network"
+  ],
+  [
+    "Transformation, to unspecified, used",
+    "Transformation, to unspecified"
+  ],
+  [
+    "Transformation, to urban/industrial fallow",
+    "Transformation, to industrial area"
+  ],
+  [
+    "Transformation, to water bodies, artificial",
+    "Transformation, to river, artificial"
+  ],
+  [
+    "Transformation, to water courses, artificial",
+    "Transformation, to river, artificial"
+  ],
+  [
+    "Particulates, < 10 um",
+    "Particulates, > 2.5 um, and < 10um"
+  ],
+  [
+    "Particulates, < 10 um (mobile)",
+    "Particulates, > 2.5 um, and < 10um"
+  ],
+  [
+    "Particulates, < 10 um (stationary)",
+    "Particulates, > 2.5 um, and < 10um"
+  ],
+  [
+    "Particulates, > 10 um (process)",
+    "Particulates, > 2.5 um, and < 10um"
+  ],
+  [
+    "Particulates, SPM",
+    "Particulates, > 2.5 um, and < 10um"
+  ],
+  [
+    "Particulates, diesel soot",
+    "Particulates, > 2.5 um, and < 10um"
+  ],
+  [
+    "Particulates, unspecified",
+    "Particulates, > 2.5 um, and < 10um"
+  ],
+  [
+    "Water/m3",
+    "Water"
+  ],
+  [
+    "Sulfur dioxide, CN",
+    "Sulfur dioxide"
+  ],
+  [
+    "Nitrogen oxides, CN",
+    "Nitrogen oxides"
+  ],
+  [
+    "Ammonia, FR",
+    "Ammonia"
+  ],
+  [
+    "Ammonia, as N",
+    "Ammonia"
+  ],
+  [
+    "AOX (Adsorbable Organic Halogens)",
+    "AOX, Adsorbable Organic Halogen as Cl"
+  ],
+  [
+    "AOX, Adsorbable Organic Halogen",
+    "AOX, Adsorbable Organic Halogen as Cl"
+  ],
+  [
+    "Alkane (unspecified)",
+    "Hydrocarbons, aliphatic, alkanes, unspecified"
+  ],
+  [
+    "Antimony, ion",
+    "Antimony"
+  ],
+  [
+    "Formetanate",
+    "Formetanate hydrochloride"
+  ],
+  [
+    "Haloxyfop",
+    "haloxyfop-ethoxyethyl"
+  ],
+  [
+    "BOD5 (Biological Oxygen Demand), CN",
+    "BOD5 (Biological Oxygen Demand)"
+  ],
+  [
+    "Bauxite",
+    "Gangue"
+  ],
+  [
+    "Copper ore",
+    "Copper, Cu 0.2%, in mixed ore"
+  ],
+  [
+    "Copper, Cu 0.38%, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Pb 0.014%, in ore",
+    "Copper, Cu 0.38%, in mixed ore"
+  ],
+  [
+    "Copper, Cu 3.2E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0% in ore",
+    "Copper, Cu 0.38%, in mixed ore"
+  ],
+  [
+    "Copper, Cu 5.2E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2% in ore",
+    "Copper, 0.52% in sulfide, Cu 0.27% and Mo 8.2E-3% in crude ore"
+  ],
+  [
+    "Coal, 18 MJ per kg",
+    "Coal, hard, unspecified"
+  ],
+  [
+    "Coal, brown, 10 MJ per kg",
+    "Coal, brown"
+  ],
+  [
+    "Coal, brown, 8 MJ per kg",
+    "Coal, brown"
+  ],
+  [
+    "Coal, hard",
+    "Coal, hard, unspecified"
+  ],
+  [
+    "Crude oil",
+    "Oil, crude"
+  ],
+  [
+    "Energy, from biomass",
+    "Energy, gross calorific value, in biomass"
+  ],
+  [
+    "Energy, from coal",
+    "Energy, gross calorific value, in biomass"
+  ],
+  [
+    "Gas, mine, off-gas, process, coal mining/kg",
+    "Gas, mine, off-gas, process, coal mining"
+  ],
+  [
+    "Antimony, ion",
+    "Antimony"
+  ],
+  [
+    "Arsenic (V)",
+    "Arsenic"
+  ],
+  [
+    "Barium (II)",
+    "Barium"
+  ],
+  [
+    "Beryllium (II)",
+    "Beryllium"
+  ],
+  [
+    "Cadmium (II)",
+    "Cadmium"
+  ],
+  [
+    "Calcium",
+    "Calcium, ion"
+  ],
+  [
+    "Chromium (III)",
+    "Chromium III"
+  ],
+  [
+    "Chromium (VI)",
+    "Chromium VI"
+  ],
+  [
+    "Chromium, ion",
+    "Chromium"
+  ],
+  [
+    "Copper, ion",
+    "Copper"
+  ],
+  [
+    "Formetanate",
+    "Formetanate hydrochloride"
+  ],
+  [
+    "Haloxyfop",
+    "haloxyfop-ethoxyethyl"
+  ],
+  [
+    "Lead (II)",
+    "Lead"
+  ],
+  [
+    "Mercury (II)",
+    "Mercury"
+  ],
+  [
+    "Manganese (II)",
+    "Manganese"
+  ],
+  [
+    "Molybdenum (VI)",
+    "Molybdenum"
+  ],
+  [
+    "Nickel (II)",
+    "Nickel"
+  ],
+  [
+    "Oils, biogenic",
+    "Oils, non-fossil"
+  ],
+  [
+    "Particulates, > 10 um",
+    "Particulate Matter, > 10 um"
+  ],
+  [
+    "Plutonium",
+    "Plutonium-238"
+  ],
+  [
+    "Potassium (I)",
+    "Potassium"
+  ],
+  [
+    "Ruthenium",
+    "Ruthenium-103"
+  ],
+  [
+    "Silver (I)",
+    "Silver"
+  ],
+  [
+    "Thallium (I)",
+    "Thallium"
+  ],
+  [
+    "Zinc (II)",
+    "Zinc"
+  ],
+  [
+    "Ethene",
+    "Ethylene"
+  ],
+  [
+    "Water, process, unspecified natural origin/m3",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, cooling, unspecified natural origin/m3",
+    "Water, cooling, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin/m3",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Carbon",
+    "Elemental carbon"
+  ],
+  [
+    "Radioactive species, unspecified",
+    "Radioactive species, Nuclides, unspecified"
+  ],
+  [
+    "Methane, tetrachloro-, CFC-10",
+    "Methane, tetrachloro-, R-10"
+  ],
+  [
+    "Methane, tetrachloro-, CFC-14",
+    "Methane, tetrachloro-, R-14"
+  ],
+  [
+    "Cesium-136",
+    "Caesium-136"
+  ],
+  [
+    "Cesium",
+    "Caesium"
+  ],
+  [
+    "Cesium-137",
+    "Caesium-137"
+  ],
+  [
+    "Particulates, < 2.5 um",
+    "Particulate Matter, < 2.5 um"
+  ],
+  [
+    "Silver, Ag 9.7E-4%, Au 9.7E-4%, Zn 0.63%, Cu 0.38%, Pb 0.014%, in ore",
+    "Silver, Ag 9.7E-4%, in mixed ore"
+  ],
+  [
+    "1-Butanol",
+    "Butanol"
+  ],
+  [
+    "AOX, Adsorbable Organic Halogen as Cl",
+    "AOX, Adsorbable Organic Halogen"
+  ],
+  [
+    "Zinc, Zn 0.63%, Au 9.7E-4%, Ag 9.7E-4%, Cu 0.38%, Pb 0.014%, in ore",
+    "Zinc, Zn 0.63%, in mixed ore"
+  ],
+  [
+    "Transformation, to urban",
+    "Transformation, to urban, continuously built"
+  ],
+  [
+    "Occupation, urban",
+    "Occupation, urban, continuously built"
+  ],
+  [
+    "VOC, volatile organic compounds, unspecified origin",
+    "VOC, volatile organic compounds"
+  ],
+  [
+    "Lead, Pb 0.014%, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Cu 0.38%, in ore",
+    "Lead, Pb 0.014%, in mixed ore"
+  ],
+  [
+    "Particulates, < 10 um (stationary)",
+    "Particulate Matter, > 2.5 um and < 10um"
+  ],
+  [
+    "Nickel, Ni 3.7E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Cu 5.2E-2% in ore",
+    "Nickel, Ni 2.5E+0%, in mixed ore"
+  ],
+  [
+    "Platinum, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore",
+    "Pt, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
+  ],
+  [
+    "Occupation, annual crop, non-irrigated, diverse-intensive",
+    "Occupation, annual crop, non-irrigated, intensive"
+  ],
+  [
+    "Gold, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Cu 0.38%, Pb 0.014%, in ore",
+    "Gold, Au 9.7E-4%, in mixed ore"
+  ],
+  [
+    "Particulates, > 2.5 um, and < 10um",
+    "Particulate Matter, > 2.5 um and < 10um"
+  ],
+  [
+    "Platinum, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore",
+    "Pt, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
+  ],
+  [
+    "Sodium sulfate",
+    "Sodium sulphate, various forms"
+  ],
+  [
+    "Transformation, from pasture and meadow, organic",
+    "Transformation, from pasture, man made, extensive"
+  ],
+  [
+    "Palladium, Pd 2.0E-4%, Pt 4.8E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore",
+    "Pd, Pd 2.0E-4%, Pt 4.8E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
+  ],
+  [
+    "Clay",
+    "Clay, bentonite"
+  ],
+  [
+    "NMVOC, non-methane volatile organic compounds, unspecified origin",
+    "NMVOC, non-methane volatile organic compounds"
+  ],
+  [
+    "Rhodium, Rh 2.0E-5%, Pt 2.5E-4%, Pd 7.3E-4%, Ni 2.3E+0%, Cu 3.2E+0% in ore",
+    "Rh, Rh 2.0E-5%, Pt 2.5E-4%, Pd 7.3E-4%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
+  ],
+  [
+    "Rhodium, Rh 2.4E-5%, Pt 4.8E-4%, Pd 2.0E-4%, Ni 3.7E-2%, Cu 5.2E-2% in ore",
+    "Rh, Rh 2.4E-5%, Pt 4.8E-4%, Pd 2.0E-4%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
+  ],
+  [
+    "Palladium, Pd 7.3E-4%, Pt 2.5E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore",
+    "Pd, Pd 7.3E-4%, Pt 2.5E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
+  ],
+  [
+    "Energy, gross calorific value, in biomass, resource correction",
+    "Energy, gross calorific value, in biomass"
+  ],
+  [
+    "Transformation, to arable, organic",
+    "Transformation, to arable land, unspecified use"
+  ]
+]

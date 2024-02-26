@@ -1,4 +1,6 @@
 import logging
+import json
+from pathlib import Path
 
 from .flow import Flow
 from .utils import (
@@ -8,6 +10,8 @@ from .utils import (
 )
 
 logger = logging.getLogger(__name__)
+
+DATA_DIR = Path(__file__).parent.resolve() / "data"
 
 
 def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: dict):
@@ -42,11 +46,7 @@ def match_identical_uuid(s: Flow, t: Flow, comment: str = "Identical uuid"):
 def match_identical_names_in_synonyms(
     s: Flow, t: Flow, comment: str = "Identical synonyms"
 ):
-    is_match = (
-        True
-        if t.synonyms and s.name.value in t.synonyms.value and s.context == t.context
-        else False
-    )
+    is_match = (t.synonyms and s.name.value in t.synonyms.value and s.context == t.context)
     if is_match:
         return {"comment": comment}
 
@@ -122,7 +122,7 @@ def match_names_with_country_codes(s: Flow, t: Flow, comment="Names with country
     is_match = s_location and s_name == t.name and s.context == t.context
 
     if is_match:
-        return {"comment": comment, "location": s_location.upper()}
+        return {"comment": comment, "location": s_location}
 
 
 def match_natural_resources_without_subcategory(
@@ -179,6 +179,17 @@ def match_emissions_with_suffix_ion(s: Flow, t: Flow):
     )
 
 
+SP_EI38_NAMES = dict(json.load(open(DATA_DIR / "manual_name_match_simapro_ecoinvent_3.8.json")))
+SP_EI39_NAMES = dict(json.load(open(DATA_DIR / "manual_name_match_simapro_ecoinvent_3.9.json")))
+
+
+def match_custom_data(s: Flow, t: Flow):
+    if SP_EI39_NAMES.get(s.name.raw_value) == t.name.raw_value:
+        return {'comment': 'Manual name match from Simapro to ecoinvent 3.9'}
+    if SP_EI38_NAMES.get(s.name.raw_value) == t.name.raw_value:
+        return {'comment': 'Manual name match from Simapro to ecoinvent 3.8'}
+
+
 def match_rules():
     return [
         match_identical_uuid,
@@ -192,4 +203,5 @@ def match_rules():
         match_non_ionic_state,
         match_biogenic_to_non_fossil,
         match_identical_names_in_synonyms,
+        match_custom_data,
     ]

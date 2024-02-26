@@ -2,10 +2,10 @@ from flowmapper.utils import extract_country_code
 
 
 def test_with_lowercase():
-    assert extract_country_code("ammonia, nl") == ("ammonia, nl", None)
+    assert extract_country_code("ammonia, nl") == ("ammonia", "nl")
 
 
-def test_with_valid_country_code():
+def test_with_uppercase():
     assert extract_country_code("ammonia, NL") == ("ammonia", "NL")
 
 

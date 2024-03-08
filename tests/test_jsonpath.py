@@ -1,5 +1,6 @@
 import flowmapper.jsonpath as jp
 
+
 def test_basic_access():
     data = {
         "name": "Chrysotile",
@@ -38,11 +39,17 @@ def test_nested_data_access():
         ],
     }
 
-    assert jp.extract(("synonym", ["#text"]), data) == ["2-methylbuta-1,3-diene", "methyl bivinyl"]
+    assert jp.extract(("synonym", ["#text"]), data) == [
+        "2-methylbuta-1,3-diene",
+        "methyl bivinyl",
+    ]
+
 
 def test_root():
-    assert jp.root('.unit') == '' # this could be a problem if there are . in column names
-    assert jp.root('unit') == 'unit'
-    assert jp.root('unit.name') == 'unit'
-    assert jp.root('unit.foo.bar') == 'unit'
-    assert jp.root(("synonym", ["#text"])) == 'synonym'
+    assert (
+        jp.root(".unit") == ""
+    )  # this could be a problem if there are . in column names
+    assert jp.root("unit") == "unit"
+    assert jp.root("unit.name") == "unit"
+    assert jp.root("unit.foo.bar") == "unit"
+    assert jp.root(("synonym", ["#text"])) == "synonym"

@@ -1,6 +1,9 @@
 from dataclasses import asdict, dataclass, field
+
 import flowmapper.jsonpath as jp
+
 from .utils import normalize_str
+
 
 @dataclass
 class FlowProperty:
@@ -20,9 +23,9 @@ class FlowProperty:
             key = jp.root(spec)
             value = jp.extract(spec, d)
             result = FlowProperty(
-                value = cls.normalize(value),
-                raw_value = value,
-                raw_object = {key: d.get(key)},
+                value=cls.normalize(value),
+                raw_value=value,
+                raw_object={key: d.get(key)},
             )
         else:
             result = FlowProperty(None)

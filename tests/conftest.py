@@ -1,8 +1,10 @@
 """Fixtures for flowmapper"""
 
 import pytest
-from flowmapper.utils import read_field_mapping, read_flowlist, read_migration_files
+
 from flowmapper.flow import Flow
+from flowmapper.utils import read_field_mapping, read_flowlist, read_migration_files
+
 
 @pytest.fixture
 def field_mapping():
@@ -74,7 +76,10 @@ def flows_ei39():
         "unit": "unitName.#text",
         "cas": "@casNumber",
     }
-    result = [Flow(flow, fields, transformations) for flow in read_flowlist("tests/data/ei-3.9.json")]
+    result = [
+        Flow(flow, fields, transformations)
+        for flow in read_flowlist("tests/data/ei-3.9.json")
+    ]
     return result
 
 

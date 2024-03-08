@@ -1,13 +1,16 @@
-from functools import cached_property
-from .flow import Flow
-from .match import match_rules, format_match_result
-from .unit import Unit
-from tqdm import tqdm
-from typing import Callable, Optional
-import pandas as pd
-from pathlib import Path
 import json
 from collections import Counter
+from functools import cached_property
+from pathlib import Path
+from typing import Callable, Optional
+
+import pandas as pd
+from tqdm import tqdm
+
+from .flow import Flow
+from .match import format_match_result, match_rules
+from .unit import Unit
+
 
 class Flowmap:
     """
@@ -27,6 +30,7 @@ class Flowmap:
         The list of target flows that do not match any rule.
 
     """
+
     def __init__(
         self,
         source_flows: list[Flow],
@@ -59,7 +63,7 @@ class Flowmap:
         if nomatch_rules:
             self.source_flows = []
             self.source_flows_nomatch = []
-            
+
             for flow in source_flows:
                 matched = False
                 for rule in nomatch_rules:
@@ -114,31 +118,39 @@ class Flowmap:
                     is_match = rule(s, t)
                     if is_match:
                         all_mappings.append(
-                            {'from': s,
-                             'to': t,
-                             'conversion_factor': s.conversion_factor if s.conversion_factor else s.unit.conversion_factor(t.unit),
-                             'match_rule': rule.__name__,
-                             'match_rule_priority': self.rules.index(rule),
-                             'info': is_match}
+                            {
+                                "from": s,
+                                "to": t,
+                                "conversion_factor": (
+                                    s.conversion_factor
+                                    if s.conversion_factor
+                                    else s.unit.conversion_factor(t.unit)
+                                ),
+                                "match_rule": rule.__name__,
+                                "match_rule_priority": self.rules.index(rule),
+                                "info": is_match,
+                            }
                         )
                         break
         result = []
         seen_sources = set()
-        sorted_mappings = sorted(all_mappings, key=lambda x: (x['from'], x['match_rule_priority']))
+        sorted_mappings = sorted(
+            all_mappings, key=lambda x: (x["from"], x["match_rule_priority"])
+        )
         for mapping in sorted_mappings:
-            if mapping['from'] not in seen_sources:
+            if mapping["from"] not in seen_sources:
                 result.append(mapping)
-                seen_sources.add(mapping['from'])
-        
+                seen_sources.add(mapping["from"])
+
         return result
 
     @cached_property
     def _matched_source_flows_ids(self):
-        return {map_entry['from'].id for map_entry in self.mappings}
+        return {map_entry["from"].id for map_entry in self.mappings}
 
     @cached_property
     def _matched_target_flows_ids(self):
-        return {map_entry['to'].id for map_entry in self.mappings}
+        return {map_entry["to"].id for map_entry in self.mappings}
 
     @cached_property
     def matched_source(self):
@@ -153,7 +165,7 @@ class Flowmap:
         """
         result = [
             flow
-            for flow in self.source_flows 
+            for flow in self.source_flows
             if flow.id in self._matched_source_flows_ids
         ]
         return result
@@ -170,8 +182,8 @@ class Flowmap:
 
         """
         result = [
-            flow 
-            for flow in self.source_flows 
+            flow
+            for flow in self.source_flows
             if flow.id not in self._matched_source_flows_ids
         ]
         return result
@@ -189,17 +201,17 @@ class Flowmap:
         """
         matched = Counter([flow.context.value for flow in self.matched_source])
         matched = pd.Series(matched).reset_index()
-        matched.columns = ['context', 'matched']
+        matched.columns = ["context", "matched"]
 
         total = Counter([flow.context.value for flow in self.source_flows])
         total = pd.Series(total).reset_index()
-        total.columns = ['context', 'total']
+        total.columns = ["context", "total"]
 
-        df = pd.merge(matched, total, on='context', how='outer')
-        df = df.fillna(0).astype({'matched': 'int', 'total': 'int'})
+        df = pd.merge(matched, total, on="context", how="outer")
+        df = df.fillna(0).astype({"matched": "int", "total": "int"})
 
-        df['percent'] = df.matched / df.total
-        result = df.sort_values('percent')
+        df["percent"] = df.matched / df.total
+        result = df.sort_values("percent")
         return result
 
     @cached_property
@@ -215,7 +227,7 @@ class Flowmap:
         """
         result = [
             flow
-            for flow in self.target_flows 
+            for flow in self.target_flows
             if flow.id in self._matched_target_flows_ids
         ]
         return result
@@ -233,7 +245,7 @@ class Flowmap:
         """
         result = [
             flow
-            for flow in self.target_flows 
+            for flow in self.target_flows
             if flow.id not in self._matched_target_flows_ids
         ]
         return result
@@ -251,17 +263,17 @@ class Flowmap:
         """
         matched = Counter([flow.context.value for flow in self.matched_target])
         matched = pd.Series(matched).reset_index()
-        matched.columns = ['context', 'matched']
+        matched.columns = ["context", "matched"]
 
         total = Counter([flow.context.value for flow in self.target_flows])
         total = pd.Series(total).reset_index()
-        total.columns = ['context', 'total']
+        total.columns = ["context", "total"]
 
-        df = pd.merge(matched, total, on='context', how='outer')
-        df = df.fillna(0).astype({'matched': 'int', 'total': 'int'})
+        df = pd.merge(matched, total, on="context", how="outer")
+        df = df.fillna(0).astype({"matched": "int", "total": "int"})
 
-        df['percent'] = df.matched / df.total
-        result = df.sort_values('percent')
+        df["percent"] = df.matched / df.total
+        result = df.sort_values("percent")
         return result
 
     def statistics(self):
@@ -284,7 +296,7 @@ class Flowmap:
         print(
             f"{len(self.mappings)} mappings ({len(self.matched_source) / len(self.source_flows):.2%} of total)."
         )
-        cardinalities = dict(Counter([x['cardinality'] for x in self._cardinalities]))
+        cardinalities = dict(Counter([x["cardinality"] for x in self._cardinalities]))
         print(f"Mappings cardinalities: {str(cardinalities)}")
 
     @cached_property
@@ -298,7 +310,9 @@ class Flowmap:
             A sorted list of dictionaries, each indicating the cardinality relationship between a pair of source and target flows.
 
         """
-        mappings = [(mapentry['from'].id, mapentry['to'].id) for mapentry in self.mappings]
+        mappings = [
+            (mapentry["from"].id, mapentry["to"].id) for mapentry in self.mappings
+        ]
         lhs_counts = Counter([pair[0] for pair in mappings])
         rhs_counts = Counter([pair[1] for pair in mappings])
 
@@ -316,7 +330,7 @@ class Flowmap:
             elif lhs_count > 1 and rhs_count > 1:
                 result.append({"from": lhs, "to": rhs, "cardinality": "N:M"})
 
-        return sorted(result, key = lambda x: x['from'])
+        return sorted(result, key=lambda x: x["from"])
 
     def to_randonneur(self, path: Optional[Path] = None):
         """
@@ -334,10 +348,12 @@ class Flowmap:
 
         """
         result = [
-            format_match_result(map_entry['from'], 
-                                map_entry['to'],
-                                map_entry['conversion_factor'],
-                                map_entry['info']) 
+            format_match_result(
+                map_entry["from"],
+                map_entry["to"],
+                map_entry["conversion_factor"],
+                map_entry["info"],
+            )
             for map_entry in self.mappings
         ]
 
@@ -346,9 +362,8 @@ class Flowmap:
         else:
             path = Path(path)
             path.parent.mkdir(parents=True, exist_ok=True)
-            with open(path, 'w') as fs: 
+            with open(path, "w") as fs:
                 json.dump(result, fs, indent=2)
-        
 
     def to_glad(self, path: Optional[Path] = None, ensure_id: bool = False):
         """
@@ -371,20 +386,24 @@ class Flowmap:
         """
         data = []
         for map_entry in self.mappings:
-            source_flow_id = map_entry['from'].uuid_raw_value if map_entry['from'].uuid_raw_value or not ensure_id else map_entry['from'].id
+            source_flow_id = (
+                map_entry["from"].uuid_raw_value
+                if map_entry["from"].uuid_raw_value or not ensure_id
+                else map_entry["from"].id
+            )
             row = {
-                    'SourceFlowName': map_entry['from'].name_raw_value,
-                    'SourceFlowUUID': source_flow_id,
-                    'SourceFlowContext': '/'.join(map_entry['from'].context_raw_value),
-                    'SourceUnit': map_entry['from'].unit_raw_value,
-                    'MatchCondition': '',
-                    'ConversionFactor': map_entry['conversion_factor'],
-                    'TargetFlowName': map_entry['to'].name_raw_value,
-                    'TargetFlowUUID': map_entry['to'].uuid_raw_value,
-                    'TargetFlowContext': map_entry['to'].context.raw_value,
-                    'TargetUnit': map_entry['to'].unit.raw_value,
-                    'MemoMapper': map_entry['info'].get('comment')
-                }
+                "SourceFlowName": map_entry["from"].name_raw_value,
+                "SourceFlowUUID": source_flow_id,
+                "SourceFlowContext": "/".join(map_entry["from"].context_raw_value),
+                "SourceUnit": map_entry["from"].unit_raw_value,
+                "MatchCondition": "",
+                "ConversionFactor": map_entry["conversion_factor"],
+                "TargetFlowName": map_entry["to"].name_raw_value,
+                "TargetFlowUUID": map_entry["to"].uuid_raw_value,
+                "TargetFlowContext": map_entry["to"].context.raw_value,
+                "TargetUnit": map_entry["to"].unit.raw_value,
+                "MemoMapper": map_entry["info"].get("comment"),
+            }
             data.append(row)
 
         result = pd.DataFrame(data)
@@ -394,4 +413,4 @@ class Flowmap:
         else:
             path = Path(path)
             path.parent.mkdir(parents=True, exist_ok=True)
-            result.to_excel(path, index = False)
+            result.to_excel(path, index=False)

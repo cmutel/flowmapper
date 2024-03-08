@@ -1,7 +1,9 @@
-from typer.testing import CliRunner
-from flowmapper.cli import app
 import json
+
 import pandas as pd
+from typer.testing import CliRunner
+
+from flowmapper.cli import app
 
 runner = CliRunner()
 

@@ -34,8 +34,7 @@ def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: 
 
 
 def match_identical_uuid(s: Flow, t: Flow, comment: str = "Identical uuid"):
-    is_match = True if s.uuid and t.uuid and s.uuid == t.uuid else False
-    if is_match:
+    if s.uuid and (s.uuid == t.uuid):
         return {"comment": comment}
 
 
@@ -54,15 +53,12 @@ def match_identical_names_in_synonyms(
 def match_identical_cas_numbers(
     s: Flow, t: Flow, comment: str = "Identical CAS numbers"
 ):
-    is_match = s.cas == t.cas and s.context == t.context
-    if is_match:
+    if (s.cas == t.cas) and (s.context == t.context):
         return {"comment": comment}
 
 
 def match_identical_names(s: Flow, t: Flow, comment="Identical names"):
-    is_match = s.name == t.name and s.context == t.context
-
-    if is_match:
+    if (s.name == t.name) and (s.context == t.context):
         return {"comment": comment}
 
 

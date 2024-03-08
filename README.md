@@ -19,6 +19,44 @@
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [black]: https://github.com/psf/black
 
+## Flowmapper
+
+This is a tool to automate matching elementary flow lists in life cycle assessment. It can map
+different lists against each other and generate usable transformation files for those mappings.
+
+It works by starting with the assumption that there is a core underlying ontology for elementary
+flows, regardless of the expression of that ontology in difference data formats. Here is the core
+ontology that `flowmapper` uses:
+
+* name: str, the canonical name used to identify a substance, e.g. "1,4-Butanediol"
+* unique identifier: str, or complex type with a string representation, e.g. "38a622c6-f086-4763-a952-7c6b3b1c42ba"
+* context: tuple[str], a hierarchical organization into environmental compartments, e.g. `("air", "urban air close to ground")`
+* unit: str, or complex type with a string representation, e.g. "kg"
+* sector-specific labels: str, or complex type with a string representation, e.g. CAS number 000110-63-4
+* synonyms: list[str], a list of alternative unique names for a substance, e.g. `["Butylene glycol", "butane-1,4-diol"]`
+
+Chemical formulas are not currently used - they can be expressed in too many different ways, and haven't proven useful for matching.
+
+Matching across the two lists is defined by a set of strategy functions; matching can take some or
+all ontological elements into account. Due to the sometimes chaotic nature of the input data,
+matching usually needs to be customized for the specific source and target lists.
+
+For example, a matching strategy could say that two flows are the same if their name and context are equal, or if their CAS number and context are equal. Units are rarely compared directly; instead, after a match is found we check that the units have [the same dimension](https://en.wikipedia.org/wiki/Dimensional_analysis), and apply unit conversions using [pint](https://pint.readthedocs.io/en/stable/) if necessary.
+
+This library does not generate partial matches (i.e. "1,4-Butanediol" is always the same as "butane-1,4-diol", but the separate contexts would need to be matched afterwards). Partial matches could be used to reduce the size of the matching file, as one could store name matches in one partial match and context matches in another partial match, but we prefer the explicit enumeration of all matches of flows present in the source and target lists.
+
+Matching is usually done by checking for equality. Instead of forcing conversion and then testing,
+flowmapper comes with custom classes for these ontological elements which allow for a flexible
+definition of equality, and the testing of logical relationships. For example, you can do this:
+
+```python
+from flowmapper import CAS
+first = CAS("   007440-05-3")
+second = CAS("7440-05-3")
+first == second
+>>> True
+```
+
 ## Installation
 
 You can install _flowmapper_ via [pip] from [PyPI]:

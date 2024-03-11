@@ -32,8 +32,8 @@ CONTEXT_MAPPING = {
     "raw/in water": "natural resource/in water",
 }
 
-UNITS_NORMALIZATION = {
-    "a": "year",  # Common in LCA circles; could be confused with are
+STANDARD_UNITS_NORMALIZATION = {
+    "a": "year",  # Common in LCA circles; could be confused with are (unit of area)
     "bq": "becquerel",
     "g": "gram",
     "gj": "gigajoule",
@@ -60,18 +60,25 @@ UNITS_NORMALIZATION = {
     "m3y": "cubic_meter_year",
     "ma": "meter_year",
     "metric ton*km": "ton_kilometer",
+    "tkm": "ton_kilometer",
     "mj": "megajoule",
     "my": "meter_year",
-    "nm3": "cubic_meter",
+    "sm3": "standard_cubic_meter",
+    "nm3": "normal_cubic_meter",
     "p": "unit",
     "personkm": "person_kilometer",
     "person*km": "person_kilometer",
     "pkm": "person_kilometer",
-    "tkm": "ton_kilometer",
     "vkm": "vehicle_kilometer",
-    "kg sw": "kilogram_separative_work_unit",
+    "kg sw": "separative_work_unit",
+    "swu": "separative_work_unit",
     "km*year": "kilometer_year",
     "metric ton*km": "ton_kilometer",
     "person*km": "person_kilometer",
     "wh": "watt_hour",
+}
+
+PINT_MAPPING = {
+    "livestock unit": "livestock_unit",
+    "kilowatt hour": "kilowatt_hour",
 }

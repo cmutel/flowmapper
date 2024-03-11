@@ -1,63 +1,66 @@
-from __future__ import annotations
-
+import math
+from typing import TypeVar, Generic, Any
 import importlib.resources as resource
-from dataclasses import asdict, dataclass, field
-from typing import Any
 
 from pint import UnitRegistry, errors
 
-import flowmapper.jsonpath as jp
-
-from .constants import UNITS_NORMALIZATION
+from .constants import STANDARD_UNITS_NORMALIZATION, PINT_MAPPING
 from .utils import normalize_str
 
 ureg = UnitRegistry()
 
 with resource.as_file(
-    resource.files("flowmapper").joinpath("data/units.txt")
+    resource.files("flowmapper") / "data" / "units.txt"
 ) as filepath:
     ureg.load_definitions(filepath)
 
+U = TypeVar('U')
 
-@dataclass
-class Unit:
-    value: str
-    raw_value: str = ""
-    raw_object: dict = field(default_factory=lambda: {})
 
-    def __post_init__(self):
-        if not self.raw_value:
-            self.raw_value = self.value
-        self.value = self.normalize(self.raw_value)
+class Unit(Generic[U]):
+    def __init__(self, value: str, standard_normalizations: bool = True):
+        self.original = value
+        if self.is_uri(value):
+            # Private attribute, could change in future
+            self._glossary_entry = self.resolve_uri(value)
+            self.normalized = normalize_str(self._glossary_entry['label'])
+        else:
+            self.normalized = normalize_str(value)
 
-    @classmethod
-    def from_dict(cls, d, spec):
-        key = jp.root(spec)
-        value = jp.extract(spec, d)
-        result = Unit(
-            value=None,
-            raw_value=value,
-            raw_object={key: d.get(key)},
-        )
-        return result
+        if standard_normalizations:
+            self.normalized = STANDARD_UNITS_NORMALIZATION.get(self.normalized.lower(), self.normalized)
 
-    def to_dict(self):
-        return asdict(self)
+        # Private attribute, could change in future
+        self._pint_compatible = PINT_MAPPING.get(self.normalized, self.normalized)
 
-    def __eq__(self, other):
-        return self.value == other.value
+    def is_uri(self, value: str) -> bool:
+        # Placeholder for when we support glossary entries
+        return False
 
-    def conversion_factor(self, to: Unit):
-        if self.value == to.value:
+    def resolve_uri(self, uri: str) -> None:
+        # Placeholder
+        pass
+
+    def __eq__(self, other: Any):
+        if isinstance(other, Unit):
+            return self.normalized == other.normalized or self.conversion_factor(other) == 1
+        elif isinstance(other, str):
+            return self.normalized == other
+        else:
+            return False
+
+    def compatible(self, other: Any):
+        if not isinstance(other, Unit):
+            return False
+        else:
+            return math.isfinite(self.conversion_factor(other))
+
+    def conversion_factor(self, to: U) -> float:
+        if self.normalized == to.normalized:
             result = 1.0
         else:
             try:
-                result = ureg(self.value).to(ureg(to.value)).magnitude
+                result = ureg(self._pint_compatible).to(ureg(to._pint_compatible)).magnitude
             except errors.DimensionalityError:
                 result = float("nan")
         return result
-
-    @staticmethod
-    def normalize(x):
-        s = normalize_str(x)
-        return UNITS_NORMALIZATION.get(s, s)

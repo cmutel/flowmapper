@@ -29,11 +29,13 @@ flows, regardless of the expression of that ontology in difference data formats.
 ontology that `flowmapper` uses:
 
 * name: str, the canonical name used to identify a substance, e.g. "1,4-Butanediol"
-* unique identifier: str, or complex type with a string representation, e.g. "38a622c6-f086-4763-a952-7c6b3b1c42ba"
+* identifier: str, or complex type with a string representation, the unique string used to identify the flow, unit, and context combination, e.g. "38a622c6-f086-4763-a952-7c6b3b1c42ba"
 * context: tuple[str], a hierarchical organization into environmental compartments, e.g. `("air", "urban air close to ground")`
 * unit: str, or complex type with a string representation, e.g. "kg"
-* sector-specific labels: str, or complex type with a string representation, e.g. CAS number 000110-63-4
+* sector-specific labels: str, or complex type with a string representation, a set of additional fields which can help identify or further specify a flow, e.g. CAS number 000110-63-4
 * synonyms: list[str], a list of alternative unique names for a substance, e.g. `["Butylene glycol", "butane-1,4-diol"]`
+
+Flowmapper **assumes that the source and target lists are given in this format**; it comes with or plays well with conversion software for data formats like ecospold, FEDEFL, and SimaPro CSV.
 
 Chemical formulas are not currently used - they can be expressed in too many different ways, and haven't proven useful for matching.
 

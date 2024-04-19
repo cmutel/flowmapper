@@ -113,7 +113,10 @@ def extract_country_code(s: str) -> tuple[str, Optional[str]]:
 
 
 def normalize_str(s):
-    return unicodedata.normalize("NFC", s).strip().lower()
+    if s is not None:
+        return unicodedata.normalize("NFC", s).strip()
+    else:
+        return ''
 
 
 def transform_flow(flow, transformation):

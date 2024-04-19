@@ -1,12 +1,14 @@
+from collections.abc import Iterable
 from typing import Any
 
 
-class Context:
-    def __init__(self, original: Any, mapping: dict = {}):
+class Context(Iterable):
+    def __init__(self, original: Any, transformed: Any = None):
         self.original = original
-        self.normalized = self.normalize(original, mapping)
+        self.transformed = transformed or original
+        self.normalized = self.normalize(transformed)
 
-    def normalize(self, value: Any, mapping: dict) -> tuple[str, ...]:
+    def normalize(self, value: Any) -> tuple[str, ...]:
         if isinstance(value, (tuple, list)):
             intermediate = list(value)
         elif isinstance(value, str) and "/" in value:
@@ -30,9 +32,16 @@ class Context:
         if intermediate[-1] in MISSING_VALUES:
             intermediate = intermediate[:-1]
 
-        intermediate = tuple(intermediate)
+        return tuple(intermediate)
 
-        return mapping.get(intermediate, intermediate)
+    def export_as_string(self):
+        if isinstance(self.original, str):
+            return self.original
+        else:
+            "✂️".join(self.original)
+
+    def __iter__(self):
+        return iter(self.normalized)
 
     def __eq__(self, other):
         if self and other and isinstance(other, Context):
@@ -41,6 +50,9 @@ class Context:
             return (self.normalized == other) or (self.original == other)
         else:
             return False
+
+    def __repr__(self):
+        return str([repr(o) for o in self.normalized]) or "(empty context)"
 
     def __bool__(self):
         return bool(self.normalized)

@@ -88,10 +88,31 @@ def matcher(source, target):
     return all(target.get(key) == value for key, value in source.items())
 
 
-def find_transformation(flow, transformations):
+def rowercase(obj: Any) -> Any:
+    """Recursively transform everything to lower case recursively"""
+    if isinstance(obj, str):
+        return obj.lower()
+    elif isinstance(obj, Mapping):
+        return type(obj)([(rowercase(k), rowercase(v)) for k, v in obj.items()])
+    elif isinstance(obj, Collection):
+        return type(obj)([rowercase(o) for o in obj])
+    else:
+        return obj
+
+
+def apply_transformations(obj: dict, transformations: List[dict] | None) -> dict:
     if not transformations:
-        return None
-    for transformation in transformations["update"]:
-        if matcher(transformation["source"], flow):
-            return transformation
+        return obj
+    new = copy.deepcopy(obj)
+    lower = rowercase(new)
+
+    for transformation_meta in transformations:
+        for transformation_obj in transformation_meta.get("update", []):
+            if matcher(
+                transformation_obj["source"],
+                lower if transformation_meta.get("case-insensitive") else new,
+            ):
+                new.update(transformation_obj["target"])
+                break
+
     return new

@@ -7,5 +7,5 @@ __all__ = (
 
 __version__ = "0.0.0-9010"
 
-from .flowmap import Flowmap
 from .cas import CAS
+from .flowmap import Flowmap

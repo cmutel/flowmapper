@@ -41,10 +41,8 @@ def match_identical_uuid(s: Flow, t: Flow, comment: str = "Identical uuid"):
 def match_identical_names_in_synonyms(
     s: Flow, t: Flow, comment: str = "Identical synonyms"
 ):
-    is_match = (
-        True
-        if t.synonyms and s.name.value in t.synonyms.value and s.context == t.context
-        else False
+    is_match = (t.synonyms and s.name in t.synonyms and s.context == t.context) or (
+        s.synonyms and t.name in s.synonyms and s.context == t.context
     )
     if is_match:
         return {"comment": comment}
@@ -66,10 +64,10 @@ def match_identical_names_except_missing_suffix(
     s: Flow, t: Flow, suffix, comment="Identical names except missing suffix"
 ):
     is_match = (
-        (f"{s.name}, {suffix}" == t.name)
-        or (f"{t.name}, {suffix}" == s.name)
-        or (f"{s.name} {suffix}" == t.name)
-        or (f"{t.name} {suffix}" == s.name)
+        (f"{s.name.normalized}, {suffix}" == t.name)
+        or (f"{t.name.normalized}, {suffix}" == s.name)
+        or (f"{s.name.normalized} {suffix}" == t.name)
+        or (f"{t.name.normalized} {suffix}" == s.name)
     ) and s.context == t.context
 
     if is_match:
@@ -80,8 +78,8 @@ def match_names_with_roman_numerals_in_parentheses(
     s: Flow, t: Flow, comment="With/without roman numerals in parentheses"
 ):
     is_match = (
-        rm_parentheses_roman_numerals(s.name.value)
-        == rm_parentheses_roman_numerals(t.name.value)
+        rm_parentheses_roman_numerals(s.name.normalized)
+        == rm_parentheses_roman_numerals(t.name.normalized)
         and s.context == t.context
     )
 
@@ -90,7 +88,7 @@ def match_names_with_roman_numerals_in_parentheses(
 
 
 def match_names_with_country_codes(s: Flow, t: Flow, comment="Names with country code"):
-    s_name, s_location = extract_country_code(s.name.value)
+    s_name, s_location = extract_country_code(s.name.normalized)
     is_match = s_location and s_name == t.name and s.context == t.context
 
     if is_match:
@@ -101,7 +99,8 @@ def match_non_ionic_state(
     s: Flow, t: Flow, comment="Non-ionic state if no better match"
 ):
     is_match = (
-        rm_roman_numerals_ionic_state(s.name.value) == t.name and s.context == t.context
+        rm_roman_numerals_ionic_state(s.name.normalized) == t.name
+        and s.context == t.context
     )
 
     if is_match:
@@ -112,8 +111,8 @@ def match_biogenic_to_non_fossil(
     s: Flow, t: Flow, comment="Biogenic to non-fossil if no better match"
 ):
     is_match = (
-        s.name.value.removesuffix(", biogenic")
-        == t.name.value.removesuffix(", non-fossil")
+        s.name.normalized.removesuffix(", biogenic")
+        == t.name.normalized.removesuffix(", non-fossil")
         and s.context == t.context
     )
 
@@ -135,7 +134,7 @@ def match_emissions_with_suffix_ion(s: Flow, t: Flow):
 
 def match_rules():
     return [
-        match_identical_uuid,
+        match_identical_identifier,
         match_identical_names,
         match_resources_with_suffix_in_ground,
         match_emissions_with_suffix_ion,

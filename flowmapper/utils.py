@@ -3,48 +3,9 @@ import hashlib
 import json
 import re
 import unicodedata
-from collections import Counter
+from collections.abc import Collection, Mapping
 from pathlib import Path
-from typing import Optional, Union
-
-from randonneur import migrate_datasets
-
-try:
-    import tomllib
-except ModuleNotFoundError:
-    import tomli as tomllib
-
-import importlib.util
-
-
-def import_module(filepath):
-    filepath = Path(filepath)
-    module_name = filepath.stem
-    spec = importlib.util.spec_from_file_location(module_name, filepath)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-def read_field_mapping(filepath: Path):
-    module = import_module(filepath)
-    fields = getattr(module, "config", None)
-    if not fields:
-        raise Exception(
-            f"{filepath} does not define a dict named config with field mapping information."
-        )
-
-    result = {"source": {}, "target": {}}
-
-    for key, values in fields.items():
-        if len(values) == 1:
-            result["source"][key] = values[0]
-            result["target"][key] = values[0]
-        else:
-            result["source"][key] = values[0]
-            result["target"][key] = values[1]
-
-    return result
+from typing import Any, List, Optional, Union
 
 
 def generate_flow_id(flow: dict):
@@ -59,7 +20,7 @@ def read_flowlist(filepath: Path):
     return result
 
 
-def read_migration_files(*filepaths: Union[str, Path]):
+def read_migration_files(*filepaths: Union[str, Path]) -> List[dict]:
     """
     Read and aggregate migration data from multiple JSON files.
 
@@ -81,12 +42,10 @@ def read_migration_files(*filepaths: Union[str, Path]):
     migration_data = []
 
     for filepath in filepaths:
-        filepath = Path(filepath)
-        with open(filepath, "r") as fs:
-            migration_data.extend(json.load(fs))
+        with open(Path(filepath), "r") as fs:
+            migration_data.append(json.load(fs))
 
-    result = {"update": migration_data}
-    return result
+    return migration_data
 
 
 def rm_parentheses_roman_numerals(s: str):
@@ -116,7 +75,7 @@ def normalize_str(s):
     if s is not None:
         return unicodedata.normalize("NFC", s).strip()
     else:
-        return ''
+        return ""
 
 
 def transform_flow(flow, transformation):
@@ -135,3 +94,4 @@ def find_transformation(flow, transformations):
     for transformation in transformations["update"]:
         if matcher(transformation["source"], flow):
             return transformation
+    return new

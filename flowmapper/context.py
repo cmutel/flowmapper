@@ -59,4 +59,4 @@ class Context:
         """
         if not isinstance(other, Context):
             return False
-        return self.normalized == other.normalized[:len(self.normalized)]
+        return self.normalized == other.normalized[: len(self.normalized)]

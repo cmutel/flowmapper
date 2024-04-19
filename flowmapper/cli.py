@@ -63,7 +63,7 @@ def map(
         typer.Option(help="Mapping file output format", case_sensitive=False),
     ] = "all",
     transformations: Annotated[
-        list[Path],
+        Optional[list[Path]],
         typer.Option(
             "--transformations",
             "-t",

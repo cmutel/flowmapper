@@ -1,4 +1,5 @@
 import importlib.metadata
+import importlib.resources as resource
 import json
 import logging
 from enum import Enum
@@ -6,17 +7,12 @@ from pathlib import Path
 from typing import Optional
 
 import typer
-from randonneur import migrate_datasets
+
 from typing_extensions import Annotated
 
 from .flow import Flow
 from .flowmap import Flowmap
-from .utils import read_field_mapping, read_flowlist, read_migration_files
-
-try:
-    import tomllib
-except ModuleNotFoundError:
-    import tomli as tomllib
+from .utils import read_flowlist, read_migration_files
 
 logger = logging.getLogger(__name__)
 
@@ -51,10 +47,6 @@ def main(
 def map(
     source: Annotated[Path, typer.Argument(help="Path to source flowlist")],
     target: Annotated[Path, typer.Argument(help="Path to target flowlist")],
-    fields: Annotated[
-        Path,
-        typer.Option(help="Relationship between fields in source and target flowlists"),
-    ],
     output_dir: Annotated[
         Path, typer.Option(help="Directory to save mapping and diagnostics files")
     ] = Path("."),
@@ -62,12 +54,15 @@ def map(
         OutputFormat,
         typer.Option(help="Mapping file output format", case_sensitive=False),
     ] = "all",
+    default_transformations: Annotated[
+        bool, typer.Option(help="Include default context and unit transformations?")
+    ] = True,
     transformations: Annotated[
         Optional[list[Path]],
         typer.Option(
             "--transformations",
             "-t",
-            help="Randonneur data migration file with changes to be applied to source flows before matching",
+            help="Randonneur data migration file with changes to be applied to source flows before matching. Can be included multiple times.",
         ),
     ] = None,
     unmatched_source: Annotated[
@@ -91,16 +86,27 @@ def map(
     Generate mappings between elementary flows lists
     """
     output_dir.mkdir(parents=True, exist_ok=True)
-    field_mapping = read_field_mapping(fields)
+
+    loaded_transformations = []
+    if default_transformations:
+        with resource.as_file(
+            resource.files("flowmapper") / "data" / "standard-units-harmonization.json"
+        ) as filepath:
+            units = json.load(open(filepath))
+        with resource.as_file(
+            resource.files("flowmapper")
+            / "data"
+            / "simapro-2023-ecoinvent-3-contexts.json"
+        ) as filepath:
+            contexts = json.load(open(filepath))
+        loaded_transformations.extend([units, contexts])
     if transformations:
-        transformations = read_migration_files(*transformations)
+        loaded_transformations.extend(read_migration_files(*transformations))
+
     source_flows = [
-        Flow(flow, field_mapping["source"], transformations)
-        for flow in read_flowlist(source)
+        Flow(flow, loaded_transformations) for flow in read_flowlist(source)
     ]
-    target_flows = [
-        Flow(flow, field_mapping["target"]) for flow in read_flowlist(target)
-    ]
+    target_flows = [Flow(flow) for flow in read_flowlist(target)]
 
     flowmap = Flowmap(source_flows, target_flows)
     flowmap.statistics()
@@ -109,19 +115,23 @@ def map(
 
     if matched_source:
         with open(output_dir / f"{stem}-matched-source.json", "w") as fs:
-            json.dump([flow.raw for flow in flowmap.matched_source], fs, indent=True)
+            json.dump([flow.export for flow in flowmap.matched_source], fs, indent=True)
 
     if unmatched_source:
         with open(output_dir / f"{stem}-unmatched-source.json", "w") as fs:
-            json.dump([flow.raw for flow in flowmap.unmatched_source], fs, indent=True)
+            json.dump(
+                [flow.export for flow in flowmap.unmatched_source], fs, indent=True
+            )
 
     if matched_target:
         with open(output_dir / f"{stem}-matched-target.json", "w") as fs:
-            json.dump([flow.raw for flow in flowmap.matched_target], fs, indent=True)
+            json.dump([flow.export for flow in flowmap.matched_target], fs, indent=True)
 
     if unmatched_target:
         with open(output_dir / f"{stem}-unmatched-target.json", "w") as fs:
-            json.dump([flow.raw for flow in flowmap.unmatched_target], fs, indent=True)
+            json.dump(
+                [flow.export for flow in flowmap.unmatched_target], fs, indent=True
+            )
 
     if format.value == "randonneur":
         flowmap.to_randonneur(output_dir / f"{stem}.json")

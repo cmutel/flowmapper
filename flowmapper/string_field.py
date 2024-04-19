@@ -1,14 +1,21 @@
-from typing import TypeVar, Generic, Any
+from typing import Any, Generic, TypeVar
+
 from .utils import normalize_str
 
-SF = TypeVar('SF')
+SF = TypeVar("SF")
 
 
 class StringField(Generic[SF]):
-    def __init__(self, value: str | None):
-        self.original = value
-        self.normalized = normalize_str(value)
-        self.lowercase = self.normalized.lower()
+    def __init__(
+        self,
+        original: str | None,
+        transformed: str | None = None,
+        use_lowercase: bool = True,
+    ):
+        self.original = original
+        self.normalized = normalize_str(transformed or original)
+        if use_lowercase:
+            self.normalized = self.normalized.lower()
 
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, StringField):

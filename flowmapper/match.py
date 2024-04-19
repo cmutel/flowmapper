@@ -11,21 +11,12 @@ logger = logging.getLogger(__name__)
 
 
 def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: dict):
-    source_result = {**s.name_raw_object, **s.context_raw_object, **s.unit_raw_object}
-    if s.uuid:
-        source_result.update(**s.uuid_raw_object)
-
-    target_result = {
-        "uuid": t.uuid,
-        "name": t.name_raw_value,
-        "context": t.context.raw_value,
-        "unit": t.unit.raw_value,
-    }
+    target_result = t.export
     if match_info.get("location"):
         target_result.update({"location": match_info["location"]})
 
     result = {
-        "source": source_result,
+        "source": s.export,
         "target": target_result,
         "conversion_factor": conversion_factor,
         "comment": match_info["comment"],
@@ -33,8 +24,8 @@ def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: 
     return result
 
 
-def match_identical_uuid(s: Flow, t: Flow, comment: str = "Identical uuid"):
-    if s.uuid and (s.uuid == t.uuid):
+def match_identical_identifier(s: Flow, t: Flow, comment: str = "Identical identifier"):
+    if s.identifier and (s.identifier == t.identifier):
         return {"comment": comment}
 
 

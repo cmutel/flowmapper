@@ -14,8 +14,19 @@ class CAS:
             self.cas = cas.strip().lstrip("0")
             self.digits = tuple(int(d) for d in self.cas[0:-1].replace("-", ""))
 
+    @property
+    def export(self):
+        if self.cas:
+            return "{}-{}-{}".format(
+                "".join([str(x) for x in self.digits[:-3]]),
+                "".join([str(x) for x in self.digits[-3:-1]]),
+                self.digits[-1],
+            )
+        else:
+            return ""
+
     def __repr__(self):
-        return self.cas
+        return self.export
 
     def __eq__(self, other):
         if not self.cas and not other.cas:

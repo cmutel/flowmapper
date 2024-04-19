@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Callable, Optional
 
 import pandas as pd
+import pint
 from tqdm import tqdm
 
 from .flow import Flow
@@ -117,21 +118,26 @@ class Flowmap:
                 for rule in self.rules:
                     is_match = rule(s, t)
                     if is_match:
-                        all_mappings.append(
-                            {
-                                "from": s,
-                                "to": t,
-                                "conversion_factor": (
-                                    s.conversion_factor
-                                    if s.conversion_factor
-                                    else s.unit.conversion_factor(t.unit)
-                                ),
-                                "match_rule": rule.__name__,
-                                "match_rule_priority": self.rules.index(rule),
-                                "info": is_match,
-                            }
-                        )
-                        break
+                        try:
+                            all_mappings.append(
+                                {
+                                    "from": s,
+                                    "to": t,
+                                    "conversion_factor": (
+                                        s.conversion_factor
+                                        if s.conversion_factor
+                                        else s.unit.conversion_factor(t.unit)
+                                    ),
+                                    "match_rule": rule.__name__,
+                                    "match_rule_priority": self.rules.index(rule),
+                                    "info": is_match,
+                                }
+                            )
+                            break
+                        except pint.errors.UndefinedUnitError:
+                            print(s.export)
+                            print(t.export)
+                            raise
         result = []
         seen_sources = set()
         sorted_mappings = sorted(
@@ -387,21 +393,21 @@ class Flowmap:
         data = []
         for map_entry in self.mappings:
             source_flow_id = (
-                map_entry["from"].uuid_raw_value
-                if map_entry["from"].uuid_raw_value or not ensure_id
+                map_entry["from"].identifier.original
+                if map_entry["from"].identifier.original or not ensure_id
                 else map_entry["from"].id
             )
             row = {
-                "SourceFlowName": map_entry["from"].name_raw_value,
+                "SourceFlowName": map_entry["from"].name.original,
                 "SourceFlowUUID": source_flow_id,
-                "SourceFlowContext": "/".join(map_entry["from"].context_raw_value),
-                "SourceUnit": map_entry["from"].unit_raw_value,
-                "MatchCondition": "",
+                "SourceFlowContext": map_entry["from"].context.export_as_string(),
+                "SourceUnit": map_entry["from"].unit.original,
+                "MatchCondition": "=",
                 "ConversionFactor": map_entry["conversion_factor"],
-                "TargetFlowName": map_entry["to"].name_raw_value,
-                "TargetFlowUUID": map_entry["to"].uuid_raw_value,
-                "TargetFlowContext": map_entry["to"].context.raw_value,
-                "TargetUnit": map_entry["to"].unit.raw_value,
+                "TargetFlowName": map_entry["to"].name.original,
+                "TargetFlowUUID": map_entry["to"].identifier.original,
+                "TargetFlowContext": map_entry["to"].context.export_as_string(),
+                "TargetUnit": map_entry["to"].unit.original,
                 "MemoMapper": map_entry["info"].get("comment"),
             }
             data.append(row)

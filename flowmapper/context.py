@@ -46,10 +46,12 @@ class Context(Iterable):
     def __eq__(self, other):
         if self and other and isinstance(other, Context):
             return self.normalized == other.normalized
-        elif self and other:
-            return (self.normalized == other) or (self.original == other)
         else:
-            return False
+            try:
+                normalized_other = self.normalize(other)
+                return (self.normalized == normalized_other) or (self.original == normalized_other)
+            except ValueError:
+                return False
 
     def __repr__(self):
         return str([repr(o) for o in self.normalized]) or "(empty context)"

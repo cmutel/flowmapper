@@ -12,7 +12,7 @@ class CAS:
         else:
             cas = "" if cas is None else cas
             self.cas = cas.strip().lstrip("0")
-            self.digits = tuple(int(d) for d in self.cas[0:-1].replace("-", ""))
+            self.digits = tuple(int(d) for d in self.cas.replace("-", ""))
 
     @property
     def export(self):

@@ -11,7 +11,7 @@ class CAS:
             raise TypeError(f"cas should be a str, not {type(cas).__name__}")
         else:
             cas = "" if cas is None else cas
-            self.cas = cas.strip().lstrip("0")
+            self.cas = cas.strip().lstrip("0").strip()
             self.digits = tuple(int(d) for d in self.cas.replace("-", ""))
 
     @property

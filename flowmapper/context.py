@@ -1,12 +1,21 @@
 from collections.abc import Iterable
 from typing import Any
 
+MISSING_VALUES = {
+    "",
+    "(unknown)",
+    "(unspecified)",
+    "null",
+    "unknown",
+    "unspecified",
+}
+
 
 class Context(Iterable):
     def __init__(self, original: Any, transformed: Any = None):
         self.original = original
         self.transformed = transformed or original
-        self.normalized = self.normalize(transformed)
+        self.normalized = self.normalize(self.transformed)
 
     def normalize(self, value: Any) -> tuple[str, ...]:
         if isinstance(value, (tuple, list)):
@@ -20,15 +29,6 @@ class Context(Iterable):
 
         intermediate = [elem.lower().strip() for elem in intermediate]
 
-        MISSING_VALUES = {
-            "",
-            "(unknown)",
-            "(unspecified)",
-            "null",
-            "unknown",
-            "unspecified",
-        }
-
         if intermediate[-1] in MISSING_VALUES:
             intermediate = intermediate[:-1]
 
@@ -37,8 +37,10 @@ class Context(Iterable):
     def export_as_string(self):
         if isinstance(self.original, str):
             return self.original
+        elif isinstance(self.original, (list, tuple)):
+            return "✂️".join(self.original)
         else:
-            "✂️".join(self.original)
+            return str(self.original)
 
     def __iter__(self):
         return iter(self.normalized)
@@ -54,7 +56,7 @@ class Context(Iterable):
                 return False
 
     def __repr__(self):
-        return str([repr(o) for o in self.normalized]) or "(empty context)"
+        return str(self.normalized)
 
     def __bool__(self):
         return bool(self.normalized)

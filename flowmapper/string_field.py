@@ -33,4 +33,7 @@ class StringField(Generic[SF]):
         return bool(self.original)
 
     def __repr__(self) -> str:
-        return self.original or "(missing original value)"
+        if not self.original:
+            return "StringField with missing original value"
+        else:
+            return f"StringField: '{self.original}' -> '{self.normalized}'"

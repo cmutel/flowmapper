@@ -56,7 +56,7 @@ class Context(Iterable):
                 return False
 
     def __repr__(self):
-        return str(self.normalized)
+        return f"Context: '{self.original}' -> '{self.normalized}'"
 
     def __bool__(self):
         return bool(self.normalized)

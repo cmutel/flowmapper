@@ -38,6 +38,9 @@ class Unit(Generic[U]):
         # Placeholder
         pass
 
+    def __repr__(self) -> str:
+        return f"Unit: '{self.original}' -> '{self.normalized}'"
+
     def __bool__(self) -> bool:
         return bool(self.original)
 

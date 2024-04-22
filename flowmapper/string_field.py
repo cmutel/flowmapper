@@ -14,14 +14,18 @@ class StringField(Generic[SF]):
     ):
         self.original = original
         self.normalized = normalize_str(transformed or original)
-        if use_lowercase:
+        self.use_lowercase = use_lowercase
+        if self.use_lowercase:
             self.normalized = self.normalized.lower()
 
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, StringField):
             return self.normalized == other.normalized
         elif isinstance(other, str):
-            return self.normalized == other
+            if self.use_lowercase:
+                return self.normalized == other.lower()
+            else:
+                return self.normalized == other
         else:
             return False
 

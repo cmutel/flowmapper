@@ -1,3 +1,4 @@
+import warnings
 import json
 from collections import Counter
 from functools import cached_property
@@ -10,7 +11,7 @@ from tqdm import tqdm
 
 from .flow import Flow
 from .match import format_match_result, match_rules
-from .unit import Unit
+from .utils import match_sort_order
 
 
 class Flowmap:
@@ -135,13 +136,12 @@ class Flowmap:
                             )
                             break
                         except pint.errors.UndefinedUnitError:
-                            print(s.export)
-                            print(t.export)
+                            warnings.warng(f"Pint Units error converting source {s.export} to target {t.export}")
                             raise
         result = []
         seen_sources = set()
         sorted_mappings = sorted(
-            all_mappings, key=lambda x: (x["from"], x["match_rule_priority"])
+            all_mappings, key=match_sort_order
         )
         for mapping in sorted_mappings:
             if mapping["from"] not in seen_sources:

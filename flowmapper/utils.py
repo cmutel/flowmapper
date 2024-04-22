@@ -100,6 +100,15 @@ def rowercase(obj: Any) -> Any:
         return obj
 
 
+def match_sort_order(obj: dict) -> tuple:
+    return (
+        not obj['from'].name,
+        obj['from'].name.normalized,
+        not obj['from'].context,
+        obj['from'].context.export_as_string(),
+    )
+
+
 def apply_transformations(obj: dict, transformations: List[dict] | None) -> dict:
     if not transformations:
         return obj

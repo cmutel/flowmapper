@@ -51,6 +51,15 @@ def match_identical_names(s: Flow, t: Flow, comment="Identical names"):
         return {"comment": comment}
 
 
+def match_resources_with_wrong_subcontext(s: Flow, t: Flow):
+    if (
+        "resource" in s.context.normalized[0].lower()
+        and "resource" in t.context.normalized[0].lower()
+        and s.name == t.name
+    ):
+        return {"comment": "Resources with identical name but wrong subcontext"}
+
+
 def match_identical_names_except_missing_suffix(
     s: Flow, t: Flow, suffix, comment="Identical names except missing suffix"
 ):
@@ -128,6 +137,7 @@ def match_rules():
         match_identical_identifier,
         match_identical_names,
         match_resources_with_suffix_in_ground,
+        match_resources_with_wrong_subcontext,
         match_emissions_with_suffix_ion,
         match_names_with_roman_numerals_in_parentheses,
         match_names_with_country_codes,

@@ -29,5 +29,8 @@ class StringField(Generic[SF]):
         else:
             return False
 
+    def __bool__(self) -> bool:
+        return bool(self.original)
+
     def __repr__(self) -> str:
         return self.original or "(missing original value)"

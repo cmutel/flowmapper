@@ -38,6 +38,9 @@ class Unit(Generic[U]):
         # Placeholder
         pass
 
+    def __bool__(self) -> bool:
+        return bool(self.original)
+
     def __eq__(self, other: Any):
         if isinstance(other, Unit):
             return (

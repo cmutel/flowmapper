@@ -24,5 +24,8 @@ class StringList(Collection):
     def __len__(self) -> int:
         return len(self.data)
 
+    def __bool__(self) -> bool:
+        return bool(self.data)
+
     def __repr__(self):
         return str([repr(o) for o in self.data])

@@ -109,7 +109,9 @@ def map(
         Flow(flow, prepared_transformations) for flow in read_flowlist(source)
     ]
     source_flows = [flow for flow in source_flows if not flow.missing]
-    target_flows = [Flow(flow) for flow in read_flowlist(target)]
+    target_flows = [
+        Flow(flow, prepared_transformations) for flow in read_flowlist(target)
+    ]
 
     flowmap = Flowmap(source_flows, target_flows)
     flowmap.statistics()

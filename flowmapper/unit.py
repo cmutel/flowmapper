@@ -16,7 +16,7 @@ U = TypeVar("U")
 
 
 class Unit(Generic[U]):
-    def __init__(self, original: str, transformed: str | None = None):
+    def __init__(self, original: str, transformed: str | None = None, use_lowercase: bool = False):
         if transformed is None:
             transformed = original
         self.original = original
@@ -26,6 +26,10 @@ class Unit(Generic[U]):
             self.normalized = normalize_str(self._glossary_entry["label"])
         else:
             self.normalized = normalize_str(transformed)
+
+        self.use_lowercase = use_lowercase
+        if self.use_lowercase:
+            self.normalized = self.normalized.lower()
 
         # Private attribute, could change in future
         self._pint_compatible = PINT_MAPPING.get(self.normalized, self.normalized)
@@ -50,6 +54,8 @@ class Unit(Generic[U]):
                 self.normalized == other.normalized
                 or self.conversion_factor(other) == 1
             )
+        elif isinstance(other, str) and self.use_lowercase:
+            return self.normalized == other.lower()
         elif isinstance(other, str):
             return self.normalized == other
         else:

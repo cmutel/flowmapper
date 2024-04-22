@@ -7,7 +7,7 @@ from .string_field import StringField
 from .unit import Unit
 
 ATTRIBUTE_MAPPING = {
-    "unit": Unit,
+    "unit": partial(Unit, use_lowercase=True),
     "context": Context,
     "identifier": partial(StringField, use_lowercase=True),
 }

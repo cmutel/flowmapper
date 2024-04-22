@@ -58,7 +58,7 @@ class Unit(Generic[U]):
         else:
             return math.isfinite(self.conversion_factor(other))
 
-    def conversion_factor(self, to: U) -> float:
+    def conversion_factor(self, to: U | Any) -> float:
         if self.normalized == to.normalized:
             result = 1.0
         else:
@@ -66,6 +66,6 @@ class Unit(Generic[U]):
                 result = (
                     ureg(self._pint_compatible).to(ureg(to._pint_compatible)).magnitude
                 )
-            except errors.DimensionalityError:
+            except (errors.DimensionalityError, errors.UndefinedUnitError):
                 result = float("nan")
         return result

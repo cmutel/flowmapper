@@ -98,6 +98,7 @@ def test_context_missing_values(string):
     assert c.original == ("A", string)
     assert c.normalized == ("a",)
 
+
 def test_context_generic_dunder():
     c = Context("A/B")
     assert repr(c) == "('a', 'b')"
@@ -106,84 +107,18 @@ def test_context_generic_dunder():
     assert isinstance(hash(c), int)
     assert list(c) == ['a', 'b']
 
+
 def test_context_in():
     a = Context("A")
     b = Context("A/B")
     assert b in a
     assert a not in b
 
+
 def test_context_export_as_string():
-    pass
-
-
-
-# def test_context():
-#     data = {
-#         "name": "Carbon dioxide, in air",
-#         "context": ["Raw", "(unspecified)"],
-#         "unit": "kg",
-#         "CAS": "000124-38-9",
-#     }
-#     fields = "context"
-#     actual = Context.from_dict(data, fields).to_dict()
-#     expected = {
-#         "value": "natural resource/in ground",
-#         "raw_value": "Raw/(unspecified)",
-#         "raw_object": {"context": ["Raw", "(unspecified)"]},
-#     }
-#     assert actual == expected
-
-
-# def test_trailing_slash():
-#     c1 = Context.from_dict({"context": ["Raw", "(unspecified)"]}, "context")
-#     c2 = Context.from_dict({"context": ["Raw"]}, "context")
-#     c3 = Context.from_dict({"context": ["Raw/"]}, "context")
-#     assert c1.value == c2.value
-#     assert c2.value == c3.value
-#     "/".join(c1.value)
-
-
-# def test_unspecified():
-#     c1 = Context.from_dict(
-#         {
-#             "compartment": {
-#                 "@subcompartmentId": "e47f0a6c-3be8-4027-9eee-de251784f708",
-#                 "compartment": {"@xml:lang": "en", "#text": "water"},
-#                 "subcompartment": {"@xml:lang": "en", "#text": "unspecified"},
-#             },
-#         },
-#         "compartment.*.#text",
-#     )
-
-#     c2 = Context.from_dict({"context": ["Emissions to water", ""]}, "context")
-#     c3 = Context.from_dict({"context": ["Water", "(unspecified)"]}, "context")
-#     c4 = Context.from_dict({"context": ["Water", ""]}, "context")
-#     c5 = Context.from_dict({"context": ["Water/", ""]}, "context")
-#     c6 = Context.from_dict({"context": ["Water/"]}, "context")
-#     c7 = Context.from_dict({"context": "Water/(unspecified)"}, "context")
-#     c8 = Context.from_dict({"context": "Water/unspecified"}, "context")
-#     c9 = Context.from_dict({"context": "Water/"}, "context")
-#     c10 = Context.from_dict({"context": "Water"}, "context")
-#     c11 = Context.from_dict(
-#         {"context": [{"name": "Water"}, {"name": "unspecified"}]}, ("context", ["name"])
-#     )
-#     c12 = Context.from_dict({"context": ["Water"]}, "context")
-
-#     actual = set(
-#         [
-#             c1.value,
-#             c2.value,
-#             c3.value,
-#             c4.value,
-#             c5.value,
-#             c6.value,
-#             c7.value,
-#             c8.value,
-#             c9.value,
-#             c10.value,
-#             c11.value,
-#             c12.value,
-#         ]
-#     )
-#     expected = {"water"}
-#     assert actual == expected
+    assert Context(["A", "B"]).export_as_string() == "A✂️B"
+    assert Context("A/B").export_as_string() == "A/B"
+    c = Context("A/B")
+    c.original = {"A": "B"}
+    with pytest.raises(ValueError):
+        c.export_as_string()

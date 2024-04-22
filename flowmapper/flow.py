@@ -58,7 +58,7 @@ class Flow:
         }
 
     def __repr__(self) -> str:
-        return f"{self.name} / {self.context} / {self.unit}"
+        return f"{self.identifier} / {self.name} / {self.context} / {self.unit}"
 
     def __eq__(self, other):
         return self.id == other.id

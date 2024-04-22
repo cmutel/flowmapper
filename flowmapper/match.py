@@ -1,3 +1,4 @@
+import math
 import logging
 
 from .flow import Flow
@@ -35,7 +36,7 @@ def match_identical_names_in_synonyms(
     if (
         (t.synonyms and s.name in t.synonyms and s.context == t.context)
         or (s.synonyms and t.name in s.synonyms and s.context == t.context)
-    ) and s.unit.conversion_factor(t.unit):
+    ) and not math.isnan(s.unit.conversion_factor(t.unit)):
         return {"comment": comment}
 
 

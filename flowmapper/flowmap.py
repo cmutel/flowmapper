@@ -114,6 +114,17 @@ class Flowmap:
 
         """
         all_mappings = []
+
+        def get_conversion_factor(s: Flow, t: Flow, data: dict) -> float | None:
+            cf_data = data.get("conversion_factor")
+            cf_s = s.conversion_factor
+            if cf_data and cf_s:
+                return cf_data * cf_s
+            elif cf_data or cf_s:
+                return cf_data or cf_s
+            else:
+                return s.unit.conversion_factor(t.unit)
+
         for s in tqdm(self.source_flows, disable=self.disable_progress):
             for t in self.target_flows:
                 for rule in self.rules:
@@ -124,10 +135,8 @@ class Flowmap:
                                 {
                                     "from": s,
                                     "to": t,
-                                    "conversion_factor": (
-                                        s.conversion_factor
-                                        if s.conversion_factor
-                                        else s.unit.conversion_factor(t.unit)
+                                    "conversion_factor": get_conversion_factor(
+                                        s, t, is_match
                                     ),
                                     "match_rule": rule.__name__,
                                     "match_rule_priority": self.rules.index(rule),

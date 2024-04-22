@@ -419,4 +419,13 @@ class Flowmap:
         else:
             path = Path(path)
             path.parent.mkdir(parents=True, exist_ok=True)
-            result.to_excel(path, index=False)
+
+            writer = pd.ExcelWriter(path)
+            result.to_excel(writer, sheet_name='Mapping', index=False, na_rep='NaN')
+
+            for column in result:
+                column_length = max(result[column].astype(str).map(len).max(), len(column))
+                col_idx = result.columns.get_loc(column)
+                writer.sheets['Mapping'].set_column(col_idx, col_idx, column_length)
+
+            writer.close()

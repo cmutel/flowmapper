@@ -173,7 +173,29 @@
     },
     {
       "source": {
+        "context": "water/groundwater"
+      },
+      "target": {
+        "context": [
+          "water",
+          "ground-"
+        ]
+      }
+    },
+    {
+      "source": {
         "context": "water/groundwater, long-term"
+      },
+      "target": {
+        "context": [
+          "water",
+          "ground-, long-term"
+        ]
+      }
+    },
+    {
+      "source": {
+        "context": "water/fossilwater"
       },
       "target": {
         "context": [

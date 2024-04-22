@@ -32,10 +32,9 @@ def match_identical_identifier(s: Flow, t: Flow, comment: str = "Identical ident
 def match_identical_names_in_synonyms(
     s: Flow, t: Flow, comment: str = "Identical synonyms"
 ):
-    is_match = (t.synonyms and s.name in t.synonyms and s.context == t.context) or (
+    if (t.synonyms and s.name in t.synonyms and s.context == t.context) or (
         s.synonyms and t.name in s.synonyms and s.context == t.context
-    )
-    if is_match:
+    ):
         return {"comment": comment}
 
 
@@ -63,60 +62,50 @@ def match_resources_with_wrong_subcontext(s: Flow, t: Flow):
 def match_identical_names_except_missing_suffix(
     s: Flow, t: Flow, suffix, comment="Identical names except missing suffix"
 ):
-    is_match = (
+    if (
         (f"{s.name.normalized}, {suffix}" == t.name)
         or (f"{t.name.normalized}, {suffix}" == s.name)
         or (f"{s.name.normalized} {suffix}" == t.name)
         or (f"{t.name.normalized} {suffix}" == s.name)
-    ) and s.context == t.context
-
-    if is_match:
+    ) and s.context == t.context:
         return {"comment": comment}
 
 
 def match_names_with_roman_numerals_in_parentheses(
     s: Flow, t: Flow, comment="With/without roman numerals in parentheses"
 ):
-    is_match = (
+    if (
         rm_parentheses_roman_numerals(s.name.normalized)
         == rm_parentheses_roman_numerals(t.name.normalized)
         and s.context == t.context
-    )
-
-    if is_match:
+    ):
         return {"comment": comment}
 
 
 def match_names_with_country_codes(s: Flow, t: Flow, comment="Names with country code"):
     s_name, s_location = extract_country_code(s.name.normalized)
-    is_match = s_location and s_name == t.name and s.context == t.context
-
-    if is_match:
+    if s_location and s_name == t.name and s.context == t.context:
         return {"comment": comment, "location": s_location.upper()}
 
 
 def match_non_ionic_state(
     s: Flow, t: Flow, comment="Non-ionic state if no better match"
 ):
-    is_match = (
+    if (
         rm_roman_numerals_ionic_state(s.name.normalized) == t.name
         and s.context == t.context
-    )
-
-    if is_match:
+    ):
         return {"comment": comment}
 
 
 def match_biogenic_to_non_fossil(
     s: Flow, t: Flow, comment="Biogenic to non-fossil if no better match"
 ):
-    is_match = (
+    if (
         s.name.normalized.removesuffix(", biogenic")
         == t.name.normalized.removesuffix(", non-fossil")
         and s.context == t.context
-    )
-
-    if is_match:
+    ):
         return {"comment": comment}
 
 

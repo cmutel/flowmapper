@@ -119,7 +119,7 @@ def apply_transformations(obj: dict, transformations: List[dict] | None) -> dict
             if transformation_obj["source"] == obj:
                 obj.update(transformation_obj["target"])
                 if "conversion_factor" in transformation_obj:
-                    obj['conversion_factor'] = transformation_obj['conversion_factor']
+                    obj["conversion_factor"] = transformation_obj["conversion_factor"]
                 break
 
     return obj

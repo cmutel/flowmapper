@@ -40,7 +40,8 @@ class Context(Iterable):
         elif isinstance(self.original, (list, tuple)):
             return "✂️".join(self.original)
         else:
-            return str(self.original)
+            # Only reachable by manually changing `self.original`
+            raise ValueError("Invalid context data")
 
     def __iter__(self):
         return iter(self.normalized)
@@ -51,7 +52,9 @@ class Context(Iterable):
         else:
             try:
                 normalized_other = self.normalize(other)
-                return (self.normalized == normalized_other) or (self.original == normalized_other)
+                return (self.normalized == normalized_other) or (
+                    self.original == normalized_other
+                )
             except ValueError:
                 return False
 

@@ -102,10 +102,10 @@ def rowercase(obj: Any) -> Any:
 
 def match_sort_order(obj: dict) -> tuple:
     return (
-        not obj['from'].name,
-        obj['from'].name.normalized,
-        not obj['from'].context,
-        obj['from'].context.export_as_string(),
+        not obj["from"].name,
+        obj["from"].name.normalized,
+        not obj["from"].context,
+        obj["from"].context.export_as_string(),
     )
 
 

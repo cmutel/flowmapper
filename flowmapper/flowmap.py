@@ -1,5 +1,5 @@
-import warnings
 import json
+import warnings
 from collections import Counter
 from functools import cached_property
 from pathlib import Path
@@ -145,13 +145,13 @@ class Flowmap:
                             )
                             break
                         except pint.errors.UndefinedUnitError:
-                            warnings.warng(f"Pint Units error converting source {s.export} to target {t.export}")
+                            warnings.warng(
+                                f"Pint Units error converting source {s.export} to target {t.export}"
+                            )
                             raise
         result = []
         seen_sources = set()
-        sorted_mappings = sorted(
-            all_mappings, key=match_sort_order
-        )
+        sorted_mappings = sorted(all_mappings, key=match_sort_order)
         for mapping in sorted_mappings:
             if mapping["from"] not in seen_sources:
                 result.append(mapping)
@@ -430,11 +430,13 @@ class Flowmap:
             path.parent.mkdir(parents=True, exist_ok=True)
 
             writer = pd.ExcelWriter(path)
-            result.to_excel(writer, sheet_name='Mapping', index=False, na_rep='NaN')
+            result.to_excel(writer, sheet_name="Mapping", index=False, na_rep="NaN")
 
             for column in result:
-                column_length = max(result[column].astype(str).map(len).max(), len(column))
+                column_length = max(
+                    result[column].astype(str).map(len).max(), len(column)
+                )
                 col_idx = result.columns.get_loc(column)
-                writer.sheets['Mapping'].set_column(col_idx, col_idx, column_length)
+                writer.sheets["Mapping"].set_column(col_idx, col_idx, column_length)
 
             writer.close()

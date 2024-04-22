@@ -18,10 +18,7 @@ class Flow:
         self.id = generate_flow_id(data)
         self.data = data
         self.transformed = apply_transformations(data, transformations)
-        self.conversion_factor = None
-        # self.conversion_factor = (
-        #     transformation.get("conversion_factor") if transformation else None
-        # )
+        self.conversion_factor = self.transformed.get("conversion_factor")
         self.identifier = StringField(
             original=self.data.get("identifier"),
             transformed=self.transformed.get("identifier"),

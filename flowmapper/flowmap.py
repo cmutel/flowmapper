@@ -402,7 +402,7 @@ class Flowmap:
                 "SourceFlowUUID": source_flow_id,
                 "SourceFlowContext": map_entry["from"].context.export_as_string(),
                 "SourceUnit": map_entry["from"].unit.original,
-                "MatchCondition": "=",
+                "MatchCondition": "'='",
                 "ConversionFactor": map_entry["conversion_factor"],
                 "TargetFlowName": map_entry["to"].name.original,
                 "TargetFlowUUID": map_entry["to"].identifier.original,

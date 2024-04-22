@@ -7,11 +7,11 @@ from pathlib import Path
 from typing import Optional
 
 import typer
-
 from typing_extensions import Annotated
 
 from .flow import Flow
 from .flowmap import Flowmap
+from .transformation_mapping import prepare_transformations
 from .utils import read_flowlist, read_migration_files
 
 logger = logging.getLogger(__name__)
@@ -103,9 +103,12 @@ def map(
     if transformations:
         loaded_transformations.extend(read_migration_files(*transformations))
 
+    prepared_transformations = prepare_transformations(loaded_transformations)
+
     source_flows = [
-        Flow(flow, loaded_transformations) for flow in read_flowlist(source)
+        Flow(flow, prepared_transformations) for flow in read_flowlist(source)
     ]
+    source_flows = [flow for flow in source_flows if not flow.missing]
     target_flows = [Flow(flow) for flow in read_flowlist(target)]
 
     flowmap = Flowmap(source_flows, target_flows)

@@ -103,16 +103,23 @@ def rowercase(obj: Any) -> Any:
 def apply_transformations(obj: dict, transformations: List[dict] | None) -> dict:
     if not transformations:
         return obj
-    new = copy.deepcopy(obj)
-    lower = rowercase(new)
+    obj = copy.deepcopy(obj)
+    lower = rowercase(obj)
 
-    for transformation_meta in transformations:
-        for transformation_obj in transformation_meta.get("update", []):
+    for dataset in transformations:
+        for transformation_obj in dataset.get("create", []):
             if matcher(
-                transformation_obj["source"],
-                lower if transformation_meta.get("case-insensitive") else new,
+                transformation_obj,
+                lower if dataset.get("case-insensitive") else obj,
             ):
-                new.update(transformation_obj["target"])
+                # Marked an needs to be created; missing in target list
+                obj["__missing__"] = True
+                break
+        for transformation_obj in dataset.get("update", []):
+            if transformation_obj["source"] == obj:
+                obj.update(transformation_obj["target"])
+                if "conversion_factor" in transformation_obj:
+                    obj['conversion_factor'] = transformation_obj['conversion_factor']
                 break
 
-    return new
+    return obj

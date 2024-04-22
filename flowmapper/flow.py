@@ -43,6 +43,11 @@ class Flow:
         )
 
     @property
+    def missing(self):
+        """This flow has been marked as missing in target list"""
+        return self.transformed.get("__missing__")
+
+    @property
     def export(self) -> dict:
         return {
             "name": self.name.original,

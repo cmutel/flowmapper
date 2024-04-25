@@ -5,7 +5,7 @@ import re
 import unicodedata
 from collections.abc import Collection, Mapping
 from pathlib import Path
-from typing import Any, List, Optional, Union
+from typing import Any, List, Union
 
 
 def generate_flow_id(flow: dict):
@@ -56,19 +56,6 @@ def rm_parentheses_roman_numerals(s: str):
 def rm_roman_numerals_ionic_state(s: str):
     pattern = r"\s*\(\s*[ivxlcdm]+\s*\)"
     return re.sub(pattern, "", s)
-
-
-def extract_country_code(s: str) -> tuple[str, Optional[str]]:
-    # Regex to find a two-letter uppercase code following a comma and optional whitespace
-    match = re.search(r",\s*([a-z]{2})$", s)
-
-    if match:
-        # Extract the country code and the preceding part of the string
-        country_code = match.group(1)
-        rest_of_string = s[: match.start()].strip()
-        return (rest_of_string, country_code)
-    else:
-        return (s, None)
 
 
 def normalize_str(s):

@@ -1,14 +1,24 @@
+import importlib.resources as resource
+import re
+import json
 import math
 import logging
 
 from .flow import Flow
 from .utils import (
-    extract_country_code,
     rm_parentheses_roman_numerals,
     rm_roman_numerals_ionic_state,
 )
 
 logger = logging.getLogger(__name__)
+
+with resource.as_file(resource.files("flowmapper") / "data" / "places.json") as filepath:
+    places = json.load(open(filepath))
+
+ends_with_location = re.compile(", (?P<code>{})$".format("|".join([re.escape(string) for string in places])), re.IGNORECASE)
+# All solutions I found for returning original string instead of
+# lower case one were very ugly
+location_reverser = {obj.lower(): obj for obj in places}
 
 
 def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: dict):
@@ -84,25 +94,26 @@ def match_names_with_roman_numerals_in_parentheses(
         return {"comment": comment}
 
 
-def match_names_with_country_codes(s: Flow, t: Flow, comment="Names with country code"):
-    s_name, s_location = extract_country_code(s.name.normalized)
-    if s_location and s_name == t.name and s.context == t.context:
-        result = {"comment": comment, "location": s_location.upper()}
-        if (
-            s.name.normalized.lower().startswith("water")
-            and t.name.normalized.lower().startswith("water")
-            and s.unit.normalized == "cubic_meter"
-            and t.unit.normalized == "kilogram"
-        ):
-            result["conversion_factor"] = 1000
-        elif (
-            s.name.normalized.lower().startswith("water")
-            and t.name.normalized.lower().startswith("water")
-            and t.unit.normalized == "cubic_meter"
-            and s.unit.normalized == "kilogram"
-        ):
-            result["conversion_factor"] = 0.001
-        return result
+def match_names_with_location_codes(s: Flow, t: Flow, comment="Names with location code"):
+    match = ends_with_location.search(s.name.normalized)
+    if match:
+        location = location_reverser[match.group('code')]
+        name = s.name.normalized.replace(f", {location.lower()}", "")
+        if name == t.name.normalized and s.context == t.context:
+            result = {"comment": comment, "location": location}
+            if (
+                s.name.normalized.startswith("water")
+                and s.unit.normalized == "cubic_meter"
+                and t.unit.normalized == "kilogram"
+            ):
+                result["conversion_factor"] = 1000
+            elif (
+                s.name.normalized.startswith("water")
+                and t.unit.normalized == "cubic_meter"
+                and s.unit.normalized == "kilogram"
+            ):
+                result["conversion_factor"] = 0.001
+            return result
 
 
 def match_non_ionic_state(
@@ -132,6 +143,24 @@ def match_resources_with_suffix_in_ground(s: Flow, t: Flow):
     )
 
 
+def match_flows_with_suffix_unspecified_origin(s: Flow, t: Flow):
+    return match_identical_names_except_missing_suffix(
+        s, t, suffix="unspecified origin", comment="Flows with suffix unspecified origin"
+    )
+
+
+def match_resources_with_suffix_in_water(s: Flow, t: Flow):
+    return match_identical_names_except_missing_suffix(
+        s, t, suffix="in water", comment="Resources with suffix in water"
+    )
+
+
+def match_resources_with_suffix_in_air(s: Flow, t: Flow):
+    return match_identical_names_except_missing_suffix(
+        s, t, suffix="in air", comment="Resources with suffix in air"
+    )
+
+
 def match_emissions_with_suffix_ion(s: Flow, t: Flow):
     return match_identical_names_except_missing_suffix(
         s, t, suffix="ion", comment="Match emissions with suffix ion"
@@ -143,10 +172,13 @@ def match_rules():
         match_identical_identifier,
         match_identical_names,
         match_resources_with_suffix_in_ground,
+        match_resources_with_suffix_in_water,
+        match_resources_with_suffix_in_air,
+        match_flows_with_suffix_unspecified_origin,
         match_resources_with_wrong_subcontext,
         match_emissions_with_suffix_ion,
         match_names_with_roman_numerals_in_parentheses,
-        match_names_with_country_codes,
+        match_names_with_location_codes,
         match_identical_cas_numbers,
         match_non_ionic_state,
         match_biogenic_to_non_fossil,

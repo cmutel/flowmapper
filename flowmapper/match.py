@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 with resource.as_file(resource.files("flowmapper") / "data" / "places.json") as filepath:
     places = json.load(open(filepath))
 
-ends_with_location = re.compile(", (?P<code>{})$".format("|".join([re.escape(string) for string in places])), re.IGNORECASE)
+ends_with_location = re.compile(",[ \t\r\f]+(?P<code>{})$".format("|".join([re.escape(string) for string in places])), re.IGNORECASE)
 # All solutions I found for returning original string instead of
 # lower case one were very ugly
 location_reverser = {obj.lower(): obj for obj in places}
@@ -101,9 +101,7 @@ def match_custom_names_with_location_codes(s: Flow, t: Flow, comment="Custom nam
     match = ends_with_location.search(s.name.normalized)
     if match:
         location = location_reverser[match.group('code')]
-        name = s.name.normalized.replace(f", {location.lower()}", "")
-        if name not in names_and_locations:
-            return
+        name = s.name.normalized.replace(match.group(), "")
         try:
             mapped_name = names_and_locations[name]['target']
         except KeyError:
@@ -129,7 +127,7 @@ def match_names_with_location_codes(s: Flow, t: Flow, comment="Name matching wit
     match = ends_with_location.search(s.name.normalized)
     if match:
         location = location_reverser[match.group('code')]
-        name = s.name.normalized.replace(f", {location.lower()}", "")
+        name = s.name.normalized.replace(match.group(), "")
         if name == t.name.normalized and s.context == t.context:
             result = {"comment": comment, "location": location}
             if (
@@ -137,7 +135,7 @@ def match_names_with_location_codes(s: Flow, t: Flow, comment="Name matching wit
                 and s.unit.normalized == "cubic_meter"
                 and t.unit.normalized == "kilogram"
             ):
-                result["conversion_factor"] = 1000
+                result["conversion_factor"] = 1000.
             elif (
                 s.name.normalized.startswith("water")
                 and t.unit.normalized == "cubic_meter"

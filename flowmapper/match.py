@@ -20,6 +20,9 @@ ends_with_location = re.compile(", (?P<code>{})$".format("|".join([re.escape(str
 # lower case one were very ugly
 location_reverser = {obj.lower(): obj for obj in places}
 
+with resource.as_file(resource.files("flowmapper") / "data" / "names_and_locations.json") as filepath:
+    names_and_locations = {o['source']: o for o in json.load(open(filepath))}
+
 
 def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: dict):
     target_result = t.export
@@ -94,7 +97,35 @@ def match_names_with_roman_numerals_in_parentheses(
         return {"comment": comment}
 
 
-def match_names_with_location_codes(s: Flow, t: Flow, comment="Names with location code"):
+def match_custom_names_with_location_codes(s: Flow, t: Flow, comment="Custom names with location code"):
+    match = ends_with_location.search(s.name.normalized)
+    if match:
+        location = location_reverser[match.group('code')]
+        name = s.name.normalized.replace(f", {location.lower()}", "")
+        if name not in names_and_locations:
+            return
+        try:
+            mapped_name = names_and_locations[name]['target']
+        except KeyError:
+            return
+        if mapped_name == t.name.normalized and s.context == t.context:
+            result = {"comment": comment, "location": location} | names_and_locations[name].get('extra', {})
+            if (
+                s.name.normalized.startswith("water")
+                and s.unit.normalized == "cubic_meter"
+                and t.unit.normalized == "kilogram"
+            ):
+                result["conversion_factor"] = 1000
+            elif (
+                s.name.normalized.startswith("water")
+                and t.unit.normalized == "cubic_meter"
+                and s.unit.normalized == "kilogram"
+            ):
+                result["conversion_factor"] = 0.001
+            return result
+
+
+def match_names_with_location_codes(s: Flow, t: Flow, comment="Name matching with location code"):
     match = ends_with_location.search(s.name.normalized)
     if match:
         location = location_reverser[match.group('code')]
@@ -179,6 +210,7 @@ def match_rules():
         match_emissions_with_suffix_ion,
         match_names_with_roman_numerals_in_parentheses,
         match_names_with_location_codes,
+        match_custom_names_with_location_codes,
         match_identical_cas_numbers,
         match_non_ionic_state,
         match_biogenic_to_non_fossil,

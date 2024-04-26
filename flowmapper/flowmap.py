@@ -14,6 +14,14 @@ from .match import format_match_result, match_rules
 from .utils import match_sort_order
 
 
+def source_flow_id(obj: Flow, ensure_id: bool = False) -> str:
+    return (
+        str(obj.identifier.original or "")
+        if (obj.identifier.original or not ensure_id)
+        else str(obj.id or "")
+    )
+
+
 class Flowmap:
     """
     Crosswalk of flows from a source flow list to a target flow list.
@@ -380,7 +388,12 @@ class Flowmap:
             with open(path, "w") as fs:
                 json.dump(result, fs, indent=2)
 
-    def to_glad(self, path: Optional[Path] = None, ensure_id: bool = False):
+    def to_glad(
+        self,
+        path: Optional[Path] = None,
+        ensure_id: bool = False,
+        missing_source: bool = False,
+    ):
         """
         Export mappings using GLAD flow mapping format, optionally ensuring each flow has an identifier.
 
@@ -401,25 +414,34 @@ class Flowmap:
         """
         data = []
         for map_entry in self.mappings:
-            source_flow_id = (
-                map_entry["from"].identifier.original
-                if map_entry["from"].identifier.original or not ensure_id
-                else map_entry["from"].id
+            data.append(
+                {
+                    "SourceFlowName": map_entry["from"].name.original,
+                    "SourceFlowUUID": source_flow_id(
+                        map_entry["from"], ensure_id=ensure_id
+                    ),
+                    "SourceFlowContext": map_entry["from"].context.export_as_string(),
+                    "SourceUnit": map_entry["from"].unit.original,
+                    "MatchCondition": "'='",
+                    "ConversionFactor": map_entry["conversion_factor"],
+                    "TargetFlowName": map_entry["to"].name.original,
+                    "TargetFlowUUID": map_entry["to"].identifier.original,
+                    "TargetFlowContext": map_entry["to"].context.export_as_string(),
+                    "TargetUnit": map_entry["to"].unit.original,
+                    "MemoMapper": map_entry["info"].get("comment"),
+                }
             )
-            row = {
-                "SourceFlowName": map_entry["from"].name.original,
-                "SourceFlowUUID": source_flow_id,
-                "SourceFlowContext": map_entry["from"].context.export_as_string(),
-                "SourceUnit": map_entry["from"].unit.original,
-                "MatchCondition": "'='",
-                "ConversionFactor": map_entry["conversion_factor"],
-                "TargetFlowName": map_entry["to"].name.original,
-                "TargetFlowUUID": map_entry["to"].identifier.original,
-                "TargetFlowContext": map_entry["to"].context.export_as_string(),
-                "TargetUnit": map_entry["to"].unit.original,
-                "MemoMapper": map_entry["info"].get("comment"),
-            }
-            data.append(row)
+
+        if missing_source:
+            for flow_obj in self.unmatched_source:
+                data.append(
+                    {
+                        "SourceFlowName": flow_obj.name.original,
+                        "SourceFlowUUID": source_flow_id(flow_obj, ensure_id=ensure_id),
+                        "SourceFlowContext": flow_obj.context.export_as_string(),
+                        "SourceUnit": flow_obj.unit.original,
+                    }
+                )
 
         result = pd.DataFrame(data)
 

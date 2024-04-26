@@ -16,7 +16,9 @@ U = TypeVar("U")
 
 
 class Unit(Generic[U]):
-    def __init__(self, original: str, transformed: str | None = None, use_lowercase: bool = False):
+    def __init__(
+        self, original: str, transformed: str | None = None, use_lowercase: bool = False
+    ):
         if transformed is None:
             transformed = original
         self.original = original

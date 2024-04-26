@@ -141,7 +141,7 @@ def map(
     if format.value == "randonneur":
         flowmap.to_randonneur(output_dir / f"{stem}.json")
     elif format.value == "glad":
-        flowmap.to_glad(output_dir / f"{stem}.xlsx")
+        flowmap.to_glad(output_dir / f"{stem}.xlsx", missing_source=True)
     else:
         flowmap.to_randonneur(output_dir / f"{stem}.json")
-        flowmap.to_glad(output_dir / f"{stem}.xlsx")
+        flowmap.to_glad(output_dir / f"{stem}.xlsx", missing_source=True)

@@ -1,27 +1,33 @@
 import importlib.resources as resource
-import re
 import json
-import math
 import logging
+import math
+import re
 
 from .flow import Flow
-from .utils import (
-    rm_parentheses_roman_numerals,
-    rm_roman_numerals_ionic_state,
-)
+from .utils import rm_parentheses_roman_numerals, rm_roman_numerals_ionic_state
 
 logger = logging.getLogger(__name__)
 
-with resource.as_file(resource.files("flowmapper") / "data" / "places.json") as filepath:
+with resource.as_file(
+    resource.files("flowmapper") / "data" / "places.json"
+) as filepath:
     places = json.load(open(filepath))
 
-ends_with_location = re.compile(",[ \t\r\f]+(?P<code>{})$".format("|".join([re.escape(string) for string in places])), re.IGNORECASE)
+ends_with_location = re.compile(
+    ",[ \t\r\f]+(?P<code>{})$".format(
+        "|".join([re.escape(string) for string in places])
+    ),
+    re.IGNORECASE,
+)
 # All solutions I found for returning original string instead of
 # lower case one were very ugly
 location_reverser = {obj.lower(): obj for obj in places}
 
-with resource.as_file(resource.files("flowmapper") / "data" / "names_and_locations.json") as filepath:
-    names_and_locations = {o['source']: o for o in json.load(open(filepath))}
+with resource.as_file(
+    resource.files("flowmapper") / "data" / "names_and_locations.json"
+) as filepath:
+    names_and_locations = {o["source"]: o for o in json.load(open(filepath))}
 
 
 def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: dict):
@@ -97,17 +103,21 @@ def match_names_with_roman_numerals_in_parentheses(
         return {"comment": comment}
 
 
-def match_custom_names_with_location_codes(s: Flow, t: Flow, comment="Custom names with location code"):
+def match_custom_names_with_location_codes(
+    s: Flow, t: Flow, comment="Custom names with location code"
+):
     match = ends_with_location.search(s.name.normalized)
     if match:
-        location = location_reverser[match.group('code')]
+        location = location_reverser[match.group("code")]
         name = s.name.normalized.replace(match.group(), "")
         try:
-            mapped_name = names_and_locations[name]['target']
+            mapped_name = names_and_locations[name]["target"]
         except KeyError:
             return
         if mapped_name == t.name.normalized and s.context == t.context:
-            result = {"comment": comment, "location": location} | names_and_locations[name].get('extra', {})
+            result = {"comment": comment, "location": location} | names_and_locations[
+                name
+            ].get("extra", {})
             if (
                 s.name.normalized.startswith("water")
                 and s.unit.normalized == "cubic_meter"
@@ -123,10 +133,12 @@ def match_custom_names_with_location_codes(s: Flow, t: Flow, comment="Custom nam
             return result
 
 
-def match_names_with_location_codes(s: Flow, t: Flow, comment="Name matching with location code"):
+def match_names_with_location_codes(
+    s: Flow, t: Flow, comment="Name matching with location code"
+):
     match = ends_with_location.search(s.name.normalized)
     if match:
-        location = location_reverser[match.group('code')]
+        location = location_reverser[match.group("code")]
         name = s.name.normalized.replace(match.group(), "")
         if name == t.name.normalized and s.context == t.context:
             result = {"comment": comment, "location": location}
@@ -135,7 +147,7 @@ def match_names_with_location_codes(s: Flow, t: Flow, comment="Name matching wit
                 and s.unit.normalized == "cubic_meter"
                 and t.unit.normalized == "kilogram"
             ):
-                result["conversion_factor"] = 1000.
+                result["conversion_factor"] = 1000.0
             elif (
                 s.name.normalized.startswith("water")
                 and t.unit.normalized == "cubic_meter"
@@ -174,7 +186,10 @@ def match_resources_with_suffix_in_ground(s: Flow, t: Flow):
 
 def match_flows_with_suffix_unspecified_origin(s: Flow, t: Flow):
     return match_identical_names_except_missing_suffix(
-        s, t, suffix="unspecified origin", comment="Flows with suffix unspecified origin"
+        s,
+        t,
+        suffix="unspecified origin",
+        comment="Flows with suffix unspecified origin",
     )
 
 

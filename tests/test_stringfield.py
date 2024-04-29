@@ -8,7 +8,7 @@ def test_string_field_empty():
     assert sf != ""
     assert sf != "a"
     assert sf != StringField("a")
-    assert sf != None
+    assert sf is not None
     assert not sf
     assert repr(sf) == "StringField with missing original value"
 

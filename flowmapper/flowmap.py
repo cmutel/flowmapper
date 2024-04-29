@@ -1,15 +1,25 @@
 import json
+import warnings
 from collections import Counter
 from functools import cached_property
 from pathlib import Path
 from typing import Callable, Optional
 
 import pandas as pd
-from pint import UndefinedUnitError
+import pint
 from tqdm import tqdm
 
 from .flow import Flow
 from .match import format_match_result, match_rules
+from .utils import match_sort_order
+
+
+def source_flow_id(obj: Flow, ensure_id: bool = False) -> str:
+    return (
+        str(obj.identifier.original or "")
+        if (obj.identifier.original or not ensure_id)
+        else str(obj.id or "")
+    )
 
 
 class Flowmap:
@@ -56,6 +66,8 @@ class Flowmap:
             Rules to identify flows that should not be matched.
         disable_progress : bool, optional
             If True, progress bar display during the mapping process is disabled.
+        randonneur_config : dict, optional
+            Randonneur
 
         """
         self.disable_progress = disable_progress
@@ -112,6 +124,17 @@ class Flowmap:
 
         """
         all_mappings = []
+
+        def get_conversion_factor(s: Flow, t: Flow, data: dict) -> float | None:
+            cf_data = data.get("conversion_factor")
+            cf_s = s.conversion_factor
+            if cf_data and cf_s:
+                return cf_data * cf_s
+            elif cf_data or cf_s:
+                return cf_data or cf_s
+            else:
+                return s.unit.conversion_factor(t.unit)
+
         for s in tqdm(self.source_flows, disable=self.disable_progress):
             for t in self.target_flows:
                 for rule in self.rules:
@@ -122,10 +145,8 @@ class Flowmap:
                                 {
                                     "from": s,
                                     "to": t,
-                                    "conversion_factor": (
-                                        s.conversion_factor
-                                        if s.conversion_factor
-                                        else s.unit.conversion_factor(t.unit)
+                                    "conversion_factor": get_conversion_factor(
+                                        s, t, is_match
                                     ),
                                     "match_rule": rule.__name__,
                                     "match_rule_priority": self.rules.index(rule),
@@ -133,15 +154,14 @@ class Flowmap:
                                 }
                             )
                             break
-                        except UndefinedUnitError as exc:
-                            raise UndefinedUnitError(
-                                f"\nA unit in this pair is unknown to pint:\n{s}\n{t}\nError message: {exc}"
+                        except pint.errors.UndefinedUnitError:
+                            warnings.warng(
+                                f"Pint Units error converting source {s.export} to target {t.export}"
                             )
+                            raise
         result = []
         seen_sources = set()
-        sorted_mappings = sorted(
-            all_mappings, key=lambda x: (x["from"], x["match_rule_priority"])
-        )
+        sorted_mappings = sorted(all_mappings, key=match_sort_order)
         for mapping in sorted_mappings:
             if mapping["from"] not in seen_sources:
                 result.append(mapping)
@@ -370,7 +390,12 @@ class Flowmap:
             with open(path, "w") as fs:
                 json.dump(result, fs, indent=2)
 
-    def to_glad(self, path: Optional[Path] = None, ensure_id: bool = False):
+    def to_glad(
+        self,
+        path: Optional[Path] = None,
+        ensure_id: bool = False,
+        missing_source: bool = False,
+    ):
         """
         Export mappings using GLAD flow mapping format, optionally ensuring each flow has an identifier.
 
@@ -391,25 +416,34 @@ class Flowmap:
         """
         data = []
         for map_entry in self.mappings:
-            source_flow_id = (
-                map_entry["from"].uuid_raw_value
-                if map_entry["from"].uuid_raw_value or not ensure_id
-                else map_entry["from"].id
+            data.append(
+                {
+                    "SourceFlowName": map_entry["from"].name.original,
+                    "SourceFlowUUID": source_flow_id(
+                        map_entry["from"], ensure_id=ensure_id
+                    ),
+                    "SourceFlowContext": map_entry["from"].context.export_as_string(),
+                    "SourceUnit": map_entry["from"].unit.original,
+                    "MatchCondition": "=",
+                    "ConversionFactor": map_entry["conversion_factor"],
+                    "TargetFlowName": map_entry["to"].name.original,
+                    "TargetFlowUUID": map_entry["to"].identifier.original,
+                    "TargetFlowContext": map_entry["to"].context.export_as_string(),
+                    "TargetUnit": map_entry["to"].unit.original,
+                    "MemoMapper": map_entry["info"].get("comment"),
+                }
             )
-            row = {
-                "SourceFlowName": map_entry["from"].name_raw_value,
-                "SourceFlowUUID": source_flow_id,
-                "SourceFlowContext": "/".join(map_entry["from"].context_raw_value),
-                "SourceUnit": map_entry["from"].unit_raw_value,
-                "MatchCondition": "",
-                "ConversionFactor": map_entry["conversion_factor"],
-                "TargetFlowName": map_entry["to"].name_raw_value,
-                "TargetFlowUUID": map_entry["to"].uuid_raw_value,
-                "TargetFlowContext": map_entry["to"].context.raw_value,
-                "TargetUnit": map_entry["to"].unit.raw_value,
-                "MemoMapper": map_entry["info"].get("comment"),
-            }
-            data.append(row)
+
+        if missing_source:
+            for flow_obj in self.unmatched_source:
+                data.append(
+                    {
+                        "SourceFlowName": flow_obj.name.original,
+                        "SourceFlowUUID": source_flow_id(flow_obj, ensure_id=ensure_id),
+                        "SourceFlowContext": flow_obj.context.export_as_string(),
+                        "SourceUnit": flow_obj.unit.original,
+                    }
+                )
 
         result = pd.DataFrame(data)
 
@@ -418,4 +452,19 @@ class Flowmap:
         else:
             path = Path(path)
             path.parent.mkdir(parents=True, exist_ok=True)
-            result.to_excel(path, index=False)
+
+            writer = pd.ExcelWriter(
+                path,
+                engine="xlsxwriter",
+                engine_kwargs={"options": {"strings_to_formulas": False}},
+            )
+            result.to_excel(writer, sheet_name="Mapping", index=False, na_rep="NaN")
+
+            for column in result:
+                column_length = max(
+                    result[column].astype(str).map(len).max(), len(column)
+                )
+                col_idx = result.columns.get_loc(column)
+                writer.sheets["Mapping"].set_column(col_idx, col_idx, column_length)
+
+            writer.close()

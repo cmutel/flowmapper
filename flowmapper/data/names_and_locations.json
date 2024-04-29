@@ -1,0 +1,20 @@
+[
+    {
+        "source": "water, well",
+        "target": "water, well, in ground"
+    },
+    {
+        "source": "water (ersatz), net cons., irrigation",
+        "target": "water, unspecified natural origin",
+        "extra": {
+            "irrigation": true
+        }
+    },
+    {
+        "source": "water (ersatz), net cons., non-irrigation",
+        "target": "water, unspecified natural origin",
+        "extra": {
+            "irrigation": false
+        }
+    }
+]

@@ -1,59 +1,81 @@
-from dataclasses import asdict, dataclass, field
+from collections.abc import Iterable
+from typing import Any
 
-import flowmapper.jsonpath as jp
+MISSING_VALUES = {
+    "",
+    "(unknown)",
+    "(unspecified)",
+    "null",
+    "unknown",
+    "unspecified",
+}
 
-from .constants import CONTEXT_MAPPING
 
+class ContextField(Iterable):
+    def __init__(self, original: Any, transformed: Any = None):
+        self.original = original
+        self.transformed = transformed or original
+        self.normalized = self.normalize(self.transformed)
 
-@dataclass
-class Context:
-    value: str
-    raw_value: str = ""
-    raw_object: dict = field(default_factory=lambda: {})
-
-    @classmethod
-    def from_dict(cls, d, spec):
-        if not spec:
-            return Context(None)
+    def normalize(self, value: Any) -> tuple[str, ...]:
+        if isinstance(value, (tuple, list)):
+            intermediate = list(value)
+        elif isinstance(value, str) and "/" in value:
+            intermediate = list(value.split("/"))
+        elif isinstance(value, str):
+            intermediate = [value]
         else:
-            key = jp.root(spec)
-            value = cls.ensure_list(jp.extract(spec, d))
-            result = Context(
-                value=cls.normalize_contexts(value),
-                raw_value="/".join(value),
-                raw_object={key: d.get(key)},
-            )
-            return result
+            raise ValueError(f"Can't understand input context {value}")
 
-    def to_dict(self):
-        return asdict(self)
+        intermediate = [elem.lower().strip() for elem in intermediate]
+
+        if intermediate[-1] in MISSING_VALUES:
+            intermediate = intermediate[:-1]
+
+        return tuple(intermediate)
+
+    def export_as_string(self):
+        if isinstance(self.original, str):
+            return self.original
+        elif isinstance(self.original, (list, tuple)):
+            return "✂️".join(self.original)
+        else:
+            # Only reachable by manually changing `self.original`
+            raise ValueError("Invalid context data")
+
+    def __iter__(self):
+        return iter(self.normalized)
 
     def __eq__(self, other):
-        if self and other and isinstance(other, Context):
-            return self.value == other.value
-        elif self and other:
-            return self.value == other
+        if self and other and isinstance(other, ContextField):
+            return self.original and self.normalized == other.normalized
         else:
-            return False
+            try:
+                normalized_other = self.normalize(other)
+                return (self.normalized == normalized_other) or (
+                    self.original == normalized_other
+                )
+            except ValueError:
+                return False
+
+    def __repr__(self):
+        return f"ContextField: '{self.original}' -> '{self.normalized}'"
 
     def __bool__(self):
-        return bool(self.value)
+        return bool(self.normalized)
 
     def __hash__(self):
-        return hash(self.value)
+        return hash(self.normalized)
 
-    @staticmethod
-    def ensure_list(x):
-        return x.split("/") if isinstance(x, str) else x
+    def __contains__(self, other):
+        """This context is more generic than the `other` context.
 
-    @staticmethod
-    def normalize_contexts(context: list[str]):
-        result = "/".join(
-            [
-                segment.lower().rstrip("/")
-                for segment in context
-                if segment and segment.lower() not in {"(unspecified)", "unspecified"}
-            ]
-        )
+        ```python
+        Context("a/b/c") in Context("a/b")
+        >>> True
+        ```
 
-        return CONTEXT_MAPPING.get(result, result)
+        """
+        if not isinstance(other, ContextField):
+            return False
+        return self.normalized == other.normalized[: len(self.normalized)]

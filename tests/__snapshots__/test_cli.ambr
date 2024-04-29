@@ -2,96 +2,23 @@
 # name: test_matched_flows
   list([
     dict({
-      'CAS': '000110-63-4',
-      'categories': list([
+      'CAS number': '110-63-4',
+      'context': list([
         'Air',
         '(unspecified)',
       ]),
+      'identifier': None,
       'name': '1,4-Butanediol',
       'unit': 'kg',
     }),
     dict({
-      'categories': list([
+      'CAS number': '',
+      'context': list([
         'Emissions to air',
         'low. pop.',
       ]),
+      'identifier': None,
       'name': 'Ammonia, FR',
-      'unit': 'kg',
-    }),
-  ])
-# ---
-# name: test_matched_flows_with_multiple_randonneur_transformations
-  list([
-    dict({
-      'CAS': '000110-63-4',
-      'categories': list([
-        'Air',
-        '(unspecified)',
-      ]),
-      'name': '1,4-Butanediol',
-      'unit': 'kg',
-    }),
-    dict({
-      'CAS': '000110-63-4',
-      'categories': list([
-        'Air',
-        'high. pop.',
-      ]),
-      'name': '1,4-Butanediol',
-      'unit': 'kg',
-    }),
-    dict({
-      'categories': list([
-        'Emissions to air',
-        'low. pop.',
-      ]),
-      'name': 'Ammonia, FR',
-      'unit': 'kg',
-    }),
-    dict({
-      'categories': list([
-        'Emissions to air',
-        'low. pop.',
-      ]),
-      'name': 'Ammonia, as N',
-      'unit': 'kg',
-    }),
-  ])
-# ---
-# name: test_matched_flows_with_randonneur_transformations
-  list([
-    dict({
-      'CAS': '000110-63-4',
-      'categories': list([
-        'Air',
-        '(unspecified)',
-      ]),
-      'name': '1,4-Butanediol',
-      'unit': 'kg',
-    }),
-    dict({
-      'CAS': '000110-63-4',
-      'categories': list([
-        'Air',
-        'high. pop.',
-      ]),
-      'name': '1,4-Butanediol',
-      'unit': 'kg',
-    }),
-    dict({
-      'categories': list([
-        'Emissions to air',
-        'low. pop.',
-      ]),
-      'name': 'Ammonia, FR',
-      'unit': 'kg',
-    }),
-    dict({
-      'categories': list([
-        'Emissions to air',
-        'low. pop.',
-      ]),
-      'name': 'Ammonia, as N',
       'unit': 'kg',
     }),
   ])

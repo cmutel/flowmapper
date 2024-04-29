@@ -29,12 +29,12 @@ classifiers = [
 ]
 requires-python = ">=3.9"
 dependencies = [
-    "glom",
-    "tqdm",
     "pandas[excel]",
-    "typer",
     "pint",
-    "randonneur"
+    "pydantic",
+    "randonneur",
+    "tqdm",
+    "typer",
 ]
 
 [project.urls]
@@ -51,7 +51,6 @@ testing = [
     "pytest-cov",
     "python-coveralls",
     "deepdiff",
-    "syrupy",
 ]
 dev = [
     "build",

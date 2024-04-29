@@ -1,35 +1,28 @@
-import logging
+import importlib.resources as resource
 import json
-from pathlib import Path
+import logging
+import math
+import re
 
 from .flow import Flow
 from .utils import (
-    extract_country_code,
+    ends_with_location,
+    location_reverser,
+    names_and_locations,
     rm_parentheses_roman_numerals,
     rm_roman_numerals_ionic_state,
 )
 
 logger = logging.getLogger(__name__)
 
-DATA_DIR = Path(__file__).parent.resolve() / "data"
-
 
 def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: dict):
-    source_result = {**s.name_raw_object, **s.context_raw_object, **s.unit_raw_object}
-    if s.uuid:
-        source_result.update(**s.uuid_raw_object)
-
-    target_result = {
-        "uuid": t.uuid,
-        "name": t.name_raw_value,
-        "context": t.context.raw_value,
-        "unit": t.unit.raw_value,
-    }
+    target_result = t.export
     if match_info.get("location"):
         target_result.update({"location": match_info["location"]})
 
     result = {
-        "source": source_result,
+        "source": s.export,
         "target": target_result,
         "conversion_factor": conversion_factor,
         "comment": match_info["comment"],
@@ -37,128 +30,137 @@ def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: 
     return result
 
 
-def match_identical_uuid(s: Flow, t: Flow, comment: str = "Identical uuid"):
-    is_match = True if s.uuid and t.uuid and s.uuid == t.uuid else False
-    if is_match:
+def match_identical_identifier(s: Flow, t: Flow, comment: str = "Identical identifier"):
+    if s.identifier and (s.identifier == t.identifier):
         return {"comment": comment}
 
 
 def match_identical_names_in_synonyms(
     s: Flow, t: Flow, comment: str = "Identical synonyms"
 ):
-    is_match = (t.synonyms and s.name.value in t.synonyms.value and s.context == t.context)
-    if is_match:
+    if (
+        (t.synonyms and s.name in t.synonyms and s.context == t.context)
+        or (s.synonyms and t.name in s.synonyms and s.context == t.context)
+    ) and not math.isnan(s.unit.conversion_factor(t.unit)):
         return {"comment": comment}
 
 
 def match_identical_cas_numbers(
     s: Flow, t: Flow, comment: str = "Identical CAS numbers"
 ):
-    is_match = s.cas == t.cas and s.context == t.context
-    if is_match:
+    if (s.cas == t.cas) and (s.context == t.context):
         return {"comment": comment}
 
 
 def match_identical_names(s: Flow, t: Flow, comment="Identical names"):
-    is_match = s.name == t.name and s.context == t.context
-
-    if is_match:
+    if (s.name == t.name) and (s.context == t.context):
         return {"comment": comment}
+
+
+def match_resources_with_wrong_subcontext(s: Flow, t: Flow):
+    if (
+        "resource" in s.context.normalized[0].lower()
+        and "resource" in t.context.normalized[0].lower()
+        and s.name == t.name
+    ):
+        return {"comment": "Resources with identical name but wrong subcontext"}
 
 
 def match_identical_names_except_missing_suffix(
     s: Flow, t: Flow, suffix, comment="Identical names except missing suffix"
 ):
-    is_match = (
-        (f"{s.name}, {suffix}" == t.name)
-        or (f"{t.name}, {suffix}" == s.name)
-        or (f"{s.name} {suffix}" == t.name)
-        or (f"{t.name} {suffix}" == s.name)
-    ) and s.context == t.context
-
-    if is_match:
-        return {"comment": comment}
-
-
-def match_identical_names_except_missing_comma_for_suffix(
-    s: Flow, t: Flow, suffix, comment="Identical names except missing comma for suffix"
-):
-    tn, sn, w_comma = t.name.value, s.name.value, f", {suffix}"
-    if suffix in tn and suffix in sn:
-        t_normalized = (
-            tn.replace(w_comma, "") if w_comma in tn else tn.replace(suffix, "")
-        ).strip()
-        s_normalized = (
-            sn.replace(w_comma, "") if w_comma in sn else sn.replace(suffix, "")
-        ).strip()
-        if t_normalized == s_normalized and s.context == t.context:
-            return {"comment": comment}
-
-
-def match_mapped_name_differences(
-    s: Flow, t: Flow, mapping, comment="Mapped name differences"
-):
-    is_match = mapping.get(s.name) == t.name and s.context == t.context
-
-    if is_match:
+    if (
+        (f"{s.name.normalized}, {suffix}" == t.name)
+        or (f"{t.name.normalized}, {suffix}" == s.name)
+        or (f"{s.name.normalized} {suffix}" == t.name)
+        or (f"{t.name.normalized} {suffix}" == s.name)
+    ) and s.context == t.context:
         return {"comment": comment}
 
 
 def match_names_with_roman_numerals_in_parentheses(
     s: Flow, t: Flow, comment="With/without roman numerals in parentheses"
 ):
-    is_match = (
-        rm_parentheses_roman_numerals(s.name.value)
-        == rm_parentheses_roman_numerals(t.name.value)
+    if (
+        rm_parentheses_roman_numerals(s.name.normalized)
+        == rm_parentheses_roman_numerals(t.name.normalized)
         and s.context == t.context
-    )
-
-    if is_match:
+    ):
         return {"comment": comment}
 
 
-def match_names_with_country_codes(s: Flow, t: Flow, comment="Names with country code"):
-    s_name, s_location = extract_country_code(s.name.value)
-    is_match = s_location and s_name == t.name and s.context == t.context
-
-    if is_match:
-        return {"comment": comment, "location": s_location}
-
-
-def match_natural_resources_without_subcategory(
-    s: Flow, t: Flow, comment="Natural resource but differing subcategory"
+def match_custom_names_with_location_codes(
+    s: Flow, t: Flow, comment="Custom names with location code"
 ):
-    is_match = (
-        s.context.value.split("/")[0] == "natural resource"
-        and t.context.value.split("/")[0] == "natural resource"
-        and s.name == t.name
-    )
+    match = ends_with_location.search(s.name.normalized)
+    if match:
+        location = location_reverser[match.group("code")]
+        name = s.name.normalized.replace(match.group(), "")
+        try:
+            mapped_name = names_and_locations[name]["target"]
+        except KeyError:
+            return
+        if mapped_name == t.name.normalized and s.context == t.context:
+            result = {"comment": comment, "location": location} | names_and_locations[
+                name
+            ].get("extra", {})
+            if (
+                s.name.normalized.startswith("water")
+                and s.unit.normalized == "cubic_meter"
+                and t.unit.normalized == "kilogram"
+            ):
+                result["conversion_factor"] = 1000
+            elif (
+                s.name.normalized.startswith("water")
+                and t.unit.normalized == "cubic_meter"
+                and s.unit.normalized == "kilogram"
+            ):
+                result["conversion_factor"] = 0.001
+            return result
 
-    if is_match:
-        return {"comment": comment}
+
+def match_names_with_location_codes(
+    s: Flow, t: Flow, comment="Name matching with location code"
+):
+    match = ends_with_location.search(s.name.normalized)
+    if match:
+        location = location_reverser[match.group("code")]
+        name = s.name.normalized.replace(match.group(), "")
+        if name == t.name.normalized and s.context == t.context:
+            result = {"comment": comment, "location": location}
+            if (
+                s.name.normalized.startswith("water")
+                and s.unit.normalized == "cubic_meter"
+                and t.unit.normalized == "kilogram"
+            ):
+                result["conversion_factor"] = 1000.0
+            elif (
+                s.name.normalized.startswith("water")
+                and t.unit.normalized == "cubic_meter"
+                and s.unit.normalized == "kilogram"
+            ):
+                result["conversion_factor"] = 0.001
+            return result
 
 
 def match_non_ionic_state(
     s: Flow, t: Flow, comment="Non-ionic state if no better match"
 ):
-    is_match = (
-        rm_roman_numerals_ionic_state(s.name.value) == t.name and s.context == t.context
-    )
-
-    if is_match:
+    if (
+        rm_roman_numerals_ionic_state(s.name.normalized) == t.name
+        and s.context == t.context
+    ):
         return {"comment": comment}
 
 
 def match_biogenic_to_non_fossil(
     s: Flow, t: Flow, comment="Biogenic to non-fossil if no better match"
 ):
-    is_match = (
-        s.name.value.removesuffix(", biogenic")
-        == t.name.value.removesuffix(", non-fossil")
+    if (
+        s.name.normalized.removesuffix(", biogenic")
+        == t.name.normalized.removesuffix(", non-fossil")
         and s.context == t.context
-    )
-
-    if is_match:
+    ):
         return {"comment": comment}
 
 
@@ -168,40 +170,48 @@ def match_resources_with_suffix_in_ground(s: Flow, t: Flow):
     )
 
 
-def match_emissions_with_suffix_ion(s: Flow, t: Flow):
+def match_flows_with_suffix_unspecified_origin(s: Flow, t: Flow):
     return match_identical_names_except_missing_suffix(
-        s, t, suffix="ion", comment="Match emissions with suffix ion"
-    ) or match_identical_names_except_missing_comma_for_suffix(
         s,
         t,
-        suffix="ion",
-        comment="Match emissions with suffix ion and inconsistent comma",
+        suffix="unspecified origin",
+        comment="Flows with suffix unspecified origin",
     )
 
 
-SP_EI38_NAMES = dict(json.load(open(DATA_DIR / "manual_name_match_simapro_ecoinvent_3.8.json")))
-SP_EI39_NAMES = dict(json.load(open(DATA_DIR / "manual_name_match_simapro_ecoinvent_3.9.json")))
+def match_resources_with_suffix_in_water(s: Flow, t: Flow):
+    return match_identical_names_except_missing_suffix(
+        s, t, suffix="in water", comment="Resources with suffix in water"
+    )
 
 
-def match_custom_data(s: Flow, t: Flow):
-    if SP_EI39_NAMES.get(s.name.raw_value) == t.name.raw_value:
-        return {'comment': 'Manual name match from Simapro to ecoinvent 3.9'}
-    if SP_EI38_NAMES.get(s.name.raw_value) == t.name.raw_value:
-        return {'comment': 'Manual name match from Simapro to ecoinvent 3.8'}
+def match_resources_with_suffix_in_air(s: Flow, t: Flow):
+    return match_identical_names_except_missing_suffix(
+        s, t, suffix="in air", comment="Resources with suffix in air"
+    )
+
+
+def match_emissions_with_suffix_ion(s: Flow, t: Flow):
+    return match_identical_names_except_missing_suffix(
+        s, t, suffix="ion", comment="Match emissions with suffix ion"
+    )
 
 
 def match_rules():
     return [
-        match_identical_uuid,
+        match_identical_identifier,
         match_identical_names,
         match_resources_with_suffix_in_ground,
+        match_resources_with_suffix_in_water,
+        match_resources_with_suffix_in_air,
+        match_flows_with_suffix_unspecified_origin,
+        match_resources_with_wrong_subcontext,
         match_emissions_with_suffix_ion,
-        match_natural_resources_without_subcategory,
         match_names_with_roman_numerals_in_parentheses,
-        match_names_with_country_codes,
+        match_names_with_location_codes,
+        match_custom_names_with_location_codes,
         match_identical_cas_numbers,
         match_non_ionic_state,
         match_biogenic_to_non_fossil,
         match_identical_names_in_synonyms,
-        match_custom_data,
     ]

@@ -1,42 +1,44 @@
 import copy
 import hashlib
+import importlib.resources as resource
 import json
 import re
 import unicodedata
+from collections.abc import Collection, Mapping
 from pathlib import Path
-from typing import Optional, Union
+from typing import Any, List, Union
 
-import importlib.util
+with resource.as_file(
+    resource.files("flowmapper") / "data" / "places.json"
+) as filepath:
+    places = json.load(open(filepath))
+
+ends_with_location = re.compile(
+    ",[ \t\r\f]+(?P<code>{})$".format(
+        "|".join([re.escape(string) for string in places])
+    ),
+    re.IGNORECASE,
+)
+# All solutions I found for returning original string instead of
+# lower case one were very ugly
+location_reverser = {obj.lower(): obj for obj in places}
+
+with resource.as_file(
+    resource.files("flowmapper") / "data" / "names_and_locations.json"
+) as filepath:
+    names_and_locations = {o["source"]: o for o in json.load(open(filepath))}
 
 
-def import_module(filepath):
-    filepath = Path(filepath)
-    module_name = filepath.stem
-    spec = importlib.util.spec_from_file_location(module_name, filepath)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-def read_field_mapping(filepath: Path):
-    module = import_module(filepath)
-    fields = getattr(module, "config", None)
-    if not fields:
-        raise Exception(
-            f"{filepath} does not define a dict named config with field mapping information."
-        )
-
-    result = {"source": {}, "target": {}}
-
-    for key, values in fields.items():
-        if len(values) == 1:
-            result["source"][key] = values[0]
-            result["target"][key] = values[0]
-        else:
-            result["source"][key] = values[0]
-            result["target"][key] = values[1]
-
-    return result
+def load_standard_transformations() -> List:
+    with resource.as_file(
+        resource.files("flowmapper") / "data" / "standard-units-harmonization.json"
+    ) as filepath:
+        units = json.load(open(filepath))
+    with resource.as_file(
+        resource.files("flowmapper") / "data" / "simapro-2023-ecoinvent-3-contexts.json"
+    ) as filepath:
+        contexts = json.load(open(filepath))
+    return [units, contexts]
 
 
 def generate_flow_id(flow: dict):
@@ -45,13 +47,7 @@ def generate_flow_id(flow: dict):
     return result
 
 
-def read_flowlist(filepath: Path):
-    with open(filepath, "r") as fs:
-        result = json.load(fs)
-    return result
-
-
-def read_migration_files(*filepaths: Union[str, Path]):
+def read_migration_files(*filepaths: Union[str, Path]) -> List[dict]:
     """
     Read and aggregate migration data from multiple JSON files.
 
@@ -73,12 +69,10 @@ def read_migration_files(*filepaths: Union[str, Path]):
     migration_data = []
 
     for filepath in filepaths:
-        filepath = Path(filepath)
-        with open(filepath, "r") as fs:
-            migration_data.extend(json.load(fs))
+        with open(Path(filepath), "r") as fs:
+            migration_data.append(json.load(fs))
 
-    result = {"update": migration_data}
-    return result
+    return migration_data
 
 
 def rm_parentheses_roman_numerals(s: str):
@@ -91,278 +85,11 @@ def rm_roman_numerals_ionic_state(s: str):
     return re.sub(pattern, "", s)
 
 
-COUNTRY_CODES = "|".join(
-    {
-        "AD",
-        "AE",
-        "AF",
-        "AG",
-        "AI",
-        "AL",
-        "AM",
-        "AN",
-        "AO",
-        "AQ",
-        "AR",
-        "AS",
-        "AT",
-        "AU",
-        "AW",
-        "AX",
-        "AZ",
-        "BA",
-        "BB",
-        "BD",
-        "BE",
-        "BF",
-        "BG",
-        "BH",
-        "BI",
-        "BJ",
-        "BM",
-        "BN",
-        "BO",
-        "BR",
-        "BS",
-        "BT",
-        "BV",
-        "BW",
-        "BY",
-        "BZ",
-        "CA",
-        "CC",
-        "CD",
-        "CF",
-        "CG",
-        "CH",
-        "CI",
-        "CK",
-        "CL",
-        "CM",
-        "CN",
-        "CO",
-        "CR",
-        "CS",
-        "CU",
-        "CV",
-        "CX",
-        "CY",
-        "CZ",
-        "DE",
-        "DJ",
-        "DK",
-        "DM",
-        "DO",
-        "DZ",
-        "EC",
-        "EE",
-        "EG",
-        "EH",
-        "ER",
-        "ES",
-        "ET",
-        "FI",
-        "FJ",
-        "FK",
-        "FM",
-        "FO",
-        "FR",
-        "GA",
-        "GB",
-        "GD",
-        "GE",
-        "GF",
-        "GG",
-        "GH",
-        "GI",
-        "GL",
-        "GM",
-        "GN",
-        "GP",
-        "GQ",
-        "GR",
-        "GS",
-        "GT",
-        "GU",
-        "GW",
-        "GY",
-        "HK",
-        "HM",
-        "HN",
-        "HR",
-        "HT",
-        "HU",
-        "ID",
-        "IE",
-        "IL",
-        "IM",
-        "IN",
-        "IO",
-        "IQ",
-        "IR",
-        "IS",
-        "IT",
-        "JE",
-        "JM",
-        "JO",
-        "JP",
-        "KE",
-        "KG",
-        "KH",
-        "KI",
-        "KM",
-        "KN",
-        "KP",
-        "KR",
-        "KW",
-        "KY",
-        "KZ",
-        "LA",
-        "LB",
-        "LC",
-        "LI",
-        "LK",
-        "LR",
-        "LS",
-        "LT",
-        "LU",
-        "LV",
-        "LY",
-        "MA",
-        "MC",
-        "MD",
-        "MG",
-        "MH",
-        "MK",
-        "ML",
-        "MM",
-        "MN",
-        "MO",
-        "MP",
-        "MQ",
-        "MR",
-        "MS",
-        "MT",
-        "MU",
-        "MV",
-        "MW",
-        "MX",
-        "MY",
-        "MZ",
-        "NA",
-        "NC",
-        "NE",
-        "NF",
-        "NG",
-        "NI",
-        "NL",
-        "NO",
-        "NP",
-        "NR",
-        "NU",
-        "NZ",
-        "OM",
-        "PA",
-        "PE",
-        "PF",
-        "PG",
-        "PH",
-        "PK",
-        "PL",
-        "PM",
-        "PN",
-        "PR",
-        "PS",
-        "PT",
-        "PW",
-        "PY",
-        "QA",
-        "RE",
-        "RO",
-        "RS",
-        "RU",
-        "RW",
-        "SA",
-        "SB",
-        "SC",
-        "SD",
-        "SE",
-        "SG",
-        "SH",
-        "SI",
-        "SJ",
-        "SK",
-        "SL",
-        "SM",
-        "SN",
-        "SO",
-        "SR",
-        "ST",
-        "SV",
-        "SY",
-        "SZ",
-        "TC",
-        "TD",
-        "TF",
-        "TG",
-        "TH",
-        "TJ",
-        "TK",
-        "TL",
-        "TM",
-        "TN",
-        "TO",
-        "TR",
-        "TT",
-        "TV",
-        "TW",
-        "TZ",
-        "UA",
-        "UG",
-        "UM",
-        "US",
-        "UY",
-        "UZ",
-        "VA",
-        "VC",
-        "VE",
-        "VG",
-        "VI",
-        "VN",
-        "VU",
-        "WF",
-        "WS",
-        "YE",
-        "YT",
-        "ZA",
-        "ZM",
-        "ZW",
-        "RER",
-        "GLO",
-        "OECD",
-        "Europe",
-        "RAF",
-    }
-)
-
-# Regex to find a two-letter uppercase code following a comma and optional whitespace
-country_code_regex = re.compile(r",\s*({})$".format(COUNTRY_CODES + "|" + COUNTRY_CODES.lower()))
-
-
-def extract_country_code(s: str) -> tuple[str, Optional[str]]:
-    match = re.search(country_code_regex, s)
-
-    if match:
-        # Extract the country code and the preceding part of the string
-        country_code = match.group(1)
-        rest_of_string = s[: match.start()].strip()
-        return (rest_of_string, country_code)
-    else:
-        return (s, None)
-
-
 def normalize_str(s):
-    return unicodedata.normalize("NFC", s).strip().lower()
+    if s is not None:
+        return unicodedata.normalize("NFC", s).strip()
+    else:
+        return ""
 
 
 def transform_flow(flow, transformation):
@@ -375,9 +102,47 @@ def matcher(source, target):
     return all(target.get(key) == value for key, value in source.items())
 
 
-def find_transformation(flow, transformations):
+def rowercase(obj: Any) -> Any:
+    """Recursively transform everything to lower case recursively"""
+    if isinstance(obj, str):
+        return obj.lower()
+    elif isinstance(obj, Mapping):
+        return type(obj)([(rowercase(k), rowercase(v)) for k, v in obj.items()])
+    elif isinstance(obj, Collection):
+        return type(obj)([rowercase(o) for o in obj])
+    else:
+        return obj
+
+
+def match_sort_order(obj: dict) -> tuple:
+    return (
+        not obj["from"].name,
+        obj["from"].name.normalized,
+        not obj["from"].context,
+        obj["from"].context.export_as_string(),
+    )
+
+
+def apply_transformations(obj: dict, transformations: List[dict] | None) -> dict:
     if not transformations:
-        return None
-    for transformation in transformations["update"]:
-        if matcher(transformation["source"], flow):
-            return transformation
+        return obj
+    obj = copy.deepcopy(obj)
+    lower = rowercase(obj)
+
+    for dataset in transformations:
+        for transformation_obj in dataset.get("create", []):
+            if matcher(
+                transformation_obj,
+                lower if dataset.get("case-insensitive") else obj,
+            ):
+                # Marked an needs to be created; missing in target list
+                obj["__missing__"] = True
+                break
+        for transformation_obj in dataset.get("update", []):
+            if transformation_obj["source"] == obj:
+                obj.update(transformation_obj["target"])
+                if "conversion_factor" in transformation_obj:
+                    obj["conversion_factor"] = transformation_obj["conversion_factor"]
+                break
+
+    return obj

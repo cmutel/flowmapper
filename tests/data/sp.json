@@ -1,69 +1,48 @@
 [
-    {
-        "name": "1,4-Butanediol",
-        "categories": [
-          "Air",
-          "(unspecified)"
-        ],
-        "unit": "kg",
-        "CAS": "000110-63-4"
-    },
-    {
+  {
       "name": "1,4-Butanediol",
-      "categories": [
-        "Air",
-        "(unspecified)"
-      ],
+      "context": "air",
       "unit": "kg",
-      "CAS": "000110-63-4"
-  },    
-    {
-        "name": "1,4-Butanediol",
-        "categories": [
-          "Air",
-          "high. pop."
-        ],
-        "unit": "kg",
-        "CAS": "000110-63-4"
-    },
-    {
-      "name": "Cesium-134",
-      "unit": "kBq",
-      "categories": [
-        "Emissions to air",
-        "low. pop."
-      ]
+      "CAS number": "000110-63-4"
   },
-    {
-      "name": "Cesium-134",
-      "unit": "kBq",
-      "categories": [
-        "Emissions to soil",
-        ""
-      ]
-    },
-    {
-      "name": "Zinc, Zn 0.63%, Au 9.7E-4%, Ag 9.7E-4%, Cu 0.38%, Pb 0.014%, in ore",
+  {
+      "name": "1,4-Butanediol",
+      "context": "air",
       "unit": "kg",
-      "categories": [
-        "Resources",
-        "in ground"
-      ]
+      "CAS number": "000110-63-4"
+  },
+  {
+      "name": "1,4-Butanediol",
+      "context": "air/high. pop.",
+      "unit": "kg",
+      "CAS number": "000110-63-4"
+  },
+  {
+    "name": "Cesium-134",
+    "unit": "kBq",
+    "context": "air/low. pop."
+  },
+  {
+    "name": "Cesium-134",
+    "unit": "kBq",
+    "context": [
+      "Emissions to soil",
+      ""
+    ]
+  },
+  {
+    "name": "Zinc, Zn 0.63%, Au 9.7E-4%, Ag 9.7E-4%, Cu 0.38%, Pb 0.014%, in ore",
+    "unit": "kg",
+    "context": "resources/in ground"
   },
   {
     "name": "Ammonia, FR",
     "unit": "kg",
-    "categories": [
-      "Emissions to air",
-      "low. pop."
-    ]
+    "context": "air/low. pop."
   },
   {
     "name": "Ammonia, as N",
     "unit": "kg",
-    "categories": [
-      "Emissions to air",
-      "low. pop."
-    ]
+    "context": "air/low. pop."
   }
 ]

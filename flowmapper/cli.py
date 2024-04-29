@@ -10,7 +10,8 @@ from typing_extensions import Annotated
 
 from .flow import Flow
 from .flowmap import Flowmap
-from .utils import read_field_mapping, read_flowlist, read_migration_files
+from .transformation_mapping import prepare_transformations
+from .utils import load_standard_transformations, read_migration_files
 
 logger = logging.getLogger(__name__)
 
@@ -45,10 +46,6 @@ def main(
 def map(
     source: Annotated[Path, typer.Argument(help="Path to source flowlist")],
     target: Annotated[Path, typer.Argument(help="Path to target flowlist")],
-    fields: Annotated[
-        Path,
-        typer.Option(help="Relationship between fields in source and target flowlists"),
-    ],
     output_dir: Annotated[
         Path, typer.Option(help="Directory to save mapping and diagnostics files")
     ] = Path("."),
@@ -56,12 +53,15 @@ def map(
         OutputFormat,
         typer.Option(help="Mapping file output format", case_sensitive=False),
     ] = "all",
+    default_transformations: Annotated[
+        bool, typer.Option(help="Include default context and unit transformations?")
+    ] = True,
     transformations: Annotated[
-        list[Path],
+        Optional[list[Path]],
         typer.Option(
             "--transformations",
             "-t",
-            help="Randonneur data migration file with changes to be applied to source flows before matching",
+            help="Randonneur data migration file with changes to be applied to source flows before matching. Can be included multiple times.",
         ),
     ] = None,
     unmatched_source: Annotated[
@@ -85,15 +85,21 @@ def map(
     Generate mappings between elementary flows lists
     """
     output_dir.mkdir(parents=True, exist_ok=True)
-    field_mapping = read_field_mapping(fields)
+
+    loaded_transformations = []
+    if default_transformations:
+        loaded_transformations.extend(load_standard_transformations())
     if transformations:
-        transformations = read_migration_files(*transformations)
+        loaded_transformations.extend(read_migration_files(*transformations))
+
+    prepared_transformations = prepare_transformations(loaded_transformations)
+
     source_flows = [
-        Flow(flow, field_mapping["source"], transformations)
-        for flow in read_flowlist(source)
+        Flow(flow, prepared_transformations) for flow in json.load(open(source))
     ]
+    source_flows = [flow for flow in source_flows if not flow.missing]
     target_flows = [
-        Flow(flow, field_mapping["target"]) for flow in read_flowlist(target)
+        Flow(flow, prepared_transformations) for flow in json.load(open(target))
     ]
 
     flowmap = Flowmap(source_flows, target_flows)
@@ -103,24 +109,28 @@ def map(
 
     if matched_source:
         with open(output_dir / f"{stem}-matched-source.json", "w") as fs:
-            json.dump([flow.raw for flow in flowmap.matched_source], fs, indent=True)
+            json.dump([flow.export for flow in flowmap.matched_source], fs, indent=True)
 
     if unmatched_source:
         with open(output_dir / f"{stem}-unmatched-source.json", "w") as fs:
-            json.dump([flow.raw for flow in flowmap.unmatched_source], fs, indent=True)
+            json.dump(
+                [flow.export for flow in flowmap.unmatched_source], fs, indent=True
+            )
 
     if matched_target:
         with open(output_dir / f"{stem}-matched-target.json", "w") as fs:
-            json.dump([flow.raw for flow in flowmap.matched_target], fs, indent=True)
+            json.dump([flow.export for flow in flowmap.matched_target], fs, indent=True)
 
     if unmatched_target:
         with open(output_dir / f"{stem}-unmatched-target.json", "w") as fs:
-            json.dump([flow.raw for flow in flowmap.unmatched_target], fs, indent=True)
+            json.dump(
+                [flow.export for flow in flowmap.unmatched_target], fs, indent=True
+            )
 
     if format.value == "randonneur":
         flowmap.to_randonneur(output_dir / f"{stem}.json")
     elif format.value == "glad":
-        flowmap.to_glad(output_dir / f"{stem}.xlsx")
+        flowmap.to_glad(output_dir / f"{stem}.xlsx", missing_source=True)
     else:
         flowmap.to_randonneur(output_dir / f"{stem}.json")
-        flowmap.to_glad(output_dir / f"{stem}.xlsx")
+        flowmap.to_glad(output_dir / f"{stem}.xlsx", missing_source=True)

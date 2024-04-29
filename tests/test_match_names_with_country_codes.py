@@ -31,7 +31,10 @@ def test_match_names_with_country_codes_complicated_location():
     t = Flow({"name": "Ammonia", "context": "air", "unit": "kg"})
 
     actual = match_names_with_location_codes(s, t)
-    expected = {"comment": "Name matching with location code", "location": "RER w/o DE+NL+NO"}
+    expected = {
+        "comment": "Name matching with location code",
+        "location": "RER w/o DE+NL+NO",
+    }
     assert actual == expected
 
 
@@ -40,7 +43,11 @@ def test_match_names_with_country_codes_water_source_conversion():
     t = Flow({"name": "Water", "context": "air", "unit": "cubic_meter"})
 
     actual = match_names_with_location_codes(s, t)
-    expected = {"comment": "Name matching with location code", "location": "NL", "conversion_factor": 0.001}
+    expected = {
+        "comment": "Name matching with location code",
+        "location": "NL",
+        "conversion_factor": 0.001,
+    }
     assert actual == expected
 
 
@@ -49,5 +56,9 @@ def test_match_names_with_country_codes_water_target_conversion():
     t = Flow({"name": "Water", "context": "air", "unit": "kilogram"})
 
     actual = match_names_with_location_codes(s, t)
-    expected = {"comment": "Name matching with location code", "location": "NL", "conversion_factor": 1000.}
+    expected = {
+        "comment": "Name matching with location code",
+        "location": "NL",
+        "conversion_factor": 1000.0,
+    }
     assert actual == expected

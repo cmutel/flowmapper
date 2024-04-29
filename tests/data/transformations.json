@@ -1,18 +1,22 @@
-[
-  {
-    "target": { "categories": ["Air", "(unspecified)"] },
-    "source": {
-      "name": "1,4-Butanediol",
-      "categories": ["Air", "high. pop."]
+{
+  "update": [
+    {
+      "source": {
+        "name": "1,4-Butanediol",
+        "context": "air/high. pop."
+      },
+      "target": {
+        "context": ["Air", "(unspecified)"] 
+      }
+    },
+    {
+      "source": {
+        "name": "Ammonia, as N"
+      },
+      "target": {
+        "name": "Ammonia"
+      },
+      "conversion_factor": 1.2142857142857142
     }
-  },
-  {
-    "source": {
-      "name": "Ammonia, as N"
-    },
-    "target": {
-      "name": "Ammonia"
-    },
-    "conversion_factor": 1.2142857142857142
-  }
-]
+  ]
+}

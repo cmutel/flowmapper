@@ -1,10 +1,10 @@
 from typing import List
 
-from .cas import CAS
-from .context import Context
+from .cas import CASField
+from .context import ContextField
 from .string_field import StringField
 from .string_list import StringList
-from .unit import Unit
+from .unit import UnitField
 from .utils import apply_transformations, generate_flow_id
 
 
@@ -28,15 +28,15 @@ class Flow:
             original=self.data.get("name"),
             transformed=self.transformed.get("name"),
         )
-        self.unit = Unit(
+        self.unit = UnitField(
             original=self.data.get("unit"),
             transformed=self.transformed.get("unit"),
         )
-        self.context = Context(
+        self.context = ContextField(
             original=self.data.get("context"),
             transformed=self.transformed.get("context"),
         )
-        self.cas = CAS(data.get("CAS number"))
+        self.cas = CASField(data.get("CAS number"))
         self.synonyms = StringList(
             original=self.data.get("synonyms", []),
             transformed=self.transformed.get("synonyms", []),
@@ -50,15 +50,23 @@ class Flow:
     @property
     def export(self) -> dict:
         return {
-            "name": self.name.original,
-            "unit": self.unit.original,
-            "identifier": self.identifier.original,
-            "context": self.context.original,
-            "CAS number": self.cas.export,
+            k: v
+            for k, v in [
+                ("name", self.name.original),
+                ("unit", self.unit.original),
+                ("identifier", self.identifier.original),
+                ("context", self.context.original),
+                ("CAS number", self.cas.export),
+            ]
+            if v
         }
 
     def __repr__(self) -> str:
-        return f"{self.identifier} / {self.name} / {self.context} / {self.unit}"
+        return f"""Flow object:
+    Identifier: {self.identifier}
+    Name: {self.name}
+    Context: {self.context}
+    Unit: {self.unit}"""
 
     def __eq__(self, other):
         return self.id == other.id

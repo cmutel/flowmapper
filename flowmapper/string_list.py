@@ -28,4 +28,7 @@ class StringList(Collection):
         return bool(self.data)
 
     def __repr__(self):
-        return "StringList: {}".format([repr(o) for o in self.data])
+        if self:
+            return "StringList: {}".format([repr(o) for o in self.data])
+        else:
+            return "StringList: Empty"

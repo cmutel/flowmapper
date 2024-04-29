@@ -66,6 +66,8 @@ class Flowmap:
             Rules to identify flows that should not be matched.
         disable_progress : bool, optional
             If True, progress bar display during the mapping process is disabled.
+        randonneur_config : dict, optional
+            Randonneur
 
         """
         self.disable_progress = disable_progress
@@ -422,7 +424,7 @@ class Flowmap:
                     ),
                     "SourceFlowContext": map_entry["from"].context.export_as_string(),
                     "SourceUnit": map_entry["from"].unit.original,
-                    "MatchCondition": "'='",
+                    "MatchCondition": "=",
                     "ConversionFactor": map_entry["conversion_factor"],
                     "TargetFlowName": map_entry["to"].name.original,
                     "TargetFlowUUID": map_entry["to"].identifier.original,
@@ -451,7 +453,11 @@ class Flowmap:
             path = Path(path)
             path.parent.mkdir(parents=True, exist_ok=True)
 
-            writer = pd.ExcelWriter(path)
+            writer = pd.ExcelWriter(
+                path,
+                engine="xlsxwriter",
+                engine_kwargs={"options": {"strings_to_formulas": False}},
+            )
             result.to_excel(writer, sheet_name="Mapping", index=False, na_rep="NaN")
 
             for column in result:

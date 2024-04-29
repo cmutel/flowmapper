@@ -9,7 +9,6 @@ def test_normalize_str():
         "\u00DCber",
         "\u00DCber ",
         " \u00DCber",
+        None,
     ]
-    actual = len({normalize_str(name) for name in names})
-    expected = 1
-    assert actual == expected
+    assert {normalize_str(name) for name in names} == {"über", "Über", ""}

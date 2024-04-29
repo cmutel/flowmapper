@@ -5,29 +5,15 @@ import math
 import re
 
 from .flow import Flow
-from .utils import rm_parentheses_roman_numerals, rm_roman_numerals_ionic_state
+from .utils import (
+    ends_with_location,
+    location_reverser,
+    names_and_locations,
+    rm_parentheses_roman_numerals,
+    rm_roman_numerals_ionic_state,
+)
 
 logger = logging.getLogger(__name__)
-
-with resource.as_file(
-    resource.files("flowmapper") / "data" / "places.json"
-) as filepath:
-    places = json.load(open(filepath))
-
-ends_with_location = re.compile(
-    ",[ \t\r\f]+(?P<code>{})$".format(
-        "|".join([re.escape(string) for string in places])
-    ),
-    re.IGNORECASE,
-)
-# All solutions I found for returning original string instead of
-# lower case one were very ugly
-location_reverser = {obj.lower(): obj for obj in places}
-
-with resource.as_file(
-    resource.files("flowmapper") / "data" / "names_and_locations.json"
-) as filepath:
-    names_and_locations = {o["source"]: o for o in json.load(open(filepath))}
 
 
 def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: dict):

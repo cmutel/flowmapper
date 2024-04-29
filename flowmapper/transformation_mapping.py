@@ -2,13 +2,13 @@ from collections import UserDict
 from functools import partial
 from typing import Any, List
 
-from .context import Context
+from .context import ContextField
 from .string_field import StringField
-from .unit import Unit
+from .unit import UnitField
 
 ATTRIBUTE_MAPPING = {
-    "unit": partial(Unit, use_lowercase=True),
-    "context": Context,
+    "unit": partial(UnitField, use_lowercase=True),
+    "context": ContextField,
     "identifier": partial(StringField, use_lowercase=True),
 }
 

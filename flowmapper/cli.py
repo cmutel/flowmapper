@@ -1,5 +1,4 @@
 import importlib.metadata
-import importlib.resources as resource
 import json
 import logging
 from enum import Enum
@@ -12,7 +11,7 @@ from typing_extensions import Annotated
 from .flow import Flow
 from .flowmap import Flowmap
 from .transformation_mapping import prepare_transformations
-from .utils import read_flowlist, read_migration_files
+from .utils import load_standard_transformations, read_migration_files
 
 logger = logging.getLogger(__name__)
 
@@ -89,28 +88,18 @@ def map(
 
     loaded_transformations = []
     if default_transformations:
-        with resource.as_file(
-            resource.files("flowmapper") / "data" / "standard-units-harmonization.json"
-        ) as filepath:
-            units = json.load(open(filepath))
-        with resource.as_file(
-            resource.files("flowmapper")
-            / "data"
-            / "simapro-2023-ecoinvent-3-contexts.json"
-        ) as filepath:
-            contexts = json.load(open(filepath))
-        loaded_transformations.extend([units, contexts])
+        loaded_transformations.extend(load_standard_transformations())
     if transformations:
         loaded_transformations.extend(read_migration_files(*transformations))
 
     prepared_transformations = prepare_transformations(loaded_transformations)
 
     source_flows = [
-        Flow(flow, prepared_transformations) for flow in read_flowlist(source)
+        Flow(flow, prepared_transformations) for flow in json.load(open(source))
     ]
     source_flows = [flow for flow in source_flows if not flow.missing]
     target_flows = [
-        Flow(flow, prepared_transformations) for flow in read_flowlist(target)
+        Flow(flow, prepared_transformations) for flow in json.load(open(target))
     ]
 
     flowmap = Flowmap(source_flows, target_flows)

@@ -1,5 +1,6 @@
 import copy
 import hashlib
+import importlib.resources as resource
 import json
 import re
 import unicodedata
@@ -7,16 +8,42 @@ from collections.abc import Collection, Mapping
 from pathlib import Path
 from typing import Any, List, Union
 
+with resource.as_file(
+    resource.files("flowmapper") / "data" / "places.json"
+) as filepath:
+    places = json.load(open(filepath))
+
+ends_with_location = re.compile(
+    ",[ \t\r\f]+(?P<code>{})$".format(
+        "|".join([re.escape(string) for string in places])
+    ),
+    re.IGNORECASE,
+)
+# All solutions I found for returning original string instead of
+# lower case one were very ugly
+location_reverser = {obj.lower(): obj for obj in places}
+
+with resource.as_file(
+    resource.files("flowmapper") / "data" / "names_and_locations.json"
+) as filepath:
+    names_and_locations = {o["source"]: o for o in json.load(open(filepath))}
+
+
+def load_standard_transformations() -> List:
+    with resource.as_file(
+        resource.files("flowmapper") / "data" / "standard-units-harmonization.json"
+    ) as filepath:
+        units = json.load(open(filepath))
+    with resource.as_file(
+        resource.files("flowmapper") / "data" / "simapro-2023-ecoinvent-3-contexts.json"
+    ) as filepath:
+        contexts = json.load(open(filepath))
+    return [units, contexts]
+
 
 def generate_flow_id(flow: dict):
     flow_str = json.dumps(flow, sort_keys=True)
     result = hashlib.md5(flow_str.encode("utf-8")).hexdigest()
-    return result
-
-
-def read_flowlist(filepath: Path):
-    with open(filepath, "r") as fs:
-        result = json.load(fs)
     return result
 
 

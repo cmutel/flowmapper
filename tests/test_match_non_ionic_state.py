@@ -3,14 +3,20 @@ from flowmapper.flowmap import Flowmap
 
 
 def test_match_non_ionic_state():
-    fields = {"name": "name", "context": "context", "unit": "unit"}
     s = [
-        Flow({"name": "Mercury (II)", "context": "air", "unit": "kg"}, fields),
-        Flow({"name": "Manganese (II)", "context": "air", "unit": "kg"}, fields),
+        Flow({"name": "Mercury (II)", "context": "air", "unit": "kg"}),
+        Flow({"name": "Manganese (II)", "context": "air", "unit": "kg"}),
     ]
     t = [
-        Flow({"name": "Mercury", "context": "air", "unit": "kg"}, fields),
-        Flow({"name": "Manganese II", "context": "air", "unit": "kg"}, fields),
+        Flow({"name": "Mercury", "context": "air", "unit": "kg", "identifier": "foo"}),
+        Flow(
+            {
+                "name": "Manganese II",
+                "context": "air",
+                "unit": "kg",
+                "identifier": "bar",
+            }
+        ),
     ]
 
     flowmap = Flowmap(s, t)
@@ -19,18 +25,23 @@ def test_match_non_ionic_state():
         {
             "source": {"name": "Manganese (II)", "context": "air", "unit": "kg"},
             "target": {
-                "uuid": None,
+                "identifier": "bar",
                 "name": "Manganese II",
                 "context": "air",
                 "unit": "kg",
             },
-            "conversion_factor": 1,
+            "conversion_factor": 1.0,
             "comment": "With/without roman numerals in parentheses",
         },
         {
             "source": {"name": "Mercury (II)", "context": "air", "unit": "kg"},
-            "target": {"uuid": None, "name": "Mercury", "context": "air", "unit": "kg"},
-            "conversion_factor": 1,
+            "target": {
+                "identifier": "foo",
+                "name": "Mercury",
+                "context": "air",
+                "unit": "kg",
+            },
+            "conversion_factor": 1.0,
             "comment": "Non-ionic state if no better match",
         },
     ]

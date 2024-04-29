@@ -19,7 +19,7 @@ def test_cas_init_empty_string():
 
 def test_cas_init_none():
     cas = CASField(None)
-    assert cas.original == None
+    assert cas.original is None
     assert cas.transformed == ""
     assert cas.digits == ()
 

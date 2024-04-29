@@ -3,7 +3,7 @@ from flowmapper.string_field import StringField
 
 def test_string_field_empty():
     sf = StringField(None)
-    assert sf.original == None
+    assert sf.original is None
     assert sf.normalized == ""
     assert sf != ""
     assert sf != "a"

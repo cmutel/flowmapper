@@ -11,7 +11,7 @@ MISSING_VALUES = {
 }
 
 
-class Context(Iterable):
+class ContextField(Iterable):
     def __init__(self, original: Any, transformed: Any = None):
         self.original = original
         self.transformed = transformed or original
@@ -47,8 +47,8 @@ class Context(Iterable):
         return iter(self.normalized)
 
     def __eq__(self, other):
-        if self and other and isinstance(other, Context):
-            return self.normalized == other.normalized
+        if self and other and isinstance(other, ContextField):
+            return self.original and self.normalized == other.normalized
         else:
             try:
                 normalized_other = self.normalize(other)
@@ -59,7 +59,7 @@ class Context(Iterable):
                 return False
 
     def __repr__(self):
-        return f"Context: '{self.original}' -> '{self.normalized}'"
+        return f"ContextField: '{self.original}' -> '{self.normalized}'"
 
     def __bool__(self):
         return bool(self.normalized)
@@ -76,6 +76,6 @@ class Context(Iterable):
         ```
 
         """
-        if not isinstance(other, Context):
+        if not isinstance(other, ContextField):
             return False
         return self.normalized == other.normalized[: len(self.normalized)]

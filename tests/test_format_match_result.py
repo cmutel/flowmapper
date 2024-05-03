@@ -4,37 +4,21 @@ from flowmapper.flow import Flow
 from flowmapper.match import format_match_result
 
 
-def test_format_match_result_missing_id():
+def test_format_match_result_missing_id(transformations):
     source = {
         "name": "Carbon dioxide, in air",
         "context": "Raw materials",
         "unit": "kg",
     }
-
-    source_fields = {
-        "uuid": "",
-        "name": "name",
-        "context": "context",
-        "unit": "unit",
-    }
-
-    s = Flow(source, source_fields)
+    s = Flow(source, transformations)
 
     target = {
-        "id": "cc6a1abb-b123-4ca6-8f16-38209df609be",
+        "identifier": "cc6a1abb-b123-4ca6-8f16-38209df609be",
         "name": "Carbon dioxide, in air",
         "context": "natural resource/in air",
         "unit": "kg",
     }
-
-    target_fields = {
-        "uuid": "id",
-        "name": "name",
-        "context": "context",
-        "unit": "unit",
-    }
-
-    t = Flow(target, target_fields)
+    t = Flow(target)
 
     actual = format_match_result(s, t, 1.0, {"is_match": True, "comment": "foo"})
     expected = {
@@ -44,7 +28,7 @@ def test_format_match_result_missing_id():
             "unit": "kg",
         },
         "target": {
-            "uuid": "cc6a1abb-b123-4ca6-8f16-38209df609be",
+            "identifier": "cc6a1abb-b123-4ca6-8f16-38209df609be",
             "name": "Carbon dioxide, in air",
             "context": "natural resource/in air",
             "unit": "kg",
@@ -53,5 +37,4 @@ def test_format_match_result_missing_id():
         "comment": "foo",
     }
 
-    diff = DeepDiff(actual, expected)
-    assert not diff
+    assert not DeepDiff(actual, expected)

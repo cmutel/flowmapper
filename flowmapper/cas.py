@@ -1,22 +1,22 @@
 from functools import cached_property
 
 
-class CAS:
+class CASField:
     """
     Class for CAS Registry Numbers that accepts padded or non-padded strings
     """
 
-    def __init__(self, cas: str):
+    def __init__(self, cas: str | None):
         if not isinstance(cas, str) and cas is not None:
             raise TypeError(f"cas should be a str, not {type(cas).__name__}")
         else:
-            cas = "" if cas is None else cas
-            self.cas = cas.strip().lstrip("0").strip()
-            self.digits = tuple(int(d) for d in self.cas.replace("-", ""))
+            self.original = cas
+            self.transformed = ("" if cas is None else cas).strip().lstrip("0").strip()
+            self.digits = tuple(int(d) for d in self.transformed.replace("-", ""))
 
     @property
     def export(self):
-        if self.cas:
+        if self.original:
             return "{}-{}-{}".format(
                 "".join([str(x) for x in self.digits[:-3]]),
                 "".join([str(x) for x in self.digits[-3:-1]]),
@@ -26,14 +26,22 @@ class CAS:
             return ""
 
     def __repr__(self):
-        return self.export
+        if not self.original:
+            return "CASField with missing original value"
+        else:
+            return "{} CASField: '{}' -> '{}'".format(
+                "Valid" if self.valid else "Invalid", self.original, self.export
+            )
 
     def __eq__(self, other):
-        if not self.cas and not other.cas:
-            result = False
-        else:
-            result = self.cas == other.cas
-        return result
+        if isinstance(other, CASField):
+            return self.original and self.digits == other.digits
+        if isinstance(other, str):
+            try:
+                return self.digits == CASField(other).digits
+            except (TypeError, ValueError):
+                return False
+        return False
 
     @cached_property
     def check_digit_expected(self):
@@ -52,12 +60,8 @@ class CAS:
         return result
 
     @property
-    def check_digit_actual(self):
-        int(self.cas[-1])
-
-    @property
     def valid(self):
         """
         True if check if CAS number is valid acording to https://www.cas.org/support/documentation/chemical-substances/checkdig algorithm
         """
-        return self.check_digit_actual == self.check_digit_expected
+        return self.digits[-1] == self.check_digit_expected

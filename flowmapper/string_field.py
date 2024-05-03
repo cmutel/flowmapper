@@ -19,8 +19,12 @@ class StringField(Generic[SF]):
             self.normalized = self.normalized.lower()
 
     def __eq__(self, other: Any) -> bool:
-        if isinstance(other, StringField):
-            return self.normalized == other.normalized
+        if self.normalized == "":
+            return False
+        elif isinstance(other, StringField):
+            return (
+                self.normalized == other.normalized or self.original == other.original
+            )
         elif isinstance(other, str):
             if self.use_lowercase:
                 return self.normalized == other.lower()

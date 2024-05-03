@@ -297,8 +297,7 @@
       },
       "target": {
         "context": [
-          "natural resource",
-          "in ground"
+          "natural resource"
         ]
       }
     },
@@ -363,12 +362,54 @@
       },
       "target": {
         "context": [
+          "natural resource"
+        ]
+      }
+    },
+    {
+      "source": {
+        "context": "raw/biotic"
+      },
+      "target": {
+        "context": [
+          "natural resource",
+          "biotic"
+        ]
+      }
+    },
+    {
+      "source": {
+        "context": "raw/in air"
+      },
+      "target": {
+        "context": [
+          "natural resource",
+          "in air"
+        ]
+      }
+    },
+    {
+      "source": {
+        "context": "raw/in ground"
+      },
+      "target": {
+        "context": [
           "natural resource",
           "in ground"
         ]
       }
     },
     {
+      "source": {
+        "context": "raw/land"
+      },
+      "target": {
+        "context": [
+          "natural resource",
+          "land"
+        ]
+      }
+    },    {
       "source": {
         "context": "raw/in water"
       },

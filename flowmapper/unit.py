@@ -15,7 +15,7 @@ with resource.as_file(resource.files("flowmapper") / "data" / "units.txt") as fi
 U = TypeVar("U")
 
 
-class Unit(Generic[U]):
+class UnitField(Generic[U]):
     def __init__(
         self, original: str, transformed: str | None = None, use_lowercase: bool = False
     ):
@@ -45,13 +45,13 @@ class Unit(Generic[U]):
         pass
 
     def __repr__(self) -> str:
-        return f"Unit: '{self.original}' -> '{self.normalized}'"
+        return f"UnitField: '{self.original}' -> '{self.normalized}'"
 
     def __bool__(self) -> bool:
         return bool(self.original)
 
     def __eq__(self, other: Any):
-        if isinstance(other, Unit):
+        if isinstance(other, UnitField):
             return (
                 self.normalized == other.normalized
                 or self.conversion_factor(other) == 1
@@ -64,7 +64,7 @@ class Unit(Generic[U]):
             return False
 
     def compatible(self, other: Any):
-        if not isinstance(other, Unit):
+        if not isinstance(other, UnitField):
             return False
         else:
             return math.isfinite(self.conversion_factor(other))

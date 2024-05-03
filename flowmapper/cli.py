@@ -25,6 +25,10 @@ def version_callback(value: bool):
         raise typer.Exit()
 
 
+def sorting_function(obj: dict) -> tuple:
+    return (obj.get('name', 'ZZZ'), str(obj.get('context', 'ZZZ')), obj.get('unit', 'ZZZ'))
+
+
 class OutputFormat(str, Enum):
     all = "all"
     glad = "glad"
@@ -120,22 +124,22 @@ def map(
 
     if matched_source:
         with open(output_dir / f"{stem}-matched-source.json", "w") as fs:
-            json.dump([flow.export for flow in flowmap.matched_source], fs, indent=True)
+            json.dump(sorted([flow.export for flow in flowmap.matched_source], key=sorting_function), fs, indent=True)
 
     if unmatched_source:
         with open(output_dir / f"{stem}-unmatched-source.json", "w") as fs:
             json.dump(
-                [flow.export for flow in flowmap.unmatched_source], fs, indent=True
+                sorted([flow.export for flow in flowmap.unmatched_source], key=sorting_function), fs, indent=True
             )
 
     if matched_target:
         with open(output_dir / f"{stem}-matched-target.json", "w") as fs:
-            json.dump([flow.export for flow in flowmap.matched_target], fs, indent=True)
+            json.dump(sorted([flow.export for flow in flowmap.matched_target], key=sorting_function), fs, indent=True)
 
     if unmatched_target:
         with open(output_dir / f"{stem}-unmatched-target.json", "w") as fs:
             json.dump(
-                [flow.export for flow in flowmap.unmatched_target], fs, indent=True
+                sorted([flow.export for flow in flowmap.unmatched_target], key=sorting_function), fs, indent=True
             )
 
     if format.value == "randonneur":

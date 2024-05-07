@@ -7,7 +7,7 @@ __all__ = (
     "ContextField",
 )
 
-__version__ = "0.0.0-9010"
+__version__ = "0.1"
 
 from .cas import CASField
 from .context import ContextField

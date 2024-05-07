@@ -73,7 +73,7 @@ packages = ["flowmapper"]
 version = {attr = "flowmapper.__version__"}
 
 [tool.setuptools.package-data]
-flowmapper = ["data/units.txt"]
+flowmapper = ["data/*.txt", "data/*.json"]
 
 [tool.pytest.ini_options]
 addopts = "--cov flowmapper --cov-report term-missing --verbose"

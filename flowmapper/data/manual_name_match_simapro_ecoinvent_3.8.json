@@ -13,7 +13,7 @@
   ],
   [
     "Occupation, dump site, benthos",
-    "Occupation, seabed, unspecified"
+    "Occupation, seabed, drilling and mining"
   ],
   [
     "Occupation, forest, intensive, normal",
@@ -33,7 +33,7 @@
   ],
   [
     "Occupation, industrial area, benthos",
-    "Occupation, seabed, unspecified"
+    "Occupation, industrial area"
   ],
   [
     "Occupation, industrial area, built up",
@@ -45,11 +45,7 @@
   ],
   [
     "Occupation, permanent crop, fruit, intensive",
-    "Occupation, permanent crop, irrigated"
-  ],
-  [
-    "Occupation, sea and ocean",
-    "Occupation, seabed, unspecified"
+    "Occupation, permanent crop, irrigated, intensive"
   ],
   [
     "Occupation, sea and ocean",
@@ -61,7 +57,7 @@
   ],
   [
     "Occupation, traffic area, road embankment",
-    "Occupation, traffic area, road network"
+    "Occupation, traffic area, rail/road embankment"
   ],
   [
     "Occupation, unspecified, used",
@@ -69,7 +65,7 @@
   ],
   [
     "Occupation, water bodies, artificial",
-    "Occupation, river, artificial"
+    "Occupation, lake, artificial"
   ],
   [
     "Occupation, water courses, artificial",
@@ -105,7 +101,7 @@
   ],
   [
     "Transformation, from industrial area, benthos",
-    "Transformation, from seabed, unspecified"
+    "Transformation, from industrial area"
   ],
   [
     "Transformation, from industrial area, built up",
@@ -121,7 +117,7 @@
   ],
   [
     "Transformation, from tropical rain forest",
-    "Transformation, from forest, extensive"
+    "Transformation, from forest, primary (non-use)"
   ],
   [
     "Transformation, from unspecified, used",
@@ -141,7 +137,7 @@
   ],
   [
     "Transformation, to dump site, benthos",
-    "Transformation, to seabed, unspecified"
+    "Transformation, to seabed, drilling and mining"
   ],
   [
     "Transformation, to forest, intensive, clear-cutting",
@@ -165,7 +161,7 @@
   ],
   [
     "Transformation, to industrial area, benthos",
-    "Transformation, to seabed, unspecified"
+    "Transformation, to industrial area"
   ],
   [
     "Transformation, to industrial area, built up",
@@ -177,7 +173,7 @@
   ],
   [
     "Transformation, to permanent crop, fruit, intensive",
-    "Transformation, to permanent crop, irrigated"
+    "Transformation, to permanent crop, irrigated, intensive"
   ],
   [
     "Transformation, to sea and ocean",
@@ -185,19 +181,15 @@
   ],
   [
     "Transformation, to traffic area, road embankment",
-    "Transformation, to traffic area, road network"
+    "Transformation, to traffic area, rail/road embankment"
   ],
   [
     "Transformation, to unspecified, used",
     "Transformation, to unspecified"
   ],
   [
-    "Transformation, to urban/industrial fallow",
-    "Transformation, to industrial area"
-  ],
-  [
     "Transformation, to water bodies, artificial",
-    "Transformation, to river, artificial"
+    "Transformation, to lake, artificial"
   ],
   [
     "Transformation, to water courses, artificial",
@@ -292,14 +284,6 @@
     "Copper, Cu 0.38%, in mixed ore, in ground"
   ],
   [
-    "Copper, Cu 3.2E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0% in ore",
-    "Copper, Cu 0.38%, in mixed ore, in ground"
-  ],
-  [
-    "Copper, Cu 5.2E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2% in ore",
-    "Copper, 0.52% in sulfide, Cu 0.27% and Mo 8.2E-3% in crude ore, in ground"
-  ],
-  [
     "Coal, 18 MJ per kg",
     "Coal, hard, unspecified, in ground"
   ],
@@ -330,10 +314,6 @@
   [
     "Gas, mine, off-gas, process, coal mining/kg",
     "Gas, mine, off-gas, process, coal mining"
-  ],
-  [
-    "Antimony, ion",
-    "Antimony"
   ],
   [
     "Arsenic (V)",
@@ -370,14 +350,6 @@
   [
     "Copper, ion",
     "Copper"
-  ],
-  [
-    "Formetanate",
-    "Formetanate hydrochloride"
-  ],
-  [
-    "Haloxyfop",
-    "haloxyfop-ethoxyethyl"
   ],
   [
     "Lead (II)",
@@ -426,5 +398,1909 @@
   [
     "Zinc (II)",
     "Zinc"
+  ],
+  [
+    "Aluminum",
+    "Aluminium"
+  ],
+  [
+    "Carbon dioxide, biogenic",
+    "Carbon dioxide, non-fossil"
+  ],
+  [
+    "Carbon dioxide, land transformation",
+    "Carbon dioxide, from soil or biomass stock"
+  ],
+  [
+    "Carbon monoxide, biogenic",
+    "Carbon monoxide, non-fossil"
+  ],
+  [
+    "Methane, biogenic",
+    "Methane, non-fossil"
+  ],
+  [
+    "Sodium tetrahydroborate",
+    "Sodium tetrahydridoborate"
+  ],
+  [
+    "Sulphur trioxide",
+    "Sulfur trioxide"
+  ],
+  [
+    "Bromine, 0.0023% in water",
+    "Bromine, 0.23% in water"
+  ],
+  [
+    "Carbon, in organic matter, in soil",
+    "Carbon, organic, in soil or biomass stock"
+  ],
+  [
+    "Copper, Cu 0.38%, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Pb 0.014%, in ore, in ground",
+    "Copper, Cu 0.38%, in mixed ore, in ground"
+  ],
+  [
+    "Gold, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Cu 0.38%, Pb 0.014%, in ore, in ground",
+    "Gold, Au 9.7E-4%, in mixed ore, in ground"
+  ],
+  [
+    "Lead, Pb 0.014%, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Cu 0.38%, in ore, in ground",
+    "Lead, Pb 0.014%, in mixed ore, in ground"
+  ],
+  [
+    "Occupation, arable",
+    "Occupation, arable land, unspecified use"
+  ],
+  [
+    "Occupation, arable, non-irrigated",
+    "Occupation, annual crop, non-irrigated"
+  ],
+  [
+    "Occupation, arable, non-irrigated, diverse-intensive",
+    "Occupation, annual crop, non-irrigated, extensive"
+  ],
+  [
+    "Occupation, arable, non-irrigated, fallow",
+    "Occupation, cropland fallow (non-use)"
+  ],
+  [
+    "Occupation, arable, non-irrigated, monotone-intensive",
+    "Occupation, annual crop, non-irrigated, intensive"
+  ],
+  [
+    "Occupation, forest",
+    "Occupation, forest, unspecified"
+  ],
+  [
+    "Occupation, forest, intensive, clear-cutting",
+    "Occupation, forest, intensive"
+  ],
+  [
+    "Occupation, pasture and meadow",
+    "Occupation, pasture, man made"
+  ],
+  [
+    "Occupation, pasture and meadow, extensive",
+    "Occupation, pasture, man made, extensive"
+  ],
+  [
+    "Occupation, pasture and meadow, intensive",
+    "Occupation, pasture, man made, intensive"
+  ],
+  [
+    "Occupation, permanent crop, fruit",
+    "Occupation, permanent crop, irrigated"
+  ],
+  [
+    "Occupation, permanent crop, fruit, extensive",
+    "Occupation, permanent crop, irrigated, extensive"
+  ],
+  [
+    "Occupation, permanent crop, vine",
+    "Occupation, permanent crop, non-irrigated"
+  ],
+  [
+    "Occupation, permanent crop, vine, extensive",
+    "Occupation, permanent crop, non-irrigated, extensive"
+  ],
+  [
+    "Occupation, permanent crop, vine, intensive",
+    "Occupation, permanent crop, non-irrigated, intensive"
+  ],
+  [
+    "Occupation, traffic area, rail embankment",
+    "Occupation, traffic area, rail/road embankment"
+  ],
+  [
+    "Occupation, tropical rain forest",
+    "Occupation, forest, primary (non-use)"
+  ],
+  [
+    "Occupation, unknown",
+    "Occupation, unspecified"
+  ],
+  [
+    "Silver, Ag 9.7E-4%, Au 9.7E-4%, Zn 0.63%, Cu 0.38%, Pb 0.014%, in ore, in ground",
+    "Silver, Ag 9.7E-4%, in mixed ore, in ground"
+  ],
+  [
+    "Transformation, from arable",
+    "Transformation, from arable land, unspecified use"
+  ],
+  [
+    "Transformation, from arable, non-irrigated",
+    "Transformation, from annual crop, non-irrigated"
+  ],
+  [
+    "Transformation, from arable, non-irrigated, diverse-intensive",
+    "Transformation, from annual crop, non-irrigated, extensive"
+  ],
+  [
+    "Transformation, from arable, non-irrigated, fallow",
+    "Transformation, from cropland fallow (non-use)"
+  ],
+  [
+    "Transformation, from arable, non-irrigated, monotone-intensive",
+    "Transformation, from annual crop, non-irrigated, intensive"
+  ],
+  [
+    "Transformation, from dump site, benthos",
+    "Transformation, from seabed, drilling and mining"
+  ],
+  [
+    "Transformation, from forest",
+    "Transformation, from forest, unspecified"
+  ],
+  [
+    "Transformation, from forest, intensive, normal",
+    "Transformation, from forest, intensive"
+  ],
+  [
+    "Transformation, from forest, intensive, short-cycle",
+    "Transformation, from forest, intensive"
+  ],
+  [
+    "Transformation, from pasture and meadow",
+    "Transformation, from pasture, man made"
+  ],
+  [
+    "Transformation, from pasture and meadow, extensive",
+    "Transformation, from pasture, man made, extensive"
+  ],
+  [
+    "Transformation, from pasture and meadow, intensive",
+    "Transformation, from pasture, man made, intensive"
+  ],
+  [
+    "Transformation, from permanent crop, fruit, extensive",
+    "Transformation, from permanent crop, irrigated, extensive"
+  ],
+  [
+    "Transformation, from permanent crop, fruit, intensive",
+    "Transformation, from permanent crop, irrigated, intensive"
+  ],
+  [
+    "Transformation, from permanent crop, vine",
+    "Transformation, from permanent crop, non-irrigated"
+  ],
+  [
+    "Transformation, from permanent crop, vine, extensive",
+    "Transformation, from permanent crop, non-irrigated, extensive"
+  ],
+  [
+    "Transformation, from permanent crop, vine, intensive",
+    "Transformation, from permanent crop, non-irrigated, intensive"
+  ],
+  [
+    "Transformation, from sea and ocean",
+    "Transformation, from seabed, unspecified"
+  ],
+  [
+    "Transformation, from traffic area, rail embankment",
+    "Transformation, from traffic area, rail/road embankment"
+  ],
+  [
+    "Transformation, from traffic area, road embankment",
+    "Transformation, from traffic area, rail/road embankment"
+  ],
+  [
+    "Transformation, from unknown",
+    "Transformation, from unspecified"
+  ],
+  [
+    "Transformation, from water bodies, artificial",
+    "Transformation, from lake, artificial"
+  ],
+  [
+    "Transformation, from water courses, artificial",
+    "Transformation, from river, artificial"
+  ],
+  [
+    "Transformation, to arable",
+    "Transformation, to arable land, unspecified use"
+  ],
+  [
+    "Transformation, to arable, non-irrigated",
+    "Transformation, to annual crop, non-irrigated"
+  ],
+  [
+    "Transformation, to arable, non-irrigated, diverse-intensive",
+    "Transformation, to annual crop, non-irrigated, extensive"
+  ],
+  [
+    "Transformation, to arable, non-irrigated, fallow",
+    "Transformation, to cropland fallow (non-use)"
+  ],
+  [
+    "Transformation, to arable, non-irrigated, monotone-intensive",
+    "Transformation, to annual crop, non-irrigated, intensive"
+  ],
+  [
+    "Transformation, to forest",
+    "Transformation, to forest, unspecified"
+  ],
+  [
+    "Transformation, to pasture and meadow",
+    "Transformation, to pasture, man made"
+  ],
+  [
+    "Transformation, to pasture and meadow, extensive",
+    "Transformation, to pasture, man made, extensive"
+  ],
+  [
+    "Transformation, to pasture and meadow, intensive",
+    "Transformation, to pasture, man made, intensive"
+  ],
+  [
+    "Transformation, to permanent crop, fruit",
+    "Transformation, to permanent crop, irrigated"
+  ],
+  [
+    "Transformation, to permanent crop, fruit, extensive",
+    "Transformation, to permanent crop, irrigated, extensive"
+  ],
+  [
+    "Transformation, to permanent crop, vine",
+    "Transformation, to permanent crop, non-irrigated"
+  ],
+  [
+    "Transformation, to permanent crop, vine, extensive",
+    "Transformation, to permanent crop, non-irrigated, extensive"
+  ],
+  [
+    "Transformation, to permanent crop, vine, intensive",
+    "Transformation, to permanent crop, non-irrigated, intensive"
+  ],
+  [
+    "Transformation, to traffic area, rail embankment",
+    "Transformation, to traffic area, rail/road embankment"
+  ],
+  [
+    "Transformation, to tropical rain forest",
+    "Transformation, to forest, primary (non-use)"
+  ],
+  [
+    "Transformation, to unknown",
+    "Transformation, to unspecified"
+  ],
+  [
+    "Zinc, Zn 0.63%, Au 9.7E-4%, Ag 9.7E-4%, Cu 0.38%, Pb 0.014%, in ore, in ground",
+    "Zinc, Zn 0.63%, in mixed ore, in ground"
+  ],
+  [
+    "1-Butanol",
+    "Butanol"
+  ],
+  [
+    "1-Propanol",
+    "Propanol"
+  ],
+  [
+    "Benzene, dichloro-",
+    "Benzene, dichloro"
+  ],
+  [
+    "2-Butene, 2-methyl-",
+    "2-Methyl-2-butene"
+  ],
+  [
+    "Benzene, 1,2-dichloro-",
+    "o-Dichlorobenzene"
+  ],
+  [
+    "Benzene, 1-methyl-2-nitro-",
+    "o-Nitrotoluene"
+  ],
+  [
+    "x \"Wat",
+    "Benz(a)anthracene"
+  ],
+  [
+    "Benzo(g,h,i)perylene",
+    "Benzo(ghi)perylene"
+  ],
+  [
+    "Carbamic acid, butyl-, 3-iodo-2-propynyl ester",
+    "Butylcarbamate, iodopropynyl"
+  ],
+  [
+    "Carbon",
+    "Elemental carbon"
+  ],
+  [
+    "Carbon monoxide, land transformation",
+    "Carbon monoxide, from soil or biomass stock"
+  ],
+  [
+    "Dioxin, 2,3,7,8 Tetrachlorodibenzo-p-",
+    "Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin"
+  ],
+  [
+    "Ethane, chloro-",
+    "Monochloroethane"
+  ],
+  [
+    "Ethanol, 2-ethoxy-",
+    "Ethylene glycol monoethyl ether"
+  ],
+  [
+    "Methane, land transformation",
+    "Methane, from soil or biomass stock"
+  ],
+  [
+    "Methane, tetrachloro-, CFC-10",
+    "Methane, tetrachloro-, R-10"
+  ],
+  [
+    "Methane, tetrafluoro-, CFC-14",
+    "Methane, tetrafluoro-, R-14"
+  ],
+  [
+    "Methylamine",
+    "Methyl amine"
+  ],
+  [
+    "Nitric oxide",
+    "Nitrogen monoxide"
+  ],
+  [
+    "Parathion, methyl",
+    "Methyl parathion"
+  ],
+  [
+    "Pentane, 2,2,4-trimethyl-",
+    "2,2,4-Trimethyl pentane"
+  ],
+  [
+    "Pentane, 2-methyl-",
+    "2-Methyl pentane"
+  ],
+  [
+    "Phenol, 2,4-dichloro-",
+    "Phenol, 2,4-dichloro"
+  ],
+  [
+    "Pyraclostrobin (prop)",
+    "Pyraclostrobin"
+  ],
+  [
+    "Quizalofop ethyl ester",
+    "Quizalofop-ethyl"
+  ],
+  [
+    "Toluene, 2-chloro-",
+    "Toluene, 2-chloro"
+  ],
+  [
+    "2-Methyl-4-chlorophenoxyacetic acid",
+    "MCPA"
+  ],
+  [
+    "Benzene, pentachloronitro-",
+    "Quintozene"
+  ],
+  [
+    "Chlortoluron",
+    "Chlorotoluron"
+  ],
+  [
+    "Dipropylthiocarbamic acid S-ethyl ester",
+    "EPTC"
+  ],
+  [
+    "Dithianone",
+    "Dithianon"
+  ],
+  [
+    "Iprodione",
+    "Iprodion"
+  ],
+  [
+    "Metam-sodium dihydrate",
+    "Metam-sodium"
+  ],
+  [
+    "Monosodium acid methanearsonate",
+    "MSMA"
+  ],
+  [
+    "Oxydemeton methyl",
+    "Oxydemeton-methyl"
+  ],
+  [
+    "Thiazole, 2-(thiocyanatemethylthio)benzo-",
+    "TCMTB"
+  ],
+  [
+    "Triallate",
+    "Tri-allate"
+  ],
+  [
+    "Acrylate",
+    "Acrylate, ion"
+  ],
+  [
+    "Ammonium",
+    "Ammonium, ion"
+  ],
+  [
+    "Arsenic",
+    "Arsenic, ion"
+  ],
+  [
+    "Benzo(a)anthracene",
+    "Benz(a)anthracene"
+  ],
+  [
+    "Cadmium",
+    "Cadmium, 0.30% in sulfide, Cd 0.18%, Pb, Zn, Ag, In, in ground"
+  ],
+  [
+    "Chromium",
+    "Chromium, 25.5% in chromite, 11.6% in crude ore, in ground"
+  ],
+  [
+    "Copper",
+    "Copper, ion"
+  ],
+  [
+    "Formic acid, thallium(1+) salt",
+    "Formate"
+  ],
+  [
+    "Hydrogen chloride",
+    "Hydrochloric acid"
+  ],
+  [
+    "Iron",
+    "Iron, 46% in ore, 25% in crude ore, in ground"
+  ],
+  [
+    "Lithium",
+    "Lithium, 0.15% in brine, in ground"
+  ],
+  [
+    "Naphthalene",
+    "Naphtalene"
+  ],
+  [
+    "Nickel",
+    "Nickel, ion"
+  ],
+  [
+    "Perchlorate",
+    "Perchlorate, ion"
+  ],
+  [
+    "Potassium",
+    "Potassium, ion"
+  ],
+  [
+    "Silver",
+    "Silver, ion"
+  ],
+  [
+    "Sodium",
+    "Sodium, ion"
+  ],
+  [
+    "Thiocyanate",
+    "Thiocyanate, ion"
+  ],
+  [
+    "Tin",
+    "Tin, 79% in cassiterite, 0.1% in crude ore, in ground"
+  ],
+  [
+    "Titanium",
+    "Titanium, ion"
+  ],
+  [
+    "Vanadium",
+    "Vanadium, ion"
+  ],
+  [
+    "Zinc",
+    "Zinc, 9.0% in sulfide, Zn 5.3%, Pb, Ag, Cd, In, in ground"
+  ],
+  [
+    "Sulphur",
+    "Sulfur"
+  ],
+  [
+    "Aluminium",
+    "Aluminium, in ground"
+  ],
+  [
+    "Anhydrite",
+    "Anhydrite, in ground"
+  ],
+  [
+    "Argon",
+    "Argon-40"
+  ],
+  [
+    "Barite",
+    "Barite, 15% in crude ore, in ground"
+  ],
+  [
+    "Basalt",
+    "Basalt, in ground"
+  ],
+  [
+    "Borax",
+    "Borax, in ground"
+  ],
+  [
+    "Bromine",
+    "Bromine, 0.23% in water"
+  ],
+  [
+    "Calcite",
+    "Calcite, in ground"
+  ],
+  [
+    "Cerium",
+    "Cerium, 24% in bastnasite, 2.4% in crude ore, in ground"
+  ],
+  [
+    "Chrysotile",
+    "Chrysotile, in ground"
+  ],
+  [
+    "Cinnabar",
+    "Cinnabar, in ground"
+  ],
+  [
+    "Clay, bentonite",
+    "Clay, bentonite, in ground"
+  ],
+  [
+    "Clay, unspecified",
+    "Clay, unspecified, in ground"
+  ],
+  [
+    "Coal, brown",
+    "Coal, brown, in ground"
+  ],
+  [
+    "Cobalt",
+    "Cobalt, in ground"
+  ],
+  [
+    "Colemanite",
+    "Colemanite, in ground"
+  ],
+  [
+    "Copper, 0.52% in sulfide, Cu 0.27% and Mo 8.2E-3% in crude ore",
+    "Copper, 0.52% in sulfide, Cu 0.27% and Mo 8.2E-3% in crude ore, in ground"
+  ],
+  [
+    "Copper, 0.59% in sulfide, Cu 0.22% and Mo 8.2E-3% in crude ore",
+    "Copper, 0.59% in sulfide, Cu 0.22% and Mo 8.2E-3% in crude ore, in ground"
+  ],
+  [
+    "Copper, 0.97% in sulfide, Cu 0.36% and Mo 4.1E-2% in crude ore",
+    "Copper, 0.97% in sulfide, Cu 0.36% and Mo 4.1E-2% in crude ore, in ground"
+  ],
+  [
+    "Copper, 0.99% in sulfide, Cu 0.36% and Mo 8.2E-3% in crude ore",
+    "Copper, 0.99% in sulfide, Cu 0.36% and Mo 8.2E-3% in crude ore, in ground"
+  ],
+  [
+    "Copper, 1.13% in sulfide, Cu 0.76% and Ni 0.76% in crude ore",
+    "Copper, 1.13% in sulfide, Cu 0.76% and Ni 0.76% in crude ore, in ground"
+  ],
+  [
+    "Copper, 1.18% in sulfide, Cu 0.39% and Mo 8.2E-3% in crude ore",
+    "Copper, 1.18% in sulfide, Cu 0.39% and Mo 8.2E-3% in crude ore, in ground"
+  ],
+  [
+    "Copper, 1.42% in sulfide, Cu 0.81% and Mo 8.2E-3% in crude ore",
+    "Copper, 1.42% in sulfide, Cu 0.81% and Mo 8.2E-3% in crude ore, in ground"
+  ],
+  [
+    "Copper, 2.19% in sulfide, Cu 1.83% and Mo 8.2E-3% in crude ore",
+    "Copper, 2.19% in sulfide, Cu 1.83% and Mo 8.2E-3% in crude ore, in ground"
+  ],
+  [
+    "Copper, Cu 3.2E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0% in ore",
+    "Cu, Cu 3.2E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0% in ore, in ground"
+  ],
+  [
+    "Copper, Cu 5.2E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2% in ore",
+    "Cu, Cu 5.2E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2% in ore, in ground"
+  ],
+  [
+    "Diatomite",
+    "Diatomite, in ground"
+  ],
+  [
+    "Dolomite",
+    "Dolomite, in ground"
+  ],
+  [
+    "Europium",
+    "Europium, 0.06% in bastnasite, 0.006% in crude ore, in ground"
+  ],
+  [
+    "Feldspar",
+    "Feldspar, in ground"
+  ],
+  [
+    "Fluorine",
+    "Fluorine, 4.5% in apatite, 1% in crude ore, in ground"
+  ],
+  [
+    "Fluorine, 4.5% in apatite, 3% in crude ore",
+    "Fluorine, 4.5% in apatite, 3% in crude ore, in ground"
+  ],
+  [
+    "Fluorspar",
+    "Fluorspar, 92%, in ground"
+  ],
+  [
+    "Gadolinium",
+    "Gadolinium, 0.15% in bastnasite, 0.015% in crude ore, in ground"
+  ],
+  [
+    "Gallium",
+    "Gallium, in ground"
+  ],
+  [
+    "Gas, mine, off-gas, process, coal mining/m3",
+    "Gas, mine, off-gas, process, coal mining"
+  ],
+  [
+    "Gas, natural/m3",
+    "Gas, natural, in ground"
+  ],
+  [
+    "Gold",
+    "Gold, Au 1.4E-4%, in ore, in ground"
+  ],
+  [
+    "Gold, Au 1.1E-4%, Ag 4.2E-3%, in ore",
+    "Gold, Au 1.1E-4%, Ag 4.2E-3%, in ore, in ground"
+  ],
+  [
+    "Gold, Au 1.3E-4%, Ag 4.6E-5%, in ore",
+    "Gold, Au 1.3E-4%, Ag 4.6E-5%, in ore, in ground"
+  ],
+  [
+    "Gold, Au 2.1E-4%, Ag 2.1E-4%, in ore",
+    "Gold, Au 2.1E-4%, Ag 2.1E-4%, in ore, in ground"
+  ],
+  [
+    "Gold, Au 4.3E-4%, in ore",
+    "Gold, Au 4.3E-4%, in ore, in ground"
+  ],
+  [
+    "Gold, Au 4.9E-5%, in ore",
+    "Gold, Au 4.9E-5%, in ore, in ground"
+  ],
+  [
+    "Gold, Au 6.7E-4%, in ore",
+    "Gold, Au 6.7E-4%, in ore, in ground"
+  ],
+  [
+    "Gold, Au 7.1E-4%, in ore",
+    "Gold, Au 7.1E-4%, in ore, in ground"
+  ],
+  [
+    "Gold, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Cu 0.38%, Pb 0.014%, in ore",
+    "Gold, Au 9.7E-4%, in mixed ore, in ground"
+  ],
+  [
+    "Granite",
+    "Granite, in ground"
+  ],
+  [
+    "Gravel",
+    "Gravel, in ground"
+  ],
+  [
+    "Gypsum",
+    "Gypsum, in ground"
+  ],
+  [
+    "Indium",
+    "Indium, 0.005% in sulfide, In 0.003%, Pb, Zn, Ag, Cd, in ground"
+  ],
+  [
+    "Iodine",
+    "Iodine, 0.03% in water"
+  ],
+  [
+    "Kaolinite",
+    "Kaolinite, 24% in crude ore, in ground"
+  ],
+  [
+    "Kieserite",
+    "Kieserite, 25% in crude ore, in ground"
+  ],
+  [
+    "Krypton",
+    "Krypton, in air"
+  ],
+  [
+    "Lanthanum",
+    "Lanthanum, 7.2% in bastnasite, 0.72% in crude ore, in ground"
+  ],
+  [
+    "Lead",
+    "Lead, 5.0% in sulfide, Pb 3.0%, Zn, Ag, Cd, In, in ground"
+  ],
+  [
+    "Lead, Pb 0.014%, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Cu 0.38%, in ore",
+    "Lead, Pb 0.014%, in mixed ore, in ground"
+  ],
+  [
+    "Magnesite",
+    "Magnesite, 60% in crude ore, in ground"
+  ],
+  [
+    "Magnesium",
+    "Magnesium, 0.13% in water"
+  ],
+  [
+    "Manganese",
+    "Manganese, 35.7% in sedimentary deposit, 14.2% in crude ore, in ground"
+  ],
+  [
+    "Metamorphous rock, graphite containing",
+    "Metamorphous rock, graphite containing, in ground"
+  ],
+  [
+    "Molybdenum",
+    "Molybdenum, 0.11% in sulfide, Mo 4.1E-2% and Cu 0.36% in crude ore, in ground"
+  ],
+  [
+    "Molybdenum, 0.010% in sulfide, Mo 8.2E-3% and Cu 1.83% in crude ore",
+    "Molybdenum, 0.010% in sulfide, Mo 8.2E-3% and Cu 1.83% in crude ore, in ground"
+  ],
+  [
+    "Molybdenum, 0.014% in sulfide, Mo 8.2E-3% and Cu 0.81% in crude ore",
+    "Molybdenum, 0.014% in sulfide, Mo 8.2E-3% and Cu 0.81% in crude ore, in ground"
+  ],
+  [
+    "Molybdenum, 0.016% in sulfide, Mo 8.2E-3% and Cu 0.27% in crude ore",
+    "Molybdenum, 0.016% in sulfide, Mo 8.2E-3% and Cu 0.27% in crude ore, in ground"
+  ],
+  [
+    "Molybdenum, 0.022% in sulfide, Mo 8.2E-3% and Cu 0.22% in crude ore",
+    "Molybdenum, 0.022% in sulfide, Mo 8.2E-3% and Cu 0.22% in crude ore, in ground"
+  ],
+  [
+    "Molybdenum, 0.022% in sulfide, Mo 8.2E-3% and Cu 0.36% in crude ore",
+    "Molybdenum, 0.022% in sulfide, Mo 8.2E-3% and Cu 0.36% in crude ore, in ground"
+  ],
+  [
+    "Molybdenum, 0.025% in sulfide, Mo 8.2E-3% and Cu 0.39% in crude ore",
+    "Molybdenum, 0.025% in sulfide, Mo 8.2E-3% and Cu 0.39% in crude ore, in ground"
+  ],
+  [
+    "Neodymium",
+    "Neodymium, 4% in bastnasite, 0.4% in crude ore, in ground"
+  ],
+  [
+    "Nickel, 1.13% in sulfide, Ni 0.76% and Cu 0.76% in crude ore",
+    "Nickel, 1.13% in sulfide, Ni 0.76% and Cu 0.76% in crude ore, in ground"
+  ],
+  [
+    "Nickel, 1.98% in silicates, 1.04% in crude ore",
+    "Nickel, 1.98% in silicates, 1.04% in crude ore, in ground"
+  ],
+  [
+    "Nickel, Ni 2.3E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Cu 3.2E+0% in ore",
+    "Ni, Ni 2.3E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Cu 3.2E+0% in ore, in ground"
+  ],
+  [
+    "Nickel, Ni 3.7E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Cu 5.2E-2% in ore",
+    "Ni, Ni 3.7E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Cu 5.2E-2% in ore, in ground"
+  ],
+  [
+    "Occupation, arable, greenhouse",
+    "Occupation, annual crop, greenhouse"
+  ],
+  [
+    "Occupation, arable, irrigated",
+    "Occupation, annual crop, irrigated"
+  ],
+  [
+    "Occupation, arable, irrigated, intensive",
+    "Occupation, permanent crop, irrigated, intensive"
+  ],
+  [
+    "Occupation, arable, non-irrigated, extensive",
+    "Occupation, annual crop, non-irrigated, extensive"
+  ],
+  [
+    "Occupation, arable, non-irrigated, intensive",
+    "Occupation, permanent crop, non-irrigated, intensive"
+  ],
+  [
+    "Occupation, grassland, not used",
+    "Occupation, grassland, natural (non-use)"
+  ],
+  [
+    "Occupation, urban/industrial fallow",
+    "Occupation, urban/industrial fallow (non-use)"
+  ],
+  [
+    "Oil, crude",
+    "Oil, crude, in ground"
+  ],
+  [
+    "Olivine",
+    "Olivine, in ground"
+  ],
+  [
+    "Palladium, Pd 2.0E-4%, Pt 4.8E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore",
+    "Pd, Pd 2.0E-4%, Pt 4.8E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore, in ground"
+  ],
+  [
+    "Palladium, Pd 7.3E-4%, Pt 2.5E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore",
+    "Pd, Pd 7.3E-4%, Pt 2.5E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore, in ground"
+  ],
+  [
+    "Peat",
+    "Peat, in ground"
+  ],
+  [
+    "Perlite",
+    "Perlite, in ground"
+  ],
+  [
+    "Phosphorus",
+    "Phosphorus, 18% in apatite, 12% in crude ore, in ground"
+  ],
+  [
+    "Phosphorus, 18% in apatite, 4% in crude ore",
+    "Phosphorus, 18% in apatite, 4% in crude ore, in ground"
+  ],
+  [
+    "Platinum, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore",
+    "Pt, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore, in ground"
+  ],
+  [
+    "Platinum, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore",
+    "Pt, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore, in ground"
+  ],
+  [
+    "Potassium chloride",
+    "Sylvite, 25 % in sylvinite, in ground"
+  ],
+  [
+    "Praseodymium",
+    "Praseodymium, 0.42% in bastnasite, 0.042% in crude ore, in ground"
+  ],
+  [
+    "Pumice",
+    "Pumice, in ground"
+  ],
+  [
+    "Pyrite",
+    "Pyrite, in ground"
+  ],
+  [
+    "Rhenium",
+    "Rhenium, in crude ore, in ground"
+  ],
+  [
+    "Rhodium, Rh 2.0E-5%, Pt 2.5E-4%, Pd 7.3E-4%, Ni 2.3E+0%, Cu 3.2E+0% in ore",
+    "Rh, Rh 2.0E-5%, Pt 2.5E-4%, Pd 7.3E-4%, Ni 2.3E+0%, Cu 3.2E+0% in ore, in ground"
+  ],
+  [
+    "Rhodium, Rh 2.4E-5%, Pt 4.8E-4%, Pd 2.0E-4%, Ni 3.7E-2%, Cu 5.2E-2% in ore",
+    "Rh, Rh 2.4E-5%, Pt 4.8E-4%, Pd 2.0E-4%, Ni 3.7E-2%, Cu 5.2E-2% in ore, in ground"
+  ],
+  [
+    "Samarium",
+    "Samarium, 0.3% in bastnasite, 0.03% in crude ore, in ground"
+  ],
+  [
+    "Sand",
+    "Sand, unspecified, in ground"
+  ],
+  [
+    "Shale",
+    "Shale, in ground"
+  ],
+  [
+    "Silver, 0.007% in sulfide, Ag 0.004%, Pb, Zn, Cd, In",
+    "Silver, 0.007% in sulfide, Ag 0.004%, Pb, Zn, Cd, In, in ground"
+  ],
+  [
+    "Silver, 3.2ppm in sulfide, Ag 1.2ppm, Cu and Te, in crude ore",
+    "Silver, 3.2ppm in sulfide, Ag 1.2ppm, Cu and Te, in crude ore, in ground"
+  ],
+  [
+    "Silver, Ag 2.1E-4%, Au 2.1E-4%, in ore",
+    "Silver, Ag 2.1E-4%, Au 2.1E-4%, in ore, in ground"
+  ],
+  [
+    "Silver, Ag 4.2E-3%, Au 1.1E-4%, in ore",
+    "Silver, Ag 4.2E-3%, Au 1.1E-4%, in ore, in ground"
+  ],
+  [
+    "Silver, Ag 4.6E-5%, Au 1.3E-4%, in ore",
+    "Silver, Ag 4.6E-5%, Au 1.3E-4%, in ore, in ground"
+  ],
+  [
+    "Silver, Ag 9.7E-4%, Au 9.7E-4%, Zn 0.63%, Cu 0.38%, Pb 0.014%, in ore",
+    "Silver, Ag 9.7E-4%, in mixed ore, in ground"
+  ],
+  [
+    "Sodium chloride",
+    "Sodium chloride, in ground"
+  ],
+  [
+    "Sodium nitrate",
+    "Sodium nitrate, in ground"
+  ],
+  [
+    "Sodium sulfate",
+    "Sodium sulphate, various forms, in ground"
+  ],
+  [
+    "Spodumene",
+    "Spodumene, in ground"
+  ],
+  [
+    "Stibnite",
+    "Stibnite, in ground"
+  ],
+  [
+    "Sulfur",
+    "Sulfur, in ground"
+  ],
+  [
+    "Talc",
+    "Talc, in ground"
+  ],
+  [
+    "Tantalum",
+    "Tantalum, 81.9% in tantalite, 1.6E-4% in crude ore, in ground"
+  ],
+  [
+    "Tellurium",
+    "Tellurium, 0.5ppm in sulfide, Te 0.2ppm, Cu and Ag, in crude ore, in ground"
+  ],
+  [
+    "TiO2, 54% in ilmenite, 18% in crude ore",
+    "TiO2, 54% in ilmenite, 18% in crude ore, in ground"
+  ],
+  [
+    "TiO2, 54% in ilmenite, 2.6% in crude ore",
+    "TiO2, 54% in ilmenite, 2.6% in crude ore, in ground"
+  ],
+  [
+    "TiO2, 95% in rutile, 0.40% in crude ore",
+    "TiO2, 95% in rutile, 0.40% in crude ore, in ground"
+  ],
+  [
+    "Transformation, from arable, greenhouse",
+    "Transformation, from annual crop, greenhouse"
+  ],
+  [
+    "Transformation, from arable, irrigated, intensive",
+    "Transformation, from annual crop, irrigated, intensive"
+  ],
+  [
+    "Transformation, from arable, non-irrigated, extensive",
+    "Transformation, from annual crop, non-irrigated, extensive"
+  ],
+  [
+    "Transformation, from arable, non-irrigated, intensive",
+    "Transformation, from annual crop, non-irrigated, intensive"
+  ],
+  [
+    "Transformation, from forest, primary",
+    "Transformation, from forest, primary (non-use)"
+  ],
+  [
+    "Transformation, from grassland, not used",
+    "Transformation, from grassland, natural (non-use)"
+  ],
+  [
+    "Transformation, from permanent crops, irrigated, intensive",
+    "Transformation, from permanent crop, irrigated, intensive"
+  ],
+  [
+    "Transformation, from permanent crops, non-irrigated, intensive",
+    "Transformation, from permanent crop, non-irrigated, intensive"
+  ],
+  [
+    "Transformation, to arable, fallow",
+    "Transformation, to cropland fallow (non-use)"
+  ],
+  [
+    "Transformation, to arable, greenhouse",
+    "Transformation, to annual crop, greenhouse"
+  ],
+  [
+    "Transformation, to arable, irrigated, extensive",
+    "Transformation, to annual crop, irrigated, extensive"
+  ],
+  [
+    "Transformation, to arable, irrigated, intensive",
+    "Transformation, to annual crop, irrigated, intensive"
+  ],
+  [
+    "Transformation, to arable, non-irrigated, extensive",
+    "Transformation, to annual crop, non-irrigated, extensive"
+  ],
+  [
+    "Transformation, to arable, non-irrigated, intensive",
+    "Transformation, to annual crop, non-irrigated, intensive"
+  ],
+  [
+    "Transformation, to permanent crops, irrigated, intensive",
+    "Transformation, to permanent crop, irrigated, intensive"
+  ],
+  [
+    "Transformation, to permanent crops, non-irrigated",
+    "Transformation, to permanent crop, non-irrigated"
+  ],
+  [
+    "Transformation, to permanent crops, non-irrigated, intensive",
+    "Transformation, to permanent crop, non-irrigated, intensive"
+  ],
+  [
+    "Transformation, to urban/industrial fallow",
+    "Transformation, to urban/industrial fallow (non-use)"
+  ],
+  [
+    "Ulexite",
+    "Ulexite, in ground"
+  ],
+  [
+    "Uranium",
+    "Uranium, in ground"
+  ],
+  [
+    "Vermiculite",
+    "Vermiculite, in ground"
+  ],
+  [
+    "Water, AT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, AU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, BA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, BE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, BG",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, BR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, CA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, CH",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, CL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, CN",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, cooling, unspecified natural origin/m3",
+    "Water, cooling, unspecified natural origin"
+  ],
+  [
+    "Water, CZ",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, DE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, DK",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, ES",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, Europe without Switzerland",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, FI",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, FR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, GB",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, GLO",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, GR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, HR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, HU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, ID",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, IE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, IN",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, IR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, IT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, JP",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, KR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, LU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, MA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, MX",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, MY",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, NL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, NO",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, NORDEL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, PE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, PG",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, PH",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, PL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, PT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, RAF",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, RAS",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, RER",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, RLA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, RME",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, RNA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, RO",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, RoW",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, RS",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, RU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, SE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, SI",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, SK",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, TH",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, TR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, TW",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, TZ",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, UA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, UCTE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, UCTE without Germany",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, US",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, WEU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, ZA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water_3.1_m3",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Wood, unspecified, standing/m3",
+    "Wood, unspecified, standing"
+  ],
+  [
+    "Xenon",
+    "Xenon, in air"
+  ],
+  [
+    "Zinc, Zn 0.63%, Au 9.7E-4%, Ag 9.7E-4%, Cu 0.38%, Pb 0.014%, in ore",
+    "Zinc, Zn 0.63%, in mixed ore, in ground"
+  ],
+  [
+    "Zirconium",
+    "Zirconium, 50% in zircon, 0.39% in crude ore, in ground"
+  ],
+  [
+    "Water, unspecified natural origin, BA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, HR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, PG",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, AT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, BE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, BG",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, CA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, CH",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, CN",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, CZ",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, DE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, DK",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, ES",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, Europe without Switzerland",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, FI",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, FR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, GB",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, GLO",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, HU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, IT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, JP",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, KR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, LU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, NL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, NO",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, PL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, PT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, RER",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, RNA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, RoW",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, RU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, SE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, SK",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, TR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, TW",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, lake, US",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, AT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, AU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, BE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, BG",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, BR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, CA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, CH",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, CN",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, CZ",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, DE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, DK",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, ES",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, Europe without Switzerland",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, FI",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, FR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, GB",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, GLO",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, HU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, IN",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, IT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, JP",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, KR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, LU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, MY",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, NL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, NO",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, PE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, PH",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, PL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, PT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, RAS",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, RER",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, RLA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, RNA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, RoW",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, RU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, SE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, SK",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, TR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, TW",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, TZ",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, US",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, WEU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, river, ZA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, Europe without Switzerland",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, GLO",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, NORDEL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, RAF",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, RER",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, RNA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, RoW",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, TW",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, unspecified natural origin, WEU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, AT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, AU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, BE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, BG",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, BR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, CA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, CH",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, CN",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, CZ",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, DE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, DK",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, ES",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, Europe without Switzerland",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, FI",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, FR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, GB",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, GLO",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, HU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, ID",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, IN",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, IT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, JP",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, KR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, LU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, MA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, MY",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, NL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, NO",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, NORDEL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, PE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, PG",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, PH",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, PL",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, PT",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, RER",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, RLA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, RNA",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, RoW",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, RU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, SE",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, SK",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, TR",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, TW",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, US",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, WEU",
+    "Water, unspecified natural origin"
+  ],
+  [
+    "Water, well, in ground, ZA",
+    "Water, unspecified natural origin"
   ]
 ]

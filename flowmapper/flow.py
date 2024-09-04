@@ -43,6 +43,11 @@ class Flow:
         )
 
     @property
+    def uniqueness_id(self):
+        tupleize = lambda x: tuple(x) if isinstance(x, list) else x
+        return (self.name.original, tupleize(self.context.original), self.unit.original, self.identifier.original)
+
+    @property
     def missing(self):
         """This flow has been marked as missing in target list"""
         return self.transformed.get("__missing__")

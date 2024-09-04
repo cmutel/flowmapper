@@ -13,7 +13,11 @@ logger = logging.getLogger(__name__)
 
 
 def sorting_function(obj: dict) -> tuple:
-    return (obj.get('name', 'ZZZ'), str(obj.get('context', 'ZZZ')), obj.get('unit', 'ZZZ'))
+    return (
+        obj.get("name", "ZZZ"),
+        str(obj.get("context", "ZZZ")),
+        obj.get("unit", "ZZZ"),
+    )
 
 
 class OutputFormat(str, Enum):
@@ -25,15 +29,24 @@ class OutputFormat(str, Enum):
 def flowmapper(
     source: Path,
     target: Path,
+    mapping_source: dict,
+    mapping_target: dict,
+    source_id: str,
+    target_id: str,
+    contributors: list,
     output_dir: Path,
     format: OutputFormat,
+    version: str = "1.0.0",
     default_transformations: bool = True,
     transformations: Optional[list[Path]] = None,
     unmatched_source: bool = True,
     unmatched_target: bool = True,
     matched_source: bool = False,
     matched_target: bool = False,
-):
+    licenses: Optional[list] = None,
+    homepage: Optional[str] = None,
+    name: Optional[str] = None,
+) -> Flowmap:
     """
     Generate mappings between elementary flows lists
     """
@@ -62,28 +75,76 @@ def flowmapper(
 
     if matched_source:
         with open(output_dir / f"{stem}-matched-source.json", "w") as fs:
-            json.dump(sorted([flow.export for flow in flowmap.matched_source], key=sorting_function), fs, indent=True)
+            json.dump(
+                sorted(
+                    [flow.export for flow in flowmap.matched_source],
+                    key=sorting_function,
+                ),
+                fs,
+                indent=True,
+            )
 
     if unmatched_source:
         with open(output_dir / f"{stem}-unmatched-source.json", "w") as fs:
             json.dump(
-                sorted([flow.export for flow in flowmap.unmatched_source], key=sorting_function), fs, indent=True
+                sorted(
+                    [flow.export for flow in flowmap.unmatched_source],
+                    key=sorting_function,
+                ),
+                fs,
+                indent=True,
             )
 
     if matched_target:
         with open(output_dir / f"{stem}-matched-target.json", "w") as fs:
-            json.dump(sorted([flow.export for flow in flowmap.matched_target], key=sorting_function), fs, indent=True)
+            json.dump(
+                sorted(
+                    [flow.export for flow in flowmap.matched_target],
+                    key=sorting_function,
+                ),
+                fs,
+                indent=True,
+            )
 
     if unmatched_target:
         with open(output_dir / f"{stem}-unmatched-target.json", "w") as fs:
             json.dump(
-                sorted([flow.export for flow in flowmap.unmatched_target], key=sorting_function), fs, indent=True
+                sorted(
+                    [flow.export for flow in flowmap.unmatched_target],
+                    key=sorting_function,
+                ),
+                fs,
+                indent=True,
             )
 
     if format.value == "randonneur":
-        flowmap.to_randonneur(output_dir / f"{stem}.json")
+        flowmap.to_randonneur(
+            source_id=source_id,
+            target_id=target_id,
+            contributors=contributors,
+            mapping_source=mapping_source,
+            mapping_target=mapping_target,
+            version=version,
+            licenses=licenses,
+            homepage=homepage,
+            name=name,
+            path=output_dir / f"{stem}.json"
+        )
     elif format.value == "glad":
         flowmap.to_glad(output_dir / f"{stem}.xlsx", missing_source=True)
     else:
-        flowmap.to_randonneur(output_dir / f"{stem}.json")
+        flowmap.to_randonneur(
+            source_id=source_id,
+            target_id=target_id,
+            contributors=contributors,
+            mapping_source=mapping_source,
+            mapping_target=mapping_target,
+            version=version,
+            licenses=licenses,
+            homepage=homepage,
+            name=name,
+            path=output_dir / f"{stem}.json"
+        )
         flowmap.to_glad(output_dir / f"{stem}.xlsx", missing_source=True)
+
+    return flowmap

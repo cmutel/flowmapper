@@ -1,8 +1,4 @@
-import importlib.resources as resource
-import json
 import logging
-import math
-import re
 
 from .flow import Flow
 from .utils import (
@@ -12,22 +8,17 @@ from .utils import (
     rm_parentheses_roman_numerals,
     rm_roman_numerals_ionic_state,
 )
+from .constants import RESOURCE_PARENT_CATEGORY
 
 logger = logging.getLogger(__name__)
 
 
 def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: dict):
-    target_result = t.export
-    if match_info.get("location"):
-        target_result.update({"location": match_info["location"]})
-
-    result = {
+    return match_info | {
         "source": s.export,
-        "target": target_result,
+        "target": t.export,
         "conversion_factor": conversion_factor,
-        "comment": match_info["comment"],
     }
-    return result
 
 
 def match_identical_identifier(s: Flow, t: Flow, comment: str = "Identical identifier"):
@@ -41,7 +32,8 @@ def match_identical_names_in_synonyms(
     if (
         (t.synonyms and s.name in t.synonyms and s.context == t.context)
         or (s.synonyms and t.name in s.synonyms and s.context == t.context)
-    ) and not math.isnan(s.unit.conversion_factor(t.unit)):
+        # and not math.isnan(s.unit.conversion_factor(t.unit)):
+    ):
         return {"comment": comment}
 
 
@@ -57,10 +49,15 @@ def match_identical_names(s: Flow, t: Flow, comment="Identical names"):
         return {"comment": comment}
 
 
+def match_identical_names_without_commas(s: Flow, t: Flow, comment="Identical names when commas removed"):
+    if (s.name.normalized.replace(",", "") == t.name.normalized.replace(",", "")) and (s.context == t.context):
+        return {"comment": comment}
+
+
 def match_resources_with_wrong_subcontext(s: Flow, t: Flow):
     if (
-        "resource" in s.context.normalized[0].lower()
-        and "resource" in t.context.normalized[0].lower()
+        s.context.normalized[0].lower() in RESOURCE_PARENT_CATEGORY
+        and t.context.normalized[0].lower() in RESOURCE_PARENT_CATEGORY
         and s.name == t.name
     ):
         return {"comment": "Resources with identical name but wrong subcontext"}
@@ -143,6 +140,31 @@ def match_names_with_location_codes(
             return result
 
 
+def match_resource_names_with_location_codes_and_parent_context(
+    s: Flow, t: Flow, comment="Name matching with location code and parent context"
+):
+    """Sometimes we have flows in a parent context, """
+    match = ends_with_location.search(s.name.normalized)
+    if match:
+        location = location_reverser[match.group("code")]
+        name = s.name.normalized.replace(match.group(), "")
+        if name == t.name.normalized and s.context.normalized[0].lower() in RESOURCE_PARENT_CATEGORY and t.context.normalized[0].lower() in RESOURCE_PARENT_CATEGORY:
+            result = {"comment": comment, "location": location}
+            if (
+                s.name.normalized.startswith("water")
+                and s.unit.normalized == "cubic_meter"
+                and t.unit.normalized == "kilogram"
+            ):
+                result["conversion_factor"] = 1000.0
+            elif (
+                s.name.normalized.startswith("water")
+                and t.unit.normalized == "cubic_meter"
+                and s.unit.normalized == "kilogram"
+            ):
+                result["conversion_factor"] = 0.001
+            return result
+
+
 def match_non_ionic_state(
     s: Flow, t: Flow, comment="Non-ionic state if no better match"
 ):
@@ -201,6 +223,7 @@ def match_rules():
     return [
         match_identical_identifier,
         match_identical_names,
+        match_identical_names_without_commas,
         match_resources_with_suffix_in_ground,
         match_resources_with_suffix_in_water,
         match_resources_with_suffix_in_air,
@@ -209,6 +232,7 @@ def match_rules():
         match_emissions_with_suffix_ion,
         match_names_with_roman_numerals_in_parentheses,
         match_names_with_location_codes,
+        match_resource_names_with_location_codes_and_parent_context,
         match_custom_names_with_location_codes,
         match_identical_cas_numbers,
         match_non_ionic_state,

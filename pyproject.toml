@@ -29,10 +29,12 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
+    "bw_simapro_csv",
     "pandas[excel]",
     "pint",
     "pydantic",
-    "randonneur",
+    "pyecospold",
+    "randonneur>=0.1",
     "tqdm",
     "typer",
 ]

@@ -1,17 +1,22 @@
+from numbers import Number
 import json
 import warnings
 from collections import Counter
 from functools import cached_property
 from pathlib import Path
 from typing import Callable, Optional
+import math
 
+import randonneur
 import pandas as pd
 import pint
 from tqdm import tqdm
 
+from . import __version__
 from .flow import Flow
 from .match import format_match_result, match_rules
 from .utils import match_sort_order
+from .errors import DifferingMatches, DifferingConversions
 
 
 def source_flow_id(obj: Flow, ensure_id: bool = False) -> str:
@@ -108,6 +113,46 @@ class Flowmap:
             self.target_flows = list(dict.fromkeys(target_flows))
             self.target_flows_nomatch = []
 
+    def get_single_match(self, source: Flow, target_flows: list, rules: list, all_mappings: list) -> None:
+        """
+        Try to find a single match for `source` in `target_flows` using `rules`.
+
+        Adds to `all_mappings` if found.
+        """
+        def get_conversion_factor(s: Flow, t: Flow, data: dict) -> float | None:
+            cf_data = data.get("conversion_factor")
+            cf_s = s.conversion_factor
+            if cf_data and cf_s:
+                return cf_data * cf_s
+            elif cf_data or cf_s:
+                return cf_data or cf_s
+            else:
+                return s.unit.conversion_factor(t.unit)
+
+        for target in target_flows:
+            for rule in rules:
+                is_match = rule(source, target)
+                if is_match:
+                    try:
+                        all_mappings.append(
+                            {
+                                "from": source,
+                                "to": target,
+                                "conversion_factor": get_conversion_factor(
+                                    source, target, is_match
+                                ),
+                                "match_rule": rule.__name__,
+                                "match_rule_priority": self.rules.index(rule),
+                                "info": is_match,
+                            }
+                        )
+                        return
+                    except pint.errors.UndefinedUnitError:
+                        warnings.warng(
+                            f"Pint Units error converting source {source.export} to target {target.export}"
+                        )
+                        raise
+
     @cached_property
     def mappings(self):
         """
@@ -125,47 +170,68 @@ class Flowmap:
         """
         all_mappings = []
 
-        def get_conversion_factor(s: Flow, t: Flow, data: dict) -> float | None:
-            cf_data = data.get("conversion_factor")
-            cf_s = s.conversion_factor
-            if cf_data and cf_s:
-                return cf_data * cf_s
-            elif cf_data or cf_s:
-                return cf_data or cf_s
-            else:
-                return s.unit.conversion_factor(t.unit)
+        for source in tqdm(self.source_flows, disable=self.disable_progress):
+            self.get_single_match(source=source, target_flows=self.target_flows, rules=self.rules, all_mappings=all_mappings)
 
-        for s in tqdm(self.source_flows, disable=self.disable_progress):
-            for t in self.target_flows:
-                for rule in self.rules:
-                    is_match = rule(s, t)
-                    if is_match:
-                        try:
-                            all_mappings.append(
-                                {
-                                    "from": s,
-                                    "to": t,
-                                    "conversion_factor": get_conversion_factor(
-                                        s, t, is_match
-                                    ),
-                                    "match_rule": rule.__name__,
-                                    "match_rule_priority": self.rules.index(rule),
-                                    "info": is_match,
-                                }
-                            )
-                            break
-                        except pint.errors.UndefinedUnitError:
-                            warnings.warng(
-                                f"Pint Units error converting source {s.export} to target {t.export}"
-                            )
-                            raise
-        result = []
-        seen_sources = set()
+        result, seen_sources, seen_combos = [], set(), {}
         sorted_mappings = sorted(all_mappings, key=match_sort_order)
         for mapping in sorted_mappings:
-            if mapping["from"] not in seen_sources:
+            from_id = mapping["from"].uniqueness_id
+            combo_key = (from_id, mapping["to"].uniqueness_id)
+            if combo_key in seen_combos:
+                other = seen_combos[combo_key]
+                if (
+                    isinstance(other["conversion_factor"], Number)
+                    and isinstance(mapping["conversion_factor"], Number)
+                    and not math.isclose(
+                        other["conversion_factor"],
+                        mapping["conversion_factor"],
+                        1e-5,
+                        1e-5,
+                    )
+                ):
+                    raise DifferingConversions(
+                        f"""
+Found two different conversion factors for the same match from
+
+{mapping['from']}
+
+to
+
+{mapping['to']}
+
+Conversion factors:
+    {other['match_rule']}: {other['conversion_factor']}
+    {mapping['match_rule']}: {mapping['conversion_factor']}
+"""
+                    )
+                elif not isinstance(other["conversion_factor"], Number) and isinstance(
+                    mapping["conversion_factor"], Number
+                ):
+                    seen_combos[combo_key] = mapping
+            elif from_id in seen_sources:
+                other = next(
+                    value
+                    for key, value in seen_combos.items()
+                    if key[0] == from_id
+                )
+                raise DifferingMatches(
+                    f"""
+{mapping['from']}
+
+Matched to multiple targets, including:
+
+Match rule: {mapping['match_rule']}:
+{mapping['to']}
+
+Match rule: {other['match_rule']}
+{other['to']}
+"""
+                )
+            else:
+                seen_sources.add(from_id)
+                seen_combos[combo_key] = mapping
                 result.append(mapping)
-                seen_sources.add(mapping["from"])
 
         return result
 
@@ -357,7 +423,19 @@ class Flowmap:
 
         return sorted(result, key=lambda x: x["from"])
 
-    def to_randonneur(self, path: Optional[Path] = None):
+    def to_randonneur(
+        self,
+        source_id: str,
+        target_id: str,
+        contributors: list,
+        mapping_source: dict,
+        mapping_target: dict,
+        version: str = "1.0.0",
+        licenses: Optional[list] = None,
+        homepage: Optional[str] = None,
+        name: Optional[str] = None,
+        path: Optional[Path] = None,
+    ) -> randonneur.Datapackage:
         """
         Export mappings using randonneur data migration file format.
 
@@ -368,10 +446,22 @@ class Flowmap:
 
         Returns
         -------
-        list[dict]
-            A list of dictionaries representing the formatted mapping results.
+        randonneur.Datapackage object.
 
         """
+        dp = randonneur.Datapackage(
+            name=name or f"{source_id}-{target_id}",
+            source_id=source_id,
+            target_id=target_id,
+            description=f"Flowmapper {__version__} elementary flow correspondence from {source_id} to {target_id}",
+            contributors=contributors,
+            mapping_source=mapping_source,
+            mapping_target=mapping_target,
+            homepage=homepage,
+            version=version,
+            licenses=licenses,
+        )
+
         result = [
             format_match_result(
                 map_entry["from"],
@@ -382,13 +472,11 @@ class Flowmap:
             for map_entry in self.mappings
         ]
 
-        if not path:
-            return result
-        else:
-            path = Path(path)
-            path.parent.mkdir(parents=True, exist_ok=True)
-            with open(path, "w") as fs:
-                json.dump(result, fs, indent=2)
+        dp.add_data(verb="update", data=result)
+
+        if path is not None:
+            dp.to_json(path)
+        return dp
 
     def to_glad(
         self,

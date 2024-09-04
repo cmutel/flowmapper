@@ -23,6 +23,18 @@ ends_with_location = re.compile(
 # lower case one were very ugly
 location_reverser = {obj.lower(): obj for obj in places}
 
+us_lci_ends_with_location = re.compile(
+    "/(?P<location>{})$".format(
+        "|".join(
+            [
+                re.escape(string)
+                for string in places
+                if 2 <= len(string) <= 3 and string.upper() == string
+            ]
+        )
+    ),
+)
+
 with resource.as_file(
     resource.files("flowmapper") / "data" / "names_and_locations.json"
 ) as filepath:
@@ -30,15 +42,16 @@ with resource.as_file(
 
 
 def load_standard_transformations() -> List:
-    with resource.as_file(
-        resource.files("flowmapper") / "data" / "standard-units-harmonization.json"
-    ) as filepath:
-        units = json.load(open(filepath))
+    # with resource.as_file(
+    #     resource.files("flowmapper") / "data" / "standard-units-harmonization.json"
+    # ) as filepath:
+    #     units = json.load(open(filepath))
     with resource.as_file(
         resource.files("flowmapper") / "data" / "simapro-2023-ecoinvent-3-contexts.json"
     ) as filepath:
         contexts = json.load(open(filepath))
-    return [units, contexts]
+    # return [units, contexts]
+    return [contexts]
 
 
 def generate_flow_id(flow: dict):

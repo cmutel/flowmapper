@@ -1,6 +1,7 @@
 import json
 
 import pandas as pd
+import pytest
 from typer.testing import CliRunner
 
 from flowmapper.cli import app

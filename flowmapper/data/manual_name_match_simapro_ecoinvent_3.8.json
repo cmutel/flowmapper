@@ -68,6 +68,22 @@
     "Occupation, lake, artificial"
   ],
   [
+    "Occupation, lakes, artificial",
+    "Occupation, lake, artificial"
+  ],
+  [
+    "Occupation, rivers, artificial",
+    "Occupation, river, artificial"
+  ],
+  [
+    "Transformation, to lakes, artificial",
+    "Transformation, to lake, artificial"
+  ],
+  [
+    "Transformation, to rivers, artificial",
+    "Transformation, to river, artificial"
+  ],
+  [
     "Occupation, water courses, artificial",
     "Occupation, river, artificial"
   ],
@@ -228,20 +244,16 @@
     "Water"
   ],
   [
-    "Sulfur dioxide, CN",
-    "Sulfur dioxide"
+    "Sulfur monoxide",
+    "Sulfur oxides"
   ],
   [
-    "Nitrogen oxides, CN",
-    "Nitrogen oxides"
+    "Nitrogen, atmospheric",
+    "Nitrogen"
   ],
   [
-    "Ammonia, FR",
-    "Ammonia"
-  ],
-  [
-    "Ammonia, as N",
-    "Ammonia"
+    "Phenols, unspecified",
+    "Phenol"
   ],
   [
     "AOX (Adsorbable Organic Halogens)",
@@ -264,12 +276,16 @@
     "Formetanate hydrochloride"
   ],
   [
-    "Haloxyfop",
-    "haloxyfop-ethoxyethyl"
+    "BOD5 (Biological Oxygen Demand)",
+    "BOD5, Biological Oxygen Demand"
   ],
   [
-    "BOD5 (Biological Oxygen Demand), CN",
-    "BOD5 (Biological Oxygen Demand)"
+    "COD (Chemical Oxygen Demand)",
+    "COD, Chemical Oxygen Demand"
+  ],
+  [
+    "Haloxyfop",
+    "haloxyfop-ethoxyethyl"
   ],
   [
     "Bauxite",

@@ -69,7 +69,15 @@
   ],
   [
     "Occupation, water bodies, artificial",
+    "Occupation, lake, artificial"
+  ],
+  [
+    "Occupation, rivers, artificial",
     "Occupation, river, artificial"
+  ],
+  [
+    "Occupation, lakes, artificial",
+    "Occupation, lake, artificial"
   ],
   [
     "Occupation, water courses, artificial",
@@ -200,6 +208,14 @@
     "Transformation, to industrial area"
   ],
   [
+    "Transformation, to lakes, artificial",
+    "Transformation, to lake, artificial"
+  ],
+  [
+    "Transformation, to rivers, artificial",
+    "Transformation, to river, artificial"
+  ],
+  [
     "Transformation, to water bodies, artificial",
     "Transformation, to river, artificial"
   ],
@@ -240,17 +256,17 @@
     "Water"
   ],
   [
-    "Sulfur dioxide, CN",
-    "Sulfur dioxide"
+    "Sulfur monoxide",
+    "Sulfur oxides"
   ],
   [
-    "Nitrogen oxides, CN",
-    "Nitrogen oxides"
+    "Nitrogen, atmospheric",
+    "Nitrogen"
   ],
   [
-    "Ammonia, FR",
-    "Ammonia"
-  ],
+    "Phenols, unspecified",
+    "Phenol"
+  ]
   [
     "Ammonia, as N",
     "Ammonia"
@@ -280,8 +296,12 @@
     "haloxyfop-ethoxyethyl"
   ],
   [
-    "BOD5 (Biological Oxygen Demand), CN",
-    "BOD5 (Biological Oxygen Demand)"
+    "BOD5 (Biological Oxygen Demand)",
+    "BOD5, Biological Oxygen Demand"
+  ],
+  [
+    "COD (Chemical Oxygen Demand)",
+    "COD, Chemical Oxygen Demand"
   ],
   [
     "Bauxite",
@@ -466,6 +486,10 @@
   [
     "Methane, tetrachloro-, CFC-14",
     "Methane, tetrachloro-, R-14"
+  ],
+  [
+    "Cesium-134",
+    "Caesium-134"
   ],
   [
     "Cesium-136",

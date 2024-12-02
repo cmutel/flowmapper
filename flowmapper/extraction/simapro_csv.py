@@ -17,9 +17,14 @@ def is_simapro_csv_file(fp: Path) -> bool:
         return False
 
 
-def simapro_csv_biosphere_extractor(dirpath: Path, output_fp: Path) -> None:
+def simapro_csv_biosphere_extractor(input_path: Path, output_path: Path) -> None:
     """Load all simapro files in directory `dirpath`, and extract all biosphere flows"""
-    simapro_files = [fp for fp in sorted(dirpath.iterdir()) if is_simapro_csv_file(fp)]
+    if input_path.is_dir():
+        simapro_files = [fp for fp in sorted(input_path.iterdir()) if is_simapro_csv_file(fp)]
+    elif input_path.is_file():
+        simapro_files = [input_path]
+    else:
+        raise ValueError
 
     flows = set()
 
@@ -38,7 +43,7 @@ def simapro_csv_biosphere_extractor(dirpath: Path, output_fp: Path) -> None:
                 for line in block.parsed:
                     flows.add((line["context"], line["name"], line["unit"]))
 
-    with open(output_fp, "w") as f:
+    with open(output_path, "w") as f:
         json.dump(
             [{"context": c, "name": n, "unit": u} for c, n, u in sorted(flows)],
             f,

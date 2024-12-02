@@ -5,10 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "flowmapper"
 authors = [
-  { name="Francisco Alves de Oliveira Júnior", email="fjunior.alves.oliveira@gmail.com" }
+  { name="Francisco Alves de Oliveira Júnior", email="fjunior.alves.oliveira@gmail.com" },
+  { name="Chris Mute", email="cmutel@gmail.com" }
 ]
 maintainers = [
-  { name="Francisco Alves de Oliveira Júnior", email="fjunior.alves.oliveira@gmail.com" }
+  { name="Chris Mute", email="cmutel@gmail.com" }
 ]
 description = "Generate mappings between elementary flow lists"
 readme = "README.md"
@@ -34,15 +35,16 @@ dependencies = [
     "pint",
     "pydantic",
     "pyecospold",
-    "randonneur>=0.1",
+    "randonneur>=0.6",
     "tqdm",
     "typer",
+    "xmltodict",
 ]
 
 [project.urls]
-source = "https://github.com/fjuniorr/flowmapper"
-homepage = "https://github.com/fjuniorr/flowmapper"
-tracker = "https://github.com/fjuniorr/flowmapper/issues"
+source = "https://github.com/cmutel/flowmapper"
+homepage = "https://github.com/cmutel/flowmapper"
+tracker = "https://github.com/cmutel/flowmapper/issues"
 
 [project.optional-dependencies]
 # Getting recursive dependencies to work is a pain, this
@@ -69,7 +71,7 @@ flowmapper = "flowmapper.cli:app"
 [tool.setuptools]
 license-files = ["LICENSE"]
 include-package-data = true
-packages = ["flowmapper"]
+packages = ["flowmapper", "flowmapper.extraction"]
 
 [tool.setuptools.dynamic]
 version = {attr = "flowmapper.__version__"}
@@ -110,3 +112,6 @@ include_trailing_comma = true
 force_grid_wrap = 0
 use_parentheses = true
 ensure_newline_before_comments = true
+
+[tool.ruff]
+line-length = 100

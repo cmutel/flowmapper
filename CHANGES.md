@@ -1,5 +1,10 @@
 # flowmapper Changelog
 
+## [0.3] - 2022-12-02
+
+* Add more command line options
+* Small bugfixes
+
 ## [0.2] - 2022-09-04
 
 * Rewrote most of code base

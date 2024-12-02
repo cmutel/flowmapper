@@ -7,6 +7,7 @@ import typer
 from typing_extensions import Annotated
 
 from .main import flowmapper, OutputFormat
+from .extraction import simapro_csv_biosphere_extractor, ecospold2_biosphere_extractor
 
 
 logger = logging.getLogger(__name__)
@@ -83,3 +84,28 @@ def map(
         matched_source=matched_source,
         matched_target=matched_target,
     )
+
+
+@app.command()
+def extract_simapro_csv(
+    simapro_csv_filepath: Annotated[Path, typer.Argument(help="Path to source SimaPro CSV file")],
+    output_dir: Annotated[
+        Path, typer.Argument(help="Directory to save mapping and diagnostics files")
+    ],
+) -> None:
+    simapro_csv_biosphere_extractor(simapro_csv_filepath, output_dir)
+
+
+@app.command()
+def extract_ecospold2(
+    elementary_exchanges_filepath: Annotated[
+        Path,
+        typer.Argument(
+            help="Path to source `ElementaryExchanges.xml` file"
+        )
+    ],
+    output_dir: Annotated[
+        Path, typer.Argument(help="Directory to save mapping and diagnostics files")
+    ],
+) -> None:
+    ecospold2_biosphere_extractor(elementary_exchanges_filepath, output_dir)

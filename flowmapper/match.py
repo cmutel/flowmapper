@@ -92,7 +92,8 @@ def match_custom_names_with_location_codes(
     match = ends_with_location.search(s.name.normalized)
     if match:
         location = location_reverser[match.group("code")]
-        name = s.name.normalized.replace(match.group(), "")
+        # Don't use replace, it will find e.g. ", fr" in "transformation, from"
+        name = s.name.normalized[:-len(match.group())]
         try:
             mapped_name = names_and_locations[name]["target"]
         except KeyError:

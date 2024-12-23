@@ -4,7 +4,7 @@ from collections import Counter
 from functools import cached_property
 from numbers import Number
 from pathlib import Path
-from typing import Callable, Optional
+from typing import Callable, Optional, Union
 
 import pandas as pd
 import pint
@@ -111,8 +111,8 @@ class Flowmap:
             self.target_flows_nomatch = []
 
     def get_single_match(
-        self, source: Flow, target_flows: list, rules: list, all_mappings: list
-    ) -> None:
+        self, source: Flow, target_flows: list, rules: list
+    ) -> Union[dict, None]:
         """
         Try to find a single match for `source` in `target_flows` using `rules`.
 
@@ -134,19 +134,16 @@ class Flowmap:
                 is_match = rule(source, target)
                 if is_match:
                     try:
-                        all_mappings.append(
-                            {
-                                "from": source,
-                                "to": target,
-                                "conversion_factor": get_conversion_factor(
-                                    source, target, is_match
-                                ),
-                                "match_rule": rule.__name__,
-                                "match_rule_priority": self.rules.index(rule),
-                                "info": is_match,
-                            }
-                        )
-                        return
+                        return {
+                            "from": source,
+                            "to": target,
+                            "conversion_factor": get_conversion_factor(
+                                source, target, is_match
+                            ),
+                            "match_rule": rule.__name__,
+                            "match_rule_priority": self.rules.index(rule),
+                            "info": is_match,
+                        }
                     except pint.errors.UndefinedUnitError:
                         warnings.warng(
                             f"Pint Units error converting source {source.export} to target {target.export}"
@@ -168,19 +165,15 @@ class Flowmap:
             A list of dictionaries containing the mapping details.
 
         """
-        all_mappings = []
-
-        for source in tqdm(self.source_flows, disable=self.disable_progress):
+        results = [
             self.get_single_match(
-                source=source,
-                target_flows=self.target_flows,
-                rules=self.rules,
-                all_mappings=all_mappings,
+                source=source, target_flows=self.target_flows, rules=self.rules
             )
+            for source in tqdm(self.source_flows, disable=self.disable_progress)
+        ]
 
         result, seen_sources, seen_combos = [], set(), {}
-        sorted_mappings = sorted(all_mappings, key=match_sort_order)
-        for mapping in sorted_mappings:
+        for mapping in sorted([elem for elem in results if elem], key=match_sort_order):
             from_id = mapping["from"].uniqueness_id
             combo_key = (from_id, mapping["to"].uniqueness_id)
             if combo_key in seen_combos:

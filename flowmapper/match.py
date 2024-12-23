@@ -49,8 +49,12 @@ def match_identical_names(s: Flow, t: Flow, comment="Identical names"):
         return {"comment": comment}
 
 
-def match_identical_names_without_commas(s: Flow, t: Flow, comment="Identical names when commas removed"):
-    if (s.name.normalized.replace(",", "") == t.name.normalized.replace(",", "")) and (s.context == t.context):
+def match_identical_names_without_commas(
+    s: Flow, t: Flow, comment="Identical names when commas removed"
+):
+    if (s.name.normalized.replace(",", "") == t.name.normalized.replace(",", "")) and (
+        s.context == t.context
+    ):
         return {"comment": comment}
 
 
@@ -93,7 +97,7 @@ def match_custom_names_with_location_codes(
     if match:
         location = location_reverser[match.group("code")]
         # Don't use replace, it will find e.g. ", fr" in "transformation, from"
-        name = s.name.normalized[:-len(match.group())]
+        name = s.name.normalized[: -len(match.group())]
         try:
             mapped_name = names_and_locations[name]["target"]
         except KeyError:
@@ -144,12 +148,16 @@ def match_names_with_location_codes(
 def match_resource_names_with_location_codes_and_parent_context(
     s: Flow, t: Flow, comment="Name matching with location code and parent context"
 ):
-    """Sometimes we have flows in a parent context, """
+    """Sometimes we have flows in a parent context,"""
     match = ends_with_location.search(s.name.normalized)
     if match:
         location = location_reverser[match.group("code")]
         name = s.name.normalized.replace(match.group(), "")
-        if name == t.name.normalized and s.context.normalized[0].lower() in RESOURCE_PARENT_CATEGORY and t.context.normalized[0].lower() in RESOURCE_PARENT_CATEGORY:
+        if (
+            name == t.name.normalized
+            and s.context.normalized[0].lower() in RESOURCE_PARENT_CATEGORY
+            and t.context.normalized[0].lower() in RESOURCE_PARENT_CATEGORY
+        ):
             result = {"comment": comment, "location": location}
             if (
                 s.name.normalized.startswith("water")

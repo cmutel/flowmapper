@@ -128,7 +128,7 @@ def flowmapper(
             licenses=licenses,
             homepage=homepage,
             name=name,
-            path=output_dir / f"{stem}.json"
+            path=output_dir / f"{stem}.json",
         )
     elif format.value == "glad":
         flowmap.to_glad(output_dir / f"{stem}.xlsx", missing_source=True)
@@ -143,7 +143,7 @@ def flowmapper(
             licenses=licenses,
             homepage=homepage,
             name=name,
-            path=output_dir / f"{stem}.json"
+            path=output_dir / f"{stem}.json",
         )
         flowmap.to_glad(output_dir / f"{stem}.xlsx", missing_source=True)
 

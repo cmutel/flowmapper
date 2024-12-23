@@ -87,7 +87,9 @@ def map(
 
 @app.command()
 def extract_simapro_csv(
-    simapro_csv_filepath: Annotated[Path, typer.Argument(help="Path to source SimaPro CSV file")],
+    simapro_csv_filepath: Annotated[
+        Path, typer.Argument(help="Path to source SimaPro CSV file")
+    ],
     output_dir: Annotated[
         Path, typer.Argument(help="Directory to save mapping and diagnostics files")
     ],
@@ -98,10 +100,7 @@ def extract_simapro_csv(
 @app.command()
 def extract_ecospold2(
     elementary_exchanges_filepath: Annotated[
-        Path,
-        typer.Argument(
-            help="Path to source `ElementaryExchanges.xml` file"
-        )
+        Path, typer.Argument(help="Path to source `ElementaryExchanges.xml` file")
     ],
     output_dir: Annotated[
         Path, typer.Argument(help="Directory to save mapping and diagnostics files")

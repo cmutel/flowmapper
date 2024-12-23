@@ -45,7 +45,12 @@ class Flow:
     @property
     def uniqueness_id(self):
         tupleize = lambda x: tuple(x) if isinstance(x, list) else x
-        return (self.name.original, tupleize(self.context.original), self.unit.original, self.identifier.original)
+        return (
+            self.name.original,
+            tupleize(self.context.original),
+            self.unit.original,
+            self.identifier.original,
+        )
 
     @property
     def missing(self):

@@ -112,12 +112,15 @@ class Flowmap:
             self.target_flows = list(dict.fromkeys(target_flows))
             self.target_flows_nomatch = []
 
-    def get_single_match(self, source: Flow, target_flows: list, rules: list, all_mappings: list) -> None:
+    def get_single_match(
+        self, source: Flow, target_flows: list, rules: list, all_mappings: list
+    ) -> None:
         """
         Try to find a single match for `source` in `target_flows` using `rules`.
 
         Adds to `all_mappings` if found.
         """
+
         def get_conversion_factor(s: Flow, t: Flow, data: dict) -> float | None:
             cf_data = data.get("conversion_factor")
             cf_s = s.conversion_factor
@@ -170,7 +173,12 @@ class Flowmap:
         all_mappings = []
 
         for source in tqdm(self.source_flows, disable=self.disable_progress):
-            self.get_single_match(source=source, target_flows=self.target_flows, rules=self.rules, all_mappings=all_mappings)
+            self.get_single_match(
+                source=source,
+                target_flows=self.target_flows,
+                rules=self.rules,
+                all_mappings=all_mappings,
+            )
 
         result, seen_sources, seen_combos = [], set(), {}
         sorted_mappings = sorted(all_mappings, key=match_sort_order)
@@ -210,9 +218,7 @@ Conversion factors:
                     seen_combos[combo_key] = mapping
             elif from_id in seen_sources:
                 other = next(
-                    value
-                    for key, value in seen_combos.items()
-                    if key[0] == from_id
+                    value for key, value in seen_combos.items() if key[0] == from_id
                 )
                 raise DifferingMatches(
                     f"""

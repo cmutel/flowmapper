@@ -1,4 +1,5 @@
 """Sphinx configuration."""
+
 import importlib.metadata
 import os
 import shutil
@@ -37,9 +38,9 @@ extensions = [
     "myst_parser",
 ]
 source_suffix = {
-        ".rst": "restructuredtext",
-        ".md": "markdown",
-        }
+    ".rst": "restructuredtext",
+    ".md": "markdown",
+}
 autodoc_typehints = "description"
 html_theme = "furo"
 

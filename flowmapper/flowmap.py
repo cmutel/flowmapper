@@ -70,8 +70,6 @@ class Flowmap:
             Rules to identify flows that should not be matched.
         disable_progress : bool, optional
             If True, progress bar display during the mapping process is disabled.
-        randonneur_config : dict, optional
-            Randonneur
 
         """
         self.disable_progress = disable_progress

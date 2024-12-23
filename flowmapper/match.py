@@ -1,14 +1,14 @@
 import logging
 
-from .flow import Flow
-from .utils import (
+from flowmapper.constants import RESOURCE_PARENT_CATEGORY
+from flowmapper.flow import Flow
+from flowmapper.utils import (
     ends_with_location,
     location_reverser,
     names_and_locations,
     rm_parentheses_roman_numerals,
     rm_roman_numerals_ionic_state,
 )
-from .constants import RESOURCE_PARENT_CATEGORY
 
 logger = logging.getLogger(__name__)
 

@@ -11,9 +11,9 @@ __all__ = (
 
 __version__ = "0.3"
 
-from .cas import CASField
-from .context import ContextField
-from .flow import Flow
-from .flowmap import Flowmap
-from .unit import UnitField
-from .main import flowmapper, OutputFormat
+from flowmapper.cas import CASField
+from flowmapper.context import ContextField
+from flowmapper.flow import Flow
+from flowmapper.flowmap import Flowmap
+from flowmapper.main import OutputFormat, flowmapper
+from flowmapper.unit import UnitField

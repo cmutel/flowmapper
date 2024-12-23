@@ -1,8 +1,8 @@
-import pyecospold
-from pathlib import Path
-from loguru import logger
 import json
+from pathlib import Path
 
+import pyecospold
+from loguru import logger
 
 # def is_simapro_csv_file(fp: Path) -> bool:
 #     if not fp.is_file() or not fp.suffix.lower() == ".csv":

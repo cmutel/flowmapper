@@ -1,7 +1,8 @@
-import bw_simapro_csv
-from pathlib import Path
-from loguru import logger
 import json
+from pathlib import Path
+
+import bw_simapro_csv
+from loguru import logger
 
 
 def is_simapro_csv_file(fp: Path) -> bool:

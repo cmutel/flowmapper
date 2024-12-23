@@ -4,10 +4,10 @@ from enum import Enum
 from pathlib import Path
 from typing import Optional
 
-from .flow import Flow
-from .flowmap import Flowmap
-from .transformation_mapping import prepare_transformations
-from .utils import load_standard_transformations, read_migration_files
+from flowmapper.flow import Flow
+from flowmapper.flowmap import Flowmap
+from flowmapper.transformation_mapping import prepare_transformations
+from flowmapper.utils import load_standard_transformations, read_migration_files
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
 from collections.abc import Collection, Iterable
 from typing import Any, List
 
-from .string_field import StringField
+from flowmapper.string_field import StringField
 
 
 class StringList(Collection):

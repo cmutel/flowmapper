@@ -2,9 +2,9 @@ from collections import UserDict
 from functools import partial
 from typing import Any, List
 
-from .context import ContextField
-from .string_field import StringField
-from .unit import UnitField
+from flowmapper.context import ContextField
+from flowmapper.string_field import StringField
+from flowmapper.unit import UnitField
 
 ATTRIBUTE_MAPPING = {
     "unit": partial(UnitField, use_lowercase=True),

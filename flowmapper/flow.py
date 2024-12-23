@@ -1,11 +1,11 @@
 from typing import List
 
-from .cas import CASField
-from .context import ContextField
-from .string_field import StringField
-from .string_list import StringList
-from .unit import UnitField
-from .utils import apply_transformations, generate_flow_id
+from flowmapper.cas import CASField
+from flowmapper.context import ContextField
+from flowmapper.string_field import StringField
+from flowmapper.string_list import StringList
+from flowmapper.unit import UnitField
+from flowmapper.utils import apply_transformations, generate_flow_id
 
 
 class Flow:

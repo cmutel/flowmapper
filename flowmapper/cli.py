@@ -6,9 +6,8 @@ from typing import Optional
 import typer
 from typing_extensions import Annotated
 
-from .main import flowmapper, OutputFormat
-from .extraction import simapro_csv_biosphere_extractor, ecospold2_biosphere_extractor
-
+from .extraction import ecospold2_biosphere_extractor, simapro_csv_biosphere_extractor
+from .main import OutputFormat, flowmapper
 
 logger = logging.getLogger(__name__)
 

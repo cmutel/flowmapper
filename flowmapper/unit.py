@@ -4,8 +4,8 @@ from typing import Any, Generic, TypeVar
 
 from pint import UnitRegistry, errors
 
-from .constants import PINT_MAPPING
-from .utils import normalize_str
+from flowmapper.constants import PINT_MAPPING
+from flowmapper.utils import normalize_str
 
 ureg = UnitRegistry()
 

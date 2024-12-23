@@ -1,6 +1,6 @@
 from typing import Any, Generic, TypeVar
 
-from .utils import normalize_str
+from flowmapper.utils import normalize_str
 
 SF = TypeVar("SF")
 

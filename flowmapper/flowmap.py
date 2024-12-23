@@ -1,22 +1,21 @@
-from numbers import Number
-import json
+import math
 import warnings
 from collections import Counter
 from functools import cached_property
+from numbers import Number
 from pathlib import Path
 from typing import Callable, Optional
-import math
 
-import randonneur
 import pandas as pd
 import pint
+import randonneur
 from tqdm import tqdm
 
-from . import __version__
-from .flow import Flow
-from .match import format_match_result, match_rules
-from .utils import match_sort_order
-from .errors import DifferingMatches, DifferingConversions
+from flowmapper import __version__
+from flowmapper.errors import DifferingConversions, DifferingMatches
+from flowmapper.flow import Flow
+from flowmapper.match import format_match_result, match_rules
+from flowmapper.utils import match_sort_order
 
 
 def source_flow_id(obj: Flow, ensure_id: bool = False) -> str:

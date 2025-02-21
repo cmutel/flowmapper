@@ -4,6 +4,14 @@
         "target": "water, well, in ground"
     },
     {
+        "source": "water/m3",
+        "target": "water"
+    },
+    {
+        "source": "water, unspecified natural origin/m3",
+        "target": "water, unspecified natural origin"
+    },
+    {
         "source": "water (ersatz), net cons., irrigation",
         "target": "water, unspecified natural origin",
         "extra": {

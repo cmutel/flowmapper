@@ -68,8 +68,8 @@ def match_resources_with_wrong_subcontext(s: Flow, t: Flow):
 
 
 def match_identical_names_except_missing_suffix(
-    s: Flow, t: Flow, suffix, comment="Identical names except missing suffix"
-):
+    s: Flow, t: Flow, suffix: str, comment: str = "Identical names except missing suffix"
+) -> dict:
     if (
         (f"{s.name.normalized}, {suffix}" == t.name)
         or (f"{t.name.normalized}, {suffix}" == s.name)
@@ -93,6 +93,7 @@ def match_names_with_roman_numerals_in_parentheses(
 def match_custom_names_with_location_codes(
     s: Flow, t: Flow, comment="Custom names with location code"
 ):
+    """Matching which pulls out location codes but also allows for custom name transformations."""
     match = ends_with_location.search(s.name.normalized)
     if match:
         location = location_reverser[match.group("code")]
@@ -178,9 +179,9 @@ def match_non_ionic_state(
     s: Flow, t: Flow, comment="Non-ionic state if no better match"
 ):
     if (
-        rm_roman_numerals_ionic_state(s.name.normalized) == t.name
-        and s.context == t.context
-    ):
+        (rm_roman_numerals_ionic_state(s.name.normalized) == t.name)
+        or (rm_roman_numerals_ionic_state(s.name.normalized) + ", ion" == t.name)
+    ) and s.context == t.context:
         return {"comment": comment}
 
 

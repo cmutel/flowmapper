@@ -22,6 +22,8 @@ ends_with_location = re.compile(
 # All solutions I found for returning original string instead of
 # lower case one were very ugly
 location_reverser = {obj.lower(): obj for obj in places}
+if len(location_reverser) != len(places):
+    raise ValueError("Multiple possible locations after lower case conversion")
 
 us_lci_ends_with_location = re.compile(
     "/(?P<location>{})$".format(
@@ -94,7 +96,7 @@ def rm_parentheses_roman_numerals(s: str):
 
 
 def rm_roman_numerals_ionic_state(s: str):
-    pattern = r"\s*\(\s*[ivxlcdm]+\s*\)"
+    pattern = r"\s*\(\s*[ivxlcdm]+\s*\)$"
     return re.sub(pattern, "", s)
 
 

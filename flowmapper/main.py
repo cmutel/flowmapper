@@ -38,7 +38,7 @@ def flowmapper(
     format: OutputFormat,
     version: str = "1.0.0",
     default_transformations: bool = True,
-    transformations: Optional[list[Path]] = None,
+    transformations: Optional[list[Path | str]] = None,
     unmatched_source: bool = True,
     unmatched_target: bool = True,
     matched_source: bool = False,

@@ -36,6 +36,7 @@ dependencies = [
     "pydantic",
     "pyecospold",
     "randonneur>=0.6",
+    "randonneur_data",
     "tqdm",
     "typer",
     "xmltodict",
@@ -71,13 +72,13 @@ flowmapper = "flowmapper.cli:app"
 [tool.setuptools]
 license-files = ["LICENSE"]
 include-package-data = true
-packages = ["flowmapper", "flowmapper.extraction"]
+packages = ["flowmapper", "flowmapper.extraction", "flowmapper.manual_matching"]
 
 [tool.setuptools.dynamic]
 version = {attr = "flowmapper.__version__"}
 
 [tool.setuptools.package-data]
-flowmapper = ["data/*.txt", "data/*.json"]
+flowmapper = ["data/*.txt", "data/*.json", "manual_matching/data/**/*.json", "manual_matching/results/**/*.json"]
 
 [tool.pytest.ini_options]
 addopts = "--cov flowmapper --cov-report term-missing --verbose"

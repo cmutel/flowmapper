@@ -8,6 +8,8 @@ from collections.abc import Collection, Mapping
 from pathlib import Path
 from typing import Any, List, Union
 
+RESULTS_DIR = Path(__file__).parent / "manual_matching" / "results"
+
 with resource.as_file(
     resource.files("flowmapper") / "data" / "places.json"
 ) as filepath:
@@ -84,6 +86,8 @@ def read_migration_files(*filepaths: Union[str, Path]) -> List[dict]:
     migration_data = []
 
     for filepath in filepaths:
+        if (RESULTS_DIR / filepath).is_file():
+            filepath = RESULTS_DIR / filepath
         with open(Path(filepath), "r") as fs:
             migration_data.append(json.load(fs))
 

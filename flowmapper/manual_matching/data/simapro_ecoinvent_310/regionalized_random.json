@@ -1,0 +1,124 @@
+[
+  {
+    "source": {
+      "name": "Water (ersatz), net cons., non-irrigation, GLO",
+      "context": [
+        "natural resource",
+        "in water"
+      ]
+    },
+    "target": {
+      "name": "Water, unspecified natural origin"
+    }
+  },
+  {
+    "source": {
+      "name": "Water (ersatz), net cons., non-irrigation, GLO",
+      "context": [
+        "natural resource"
+      ]
+    },
+    "target": {
+      "name": "Water, unspecified natural origin",
+      "context": [
+        "natural resource",
+        "in water"
+      ]
+    }
+  },
+  {
+    "source": {
+      "name": "Water (ersatz), net cons., non-irrigation, GLO",
+      "context": [
+        "natural resource"
+      ]
+    },
+    "target": {
+      "name": "Water, unspecified natural origin"
+    }
+  },
+  {
+    "source": {
+      "name": "Water, unspecified natural origin, CN",
+      "context": [
+        "natural resource",
+        "land"
+      ]
+    },
+    "target": {
+      "name": "Water, unspecified natural origin"
+    },
+    "location": "CN"
+  },
+  {
+    "source": {
+      "name": "Water, fresh, CN"
+    },
+    "target": {
+      "name": "Water, unspecified natural origin",
+      "context": [
+        "natural resource",
+        "in water"
+      ]
+    },
+    "location": "CN"
+  },
+  {
+    "source": {
+      "name": "Water (ersatz), net cons., non-irrigation, Europe without Switzerland",
+      "context": [
+        "natural resource",
+        "in water"
+      ]
+    },
+    "target": {
+      "name": "Water, unspecified natural origin"
+    },
+    "location": "Europe without Switzerland"
+  },
+  {
+    "source": {
+      "name": "Water, cooling, unspecified natural origin, CO"
+    },
+    "target": {
+      "name": "Water, cooling, unspecified natural origin"
+    },
+    "location": "CO"
+  },
+  {
+    "source": {
+      "name": "COD (Chemical Oxygen Demand), KR"
+    },
+    "target": {
+      "name": "COD, Chemical Oxygen Demand"
+    },
+    "location": "KR"
+  },
+  {
+    "source": {
+      "name": "COD (Chemical Oxygen Demand), US"
+    },
+    "target": {
+      "name": "COD, Chemical Oxygen Demand"
+    },
+    "location": "US"
+  },
+  {
+    "source": {
+      "name": "NMVOC, non-methane volatile organic compounds, KR"
+    },
+    "target": {
+      "name": "NMVOC, non-methane volatile organic compounds, unspecified origin"
+    },
+    "location": "KR"
+  },
+  {
+    "source": {
+      "name": "NMVOC, non-methane volatile organic compounds, US"
+    },
+    "target": {
+      "name": "NMVOC, non-methane volatile organic compounds, unspecified origin"
+    },
+    "location": "US"
+  }
+]

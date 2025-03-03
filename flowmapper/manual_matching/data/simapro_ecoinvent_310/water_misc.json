@@ -1,0 +1,34 @@
+[
+  {
+    "source": {
+      "name": "Water/m3"
+    },
+    "target": {
+      "name": "Water"
+    }
+  },
+  {
+    "source": {
+      "name": "Water, unspecified natural origin/m3"
+    },
+    "target": {
+      "name": "Water, unspecified natural origin"
+    }
+  },
+  {
+    "source": {
+      "name": "Water, cooling, unspecified natural origin/m3"
+    },
+    "target": {
+      "name": "Water, cooling, unspecified natural origin"
+    }
+  },
+  {
+    "source": {
+      "name": "Resources, rain water, water, withdrawal"
+    },
+    "target": {
+      "name": "Water, unspecified natural origin"
+    }
+  }
+]

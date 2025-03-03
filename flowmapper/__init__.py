@@ -9,7 +9,7 @@ __all__ = (
     "UnitField",
 )
 
-__version__ = "0.3.1"
+__version__ = "0.4"
 
 from flowmapper.cas import CASField
 from flowmapper.context import ContextField

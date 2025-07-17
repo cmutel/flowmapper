@@ -10,7 +10,7 @@
       ]
     }
   ],
-  "created": "2025-03-03T12:46:46.122093+00:00",
+  "created": "2025-07-17T20:43:15.053778+00:00",
   "version": "2.0.0",
   "licenses": [
     {
@@ -959,6 +959,94 @@
       },
       "target": {
         "name": "Strontium II"
+      }
+    },
+    {
+      "source": {
+        "name": "Parathion, methyl"
+      },
+      "target": {
+        "name": "Methyl parathion"
+      }
+    },
+    {
+      "source": {
+        "name": "Thiocyanic acid (-1 ion)"
+      },
+      "target": {
+        "name": "Thiocyanate"
+      }
+    },
+    {
+      "source": {
+        "name": "Quizalofop ethyl ester"
+      },
+      "target": {
+        "name": "Quizalofop-ethyl"
+      }
+    },
+    {
+      "source": {
+        "name": "Prothioconazol"
+      },
+      "target": {
+        "name": "Prothioconazole"
+      }
+    },
+    {
+      "source": {
+        "name": "Pyraclostrobin (prop)"
+      },
+      "target": {
+        "name": "Pyraclostrobin"
+      }
+    },
+    {
+      "source": {
+        "name": "Monosodium acid methanearsonate"
+      },
+      "target": {
+        "name": "MSMA"
+      }
+    },
+    {
+      "source": {
+        "name": "Carbamic acid, [(dibutylamino)thio]methyl-, 2,3-dihydro-2,2-dimethyl-7-benzofuranyl ester"
+      },
+      "target": {
+        "name": "Carbosulfan"
+      }
+    },
+    {
+      "source": {
+        "name": "Benzene, 1-methyl-2-nitro-"
+      },
+      "target": {
+        "name": "o-Nitrotoluene"
+      }
+    },
+    {
+      "source": {
+        "name": "Alkane (unspecified)"
+      },
+      "target": {
+        "name": "Hydrocarbons, aliphatic, alkanes, unspecified"
+      }
+    },
+    {
+      "source": {
+        "name": "AOX (Adsorbable Organic Halogens)"
+      },
+      "target": {
+        "name": "AOX, Adsorbable Organic Halides"
+      }
+    },
+    {
+      "source": {
+        "name": "AOX, Adsorbable Organic Halogen as Cl"
+      },
+      "target": {
+        "name": "AOX, Adsorbable Organic Halides"
       }
     },
     {
@@ -2021,23 +2109,23 @@
     },
     {
       "source": {
-        "name": "Molybdenum, 0.014% in sulfide, Mo 8.2E-3% and Cu 0.81% in crude ore"
+        "name": "Barite"
       },
       "target": {
-        "name": "Molybdenum"
+        "name": "Barium"
       }
     },
     {
       "source": {
-        "name": "TiO2, 54% in ilmenite, 2.6% in crude ore"
+        "name": "Bauxite"
       },
       "target": {
-        "name": "Titanium"
+        "name": "Gangue"
       }
     },
     {
       "source": {
-        "name": "Copper, 1.13% in sulfide, Cu 0.76% and Ni 0.76% in crude ore"
+        "name": "Copper ore"
       },
       "target": {
         "name": "Copper"
@@ -2045,23 +2133,88 @@
     },
     {
       "source": {
-        "name": "Gold, Au 1.1E-4%, Ag 4.2E-3%, in ore"
+        "name": "Copper, Cu 0.38%, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Pb 0.014%, in ore"
       },
       "target": {
-        "name": "Gold"
+        "name": "Copper"
       }
     },
     {
       "source": {
-        "name": "Methane, dichloro-, HCC-30"
+        "name": "Copper, Cu 3.2E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0% in ore"
       },
       "target": {
-        "name": "Dichloromethane"
+        "name": "Copper"
       }
     },
     {
       "source": {
-        "name": "Silver, 0.01% in crude ore"
+        "name": "Copper, Cu 5.2E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2% in ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "Coal, 18 MJ per kg"
+      },
+      "target": {
+        "name": "Coal, hard"
+      }
+    },
+    {
+      "source": {
+        "name": "Coal, brown, 10 MJ per kg"
+      },
+      "target": {
+        "name": "Coal, brown"
+      }
+    },
+    {
+      "source": {
+        "name": "Coal, brown, 8 MJ per kg"
+      },
+      "target": {
+        "name": "Coal, brown"
+      }
+    },
+    {
+      "source": {
+        "name": "Crude oil"
+      },
+      "target": {
+        "name": "Oil, crude"
+      }
+    },
+    {
+      "source": {
+        "name": "Energy, from biomass"
+      },
+      "target": {
+        "name": "Energy, gross calorific value, in biomass"
+      }
+    },
+    {
+      "source": {
+        "name": "Energy, from coal"
+      },
+      "target": {
+        "name": "Energy, gross calorific value, in biomass"
+      }
+    },
+    {
+      "source": {
+        "name": "Gas, mine, off-gas, process, coal mining/m3"
+      },
+      "target": {
+        "name": "Gas, mine, off-gas, process, coal mining",
+        "unit": "Sm3"
+      }
+    },
+    {
+      "source": {
+        "name": "Silver, Ag 9.7E-4%, Au 9.7E-4%, Zn 0.63%, Cu 0.38%, Pb 0.014%, in ore"
       },
       "target": {
         "name": "Silver"
@@ -2069,79 +2222,15 @@
     },
     {
       "source": {
-        "name": "1,3-Dioxolan-2-one"
+        "name": "Zinc, Zn 0.63%, Au 9.7E-4%, Ag 9.7E-4%, Cu 0.38%, Pb 0.014%, in ore"
       },
       "target": {
-        "name": "Ethylene carbonate"
+        "name": "Zinc"
       }
     },
     {
       "source": {
-        "name": "Ethane, hexafluoro-, HFC-116"
-      },
-      "target": {
-        "name": "Hexafluoroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Ni, Ni 3.7E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Cu 5.2E-2% in ore"
-      },
-      "target": {
-        "name": "Nickel"
-      }
-    },
-    {
-      "source": {
-        "name": "Cu, Cu 5.2E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2% in ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "Rhenium, in crude ore"
-      },
-      "target": {
-        "name": "Rhenium"
-      }
-    },
-    {
-      "source": {
-        "name": "Phthalate, butyl-benzyl-"
-      },
-      "target": {
-        "name": "Butyl benzyl phthalate"
-      }
-    },
-    {
-      "source": {
-        "name": "Dipropylamine"
-      },
-      "target": {
-        "name": "Dipropyl amine"
-      }
-    },
-    {
-      "source": {
-        "name": "Copper, Cu 0.2%, in mixed ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "2-Amino-3-chloro-1,4-naphthoquinone"
-      },
-      "target": {
-        "name": "Quinoclamine"
-      }
-    },
-    {
-      "source": {
-        "name": "Lead, Pb 3.6E-1%, in mixed ore"
+        "name": "Lead, Pb 0.014%, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Cu 0.38%, in ore"
       },
       "target": {
         "name": "Lead"
@@ -2149,39 +2238,23 @@
     },
     {
       "source": {
-        "name": "Silver, Ag 4.6E-5%, Au 1.3E-4%, in ore"
+        "name": "Nickel, Ni 2.3E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Cu 3.2E+0% in ore"
       },
       "target": {
-        "name": "Silver"
+        "name": "Nickel"
       }
     },
     {
       "source": {
-        "name": "Gadolinium, 0.15% in bastnasite, 0.015% in crude ore"
+        "name": "Nickel, Ni 3.7E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Cu 5.2E-2% in ore"
       },
       "target": {
-        "name": "Gadolinium"
+        "name": "Nickel"
       }
     },
     {
       "source": {
-        "name": "Gold, Au 7.1E-4%, in ore"
-      },
-      "target": {
-        "name": "Gold"
-      }
-    },
-    {
-      "source": {
-        "name": "Iodine, 0.03% in water"
-      },
-      "target": {
-        "name": "Iodine"
-      }
-    },
-    {
-      "source": {
-        "name": "Platinum, Pt 4.7E-7%, in mixed ore"
+        "name": "Platinum, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
       },
       "target": {
         "name": "Platinum"
@@ -2189,47 +2262,7 @@
     },
     {
       "source": {
-        "name": "Phenol, 2,4-dichloro"
-      },
-      "target": {
-        "name": "2,4-Dichlorophenol"
-      }
-    },
-    {
-      "source": {
-        "name": "Argon-40"
-      },
-      "target": {
-        "name": "Argon"
-      }
-    },
-    {
-      "source": {
-        "name": "Aluminium, 24% in bauxite, 11% in crude ore"
-      },
-      "target": {
-        "name": "Aluminium"
-      }
-    },
-    {
-      "source": {
-        "name": "Toluene, 2-chloro"
-      },
-      "target": {
-        "name": "o-Chlorotoluene"
-      }
-    },
-    {
-      "source": {
-        "name": "Butylcarbamate, iodopropynyl"
-      },
-      "target": {
-        "name": "Iodopropynyl butylcarbamate"
-      }
-    },
-    {
-      "source": {
-        "name": "Gold, Au 1.8E-4%, in mixed ore"
+        "name": "Gold, Au 9.7E-4%, Ag 9.7E-4%, Zn 0.63%, Cu 0.38%, Pb 0.014%, in ore"
       },
       "target": {
         "name": "Gold"
@@ -2237,42 +2270,50 @@
     },
     {
       "source": {
-        "name": "Gold, Au 1.3E-4%, Ag 4.6E-5%, in ore"
+        "name": "Platinum, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
       },
       "target": {
-        "name": "Gold"
+        "name": "Platinum"
       }
     },
     {
       "source": {
-        "name": "Molybdenum, 0.11% in sulfide, Mo 4.1E-2% and Cu 0.36% in crude ore"
+        "name": "Palladium, Pd 2.0E-4%, Pt 4.8E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
       },
       "target": {
-        "name": "Molybdenum"
+        "name": "Palladium"
       }
     },
     {
       "source": {
-        "name": "Copper, 2.19% in sulfide, Cu 1.83% and Mo 8.2E-3% in crude ore"
+        "name": "Palladium, Pd 7.3E-4%, Pt 2.5E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
       },
       "target": {
-        "name": "Copper"
+        "name": "Palladium"
       }
     },
     {
       "source": {
-        "name": "Acetic acid, trifluoro-"
+        "name": "Clay"
       },
       "target": {
-        "name": "Trifluoroacetic acid"
+        "name": "Clay, bentonite"
       }
     },
     {
       "source": {
-        "name": "Methane, dichlorofluoro-, HCFC-21"
+        "name": "Rhodium, Rh 2.0E-5%, Pt 2.5E-4%, Pd 7.3E-4%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
       },
       "target": {
-        "name": "Dichlorofluoromethane"
+        "name": "Rhodium"
+      }
+    },
+    {
+      "source": {
+        "name": "Rhodium, Rh 2.4E-5%, Pt 4.8E-4%, Pd 2.0E-4%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
+      },
+      "target": {
+        "name": "Rhodium"
       }
     },
     {
@@ -2285,15 +2326,15 @@
     },
     {
       "source": {
-        "name": "Zinc, Zn 0.63%, in mixed ore"
+        "name": "Phenol, 2,4-dichloro"
       },
       "target": {
-        "name": "Zinc"
+        "name": "2,4-Dichlorophenol"
       }
     },
     {
       "source": {
-        "name": "Gold, Au 1.4E-4%, in ore"
+        "name": "Gold, Au 6.8E-4%, Ag 1.5E-4%, in ore"
       },
       "target": {
         "name": "Gold"
@@ -2301,266 +2342,18 @@
     },
     {
       "source": {
-        "name": "t-Butylamine"
+        "name": "Pd, Pd 2.0E-4%, Pt 4.8E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
       },
       "target": {
-        "name": "t-Butyl amine"
+        "name": "Palladium"
       }
     },
     {
       "source": {
-        "name": "Silver, Ag 4.2E-3%, Au 1.1E-4%, in ore"
+        "name": "Indium, 0.005% in sulfide, In 0.003%, Pb, Zn, Ag, Cd"
       },
       "target": {
-        "name": "Silver"
-      }
-    },
-    {
-      "source": {
-        "name": "Copper, 0.52% in sulfide, Cu 0.27% and Mo 8.2E-3% in crude ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "Methane, chlorodifluoro-, HCFC-22"
-      },
-      "target": {
-        "name": "Chlorodifluoromethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Chromium IV"
-      },
-      "target": {
-        "name": "Chromium VI"
-      }
-    },
-    {
-      "source": {
-        "name": "Gold, Au 9.7E-4%, in mixed ore"
-      },
-      "target": {
-        "name": "Gold"
-      }
-    },
-    {
-      "source": {
-        "name": "Silver, 3.2ppm in sulfide, Ag 1.2ppm, Cu and Te, in crude ore"
-      },
-      "target": {
-        "name": "Silver"
-      }
-    },
-    {
-      "source": {
-        "name": "Silver, Ag 5.4E-3%, in mixed ore"
-      },
-      "target": {
-        "name": "Silver"
-      }
-    },
-    {
-      "source": {
-        "name": "Methane, chlorotrifluoro-, CFC-13"
-      },
-      "target": {
-        "name": "Chlorotrifluoromethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Molybdenum, 0.010% in sulfide, Mo 8.2E-3% and Cu 1.83% in crude ore"
-      },
-      "target": {
-        "name": "Molybdenum"
-      }
-    },
-    {
-      "source": {
-        "name": "Lithium, 0.15% in brine"
-      },
-      "target": {
-        "name": "Lithium"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, 1,1,1,2-tetrafluoro-, HFC-134a"
-      },
-      "target": {
-        "name": "1,1,1,2-Tetrafluoroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, 1,1,1-trifluoro-, HFC-143a"
-      },
-      "target": {
-        "name": "1,1,1-Trifluoroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, chloropentafluoro-, CFC-115"
-      },
-      "target": {
-        "name": "Monochloropentafluoroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, 1,1,2-trichloro-1,2,2-trifluoro-, CFC-113"
-      },
-      "target": {
-        "name": "1,1,2-Trichloro-1,2,2-trifluoroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Kaolinite, 24% in crude ore"
-      },
-      "target": {
-        "name": "Kaolinite"
-      }
-    },
-    {
-      "source": {
-        "name": "1,2-Dichlorobenzene"
-      },
-      "target": {
-        "name": "o-Dichlorobenzene"
-      }
-    },
-    {
-      "source": {
-        "name": "2-chlorobenzaldehyde"
-      },
-      "target": {
-        "name": "o-Chlorobenzaldehyde"
-      }
-    },
-    {
-      "source": {
-        "name": "Phthalate, dioctyl-"
-      },
-      "target": {
-        "name": "Dioctyl phthalate"
-      }
-    },
-    {
-      "source": {
-        "name": "Xylene"
-      },
-      "target": {
-        "name": "Xylenes, unspecified"
-      }
-    },
-    {
-      "source": {
-        "name": "Copper, 0.59% in sulfide, Cu 0.22% and Mo 8.2E-3% in crude ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "Methyl borate"
-      },
-      "target": {
-        "name": "Trimethyl borate"
-      }
-    },
-    {
-      "source": {
-        "name": "Tin, 79% in cassiterite, 0.1% in crude ore"
-      },
-      "target": {
-        "name": "Tin"
-      }
-    },
-    {
-      "source": {
-        "name": "Benzene, hexachloro-"
-      },
-      "target": {
-        "name": "Hexachlorobenzene"
-      }
-    },
-    {
-      "source": {
-        "name": "Methane, monochloro-, R-40"
-      },
-      "target": {
-        "name": "Methylchloride"
-      }
-    },
-    {
-      "source": {
-        "name": "2,2,4-Trimethyl pentane"
-      },
-      "target": {
-        "name": "2,2,4-Trimethylpentane"
-      }
-    },
-    {
-      "source": {
-        "name": "Lead, Pb 0.014%, in mixed ore"
-      },
-      "target": {
-        "name": "Lead"
-      }
-    },
-    {
-      "source": {
-        "name": "Coal, hard, unspecified"
-      },
-      "target": {
-        "name": "Coal, hard"
-      }
-    },
-    {
-      "source": {
-        "name": "Methane, trifluoro-, HFC-23"
-      },
-      "target": {
-        "name": "Trifluoromethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, 1-chloro-1,1-difluoro-, HCFC-142b"
-      },
-      "target": {
-        "name": "1-Chloro-1,1-difluoroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Fluorspar, 92%"
-      },
-      "target": {
-        "name": "Fluorspar"
-      }
-    },
-    {
-      "source": {
-        "name": "Gallium, 0.014% in bauxite"
-      },
-      "target": {
-        "name": "Gallium"
-      }
-    },
-    {
-      "source": {
-        "name": "Benzene, chloro-"
-      },
-      "target": {
-        "name": "Monochlorobenzene"
+        "name": "Indium"
       }
     },
     {
@@ -2573,42 +2366,154 @@
     },
     {
       "source": {
-        "name": "Hexamethyldisilizane"
+        "name": "Silver, Ag 4.2E-3%, Au 1.1E-4%, in ore"
       },
       "target": {
-        "name": "Hexamethyldisilazane"
+        "name": "Silver"
       }
     },
     {
       "source": {
-        "name": "Ethane, 2-chloro-1,1,1,2-tetrafluoro-, HCFC-124"
+        "name": "Methane, trifluoro-, HFC-23"
       },
       "target": {
-        "name": "2-Chloro-1,1,1,2-tetrafluoroethane"
+        "name": "Trifluoromethane"
       }
     },
     {
       "source": {
-        "name": "Phenol, pentachloro-"
+        "name": "Phthalate, butyl-benzyl-"
       },
       "target": {
-        "name": "Pentachlorophenol"
+        "name": "Butyl benzyl phthalate"
       }
     },
     {
       "source": {
-        "name": "Cyhalothrin, gamma-"
+        "name": "Methane, tetrachloro-, R-10"
       },
       "target": {
-        "name": "Gamma-cyhalothrin"
+        "name": "Carbon tetrachloride"
       }
     },
     {
       "source": {
-        "name": "Neodymium, 4% in bastnasite, 0.4% in crude ore"
+        "name": "AOX, Adsorbable Organic Halogen"
       },
       "target": {
-        "name": "Neodymium"
+        "name": "AOX, Adsorbable Organic Halides"
+      }
+    },
+    {
+      "source": {
+        "name": "Benzene, pentachloro-"
+      },
+      "target": {
+        "name": "Pentachlorobenzene"
+      }
+    },
+    {
+      "source": {
+        "name": "Xylene"
+      },
+      "target": {
+        "name": "Xylenes, unspecified"
+      }
+    },
+    {
+      "source": {
+        "name": "Zinc, Zn 3.1%, in mixed ore"
+      },
+      "target": {
+        "name": "Zinc"
+      }
+    },
+    {
+      "source": {
+        "name": "Molybdenum, 0.014% in sulfide, Mo 8.2E-3% and Cu 0.81% in crude ore"
+      },
+      "target": {
+        "name": "Molybdenum"
+      }
+    },
+    {
+      "source": {
+        "name": "Silver, 3.2ppm in sulfide, Ag 1.2ppm, Cu and Te, in crude ore"
+      },
+      "target": {
+        "name": "Silver"
+      }
+    },
+    {
+      "source": {
+        "name": "Methane, dichloro-, HCC-30"
+      },
+      "target": {
+        "name": "Dichloromethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Silver, Ag 1.5E-5%, Au 5.4E-4%, in ore"
+      },
+      "target": {
+        "name": "Silver"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 9.7E-4%, in mixed ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "Prohexadione-calcium"
+      },
+      "target": {
+        "name": "Prohexadione calcium"
+      }
+    },
+    {
+      "source": {
+        "name": "Pd, Pd 7.3E-4%, Pt 2.5E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
+      },
+      "target": {
+        "name": "Palladium"
+      }
+    },
+    {
+      "source": {
+        "name": "Gallium, 0.014% in bauxite"
+      },
+      "target": {
+        "name": "Gallium"
+      }
+    },
+    {
+      "source": {
+        "name": "Samarium, 0.3% in bastnasite, 0.03% in crude ore"
+      },
+      "target": {
+        "name": "Samarium"
+      }
+    },
+    {
+      "source": {
+        "name": "Chloroethylene"
+      },
+      "target": {
+        "name": "Vinyl chloride"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 1.3E-4%, Ag 4.6E-5%, in ore"
+      },
+      "target": {
+        "name": "Gold"
       }
     },
     {
@@ -2621,26 +2526,10 @@
     },
     {
       "source": {
-        "name": "Propylamine"
+        "name": "Hexamethyldisilizane"
       },
       "target": {
-        "name": "Propyl amine"
-      }
-    },
-    {
-      "source": {
-        "name": "Gold, Au 4.3E-4%, in ore"
-      },
-      "target": {
-        "name": "Gold"
-      }
-    },
-    {
-      "source": {
-        "name": "Elemental carbon"
-      },
-      "target": {
-        "name": "Carbon"
+        "name": "Hexamethyldisilazane"
       }
     },
     {
@@ -2661,378 +2550,18 @@
     },
     {
       "source": {
-        "name": "Silver, Ag 9.7E-4%, in mixed ore"
+        "name": "Ethane, 1,1,2-trichloro-1,2,2-trifluoro-, CFC-113"
       },
       "target": {
-        "name": "Silver"
+        "name": "1,1,2-Trichloro-1,2,2-trifluoroethane"
       }
     },
     {
       "source": {
-        "name": "Methane, tetrachloro-, R-10"
+        "name": "Benzene, chloro-"
       },
       "target": {
-        "name": "Carbon tetrachloride"
-      }
-    },
-    {
-      "source": {
-        "name": "2,4-D amines"
-      },
-      "target": {
-        "name": "2,4-D dimethylamine salt"
-      }
-    },
-    {
-      "source": {
-        "name": "Silver, Ag 2.1E-4%, Au 2.1E-4%, in ore"
-      },
-      "target": {
-        "name": "Silver"
-      }
-    },
-    {
-      "source": {
-        "name": "Tantalum, 81.9% in tantalite, 1.6E-4% in crude ore"
-      },
-      "target": {
-        "name": "Tantalum"
-      }
-    },
-    {
-      "source": {
-        "name": "Gold, Au 2.1E-4%, Ag 2.1E-4%, in ore"
-      },
-      "target": {
-        "name": "Gold"
-      }
-    },
-    {
-      "source": {
-        "name": "Pyrethrins"
-      },
-      "target": {
-        "name": "Pyrethrum"
-      }
-    },
-    {
-      "source": {
-        "name": "Rh, Rh 2.4E-5%, Pt 4.8E-4%, Pd 2.0E-4%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
-      },
-      "target": {
-        "name": "Rhodium"
-      }
-    },
-    {
-      "source": {
-        "name": "Dimethenamid"
-      },
-      "target": {
-        "name": "Dimethenamide"
-      }
-    },
-    {
-      "source": {
-        "name": "Molybdenum, 0.022% in sulfide, Mo 8.2E-3% and Cu 0.36% in crude ore"
-      },
-      "target": {
-        "name": "Molybdenum"
-      }
-    },
-    {
-      "source": {
-        "name": "Cadmium, 0.30% in sulfide, Cd 0.18%, Pb, Zn, Ag, In"
-      },
-      "target": {
-        "name": "Cadmium"
-      }
-    },
-    {
-      "source": {
-        "name": "Phosphorus, 18% in apatite, 4% in crude ore"
-      },
-      "target": {
-        "name": "Phosphorus"
-      }
-    },
-    {
-      "source": {
-        "name": "Silver, Ag 1.8E-6%, in mixed ore"
-      },
-      "target": {
-        "name": "Silver"
-      }
-    },
-    {
-      "source": {
-        "name": "Copper, Cu 0.38%, in mixed ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "Gold, Au 9.7E-5%, Ag 7.6E-5%, in ore"
-      },
-      "target": {
-        "name": "Gold"
-      }
-    },
-    {
-      "source": {
-        "name": "Bromine, 0.23% in water"
-      },
-      "target": {
-        "name": "Bromine"
-      }
-    },
-    {
-      "source": {
-        "name": "Phthalate, dibutyl-"
-      },
-      "target": {
-        "name": "Dibutyl phthalate"
-      }
-    },
-    {
-      "source": {
-        "name": "TiO2, 95% in rutile, 0.40% in crude ore"
-      },
-      "target": {
-        "name": "Titanium"
-      }
-    },
-    {
-      "source": {
-        "name": "Pd, Pd 2.0E-4%, Pt 4.8E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
-      },
-      "target": {
-        "name": "Palladium"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, 1,1,1-trichloro-, HCFC-140"
-      },
-      "target": {
-        "name": "1,1,1-Trichloroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Cobalt, Co 5.0E-2%, in mixed ore"
-      },
-      "target": {
-        "name": "Cobalt"
-      }
-    },
-    {
-      "source": {
-        "name": "Copper, Cu 6.8E-1%, in mixed ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "TiO2, 54% in ilmenite, 18% in crude ore"
-      },
-      "target": {
-        "name": "Titanium"
-      }
-    },
-    {
-      "source": {
-        "name": "Copper, 1.18% in sulfide, Cu 0.39% and Mo 8.2E-3% in crude ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethyne"
-      },
-      "target": {
-        "name": "Acetylene"
-      }
-    },
-    {
-      "source": {
-        "name": "Pd, Pd 7.3E-4%, Pt 2.5E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
-      },
-      "target": {
-        "name": "Palladium"
-      }
-    },
-    {
-      "source": {
-        "name": "Methane, chloro-fluoro-, HCFC-31"
-      },
-      "target": {
-        "name": "Chloro-fluoromethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Benzene, pentachloro-"
-      },
-      "target": {
-        "name": "Pentachlorobenzene"
-      }
-    },
-    {
-      "source": {
-        "name": "Monophenyltin"
-      },
-      "target": {
-        "name": "Phenyltin"
-      }
-    },
-    {
-      "source": {
-        "name": "Cyclohexane (for all cycloalkanes)"
-      },
-      "target": {
-        "name": "Hydrocarbons, aliphatic, alkanes, cyclic"
-      }
-    },
-    {
-      "source": {
-        "name": "Copper, 1.42% in sulfide, Cu 0.81% and Mo 8.2E-3% in crude ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "Rhodium, Rh 1.6E-7%, in mixed ore"
-      },
-      "target": {
-        "name": "Rhodium"
-      }
-    },
-    {
-      "source": {
-        "name": "Zirconium, 50% in zircon, 0.39% in crude ore"
-      },
-      "target": {
-        "name": "Zirconium"
-      }
-    },
-    {
-      "source": {
-        "name": "2-Methylpentane"
-      },
-      "target": {
-        "name": "Isohexane"
-      }
-    },
-    {
-      "source": {
-        "name": "Zinc, Zn 3.1%, in mixed ore"
-      },
-      "target": {
-        "name": "Zinc"
-      }
-    },
-    {
-      "source": {
-        "name": "Sylvite, 25 % in sylvinite"
-      },
-      "target": {
-        "name": "Sylvite"
-      }
-    },
-    {
-      "source": {
-        "name": "Cu, Cu 3.2E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0% in ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, 1,1-difluoro-, HFC-152a"
-      },
-      "target": {
-        "name": "1,1-Difluoroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Samarium, 0.3% in bastnasite, 0.03% in crude ore"
-      },
-      "target": {
-        "name": "Samarium"
-      }
-    },
-    {
-      "source": {
-        "name": "Fosetyl-aluminium"
-      },
-      "target": {
-        "name": "Fosetyl-Al"
-      }
-    },
-    {
-      "source": {
-        "name": "Prohexadione-calcium"
-      },
-      "target": {
-        "name": "Prohexadione calcium"
-      }
-    },
-    {
-      "source": {
-        "name": "Nickel, 1.98% in silicates, 1.04% in crude ore"
-      },
-      "target": {
-        "name": "Nickel"
-      }
-    },
-    {
-      "source": {
-        "name": "Copper, 1.25% in sulfide, Cu 0.24% and Zn 0,1% in crude ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "Manganese, 35.7% in sedimentary deposit, 14.2% in crude ore"
-      },
-      "target": {
-        "name": "Manganese"
-      }
-    },
-    {
-      "source": {
-        "name": "Ni, Ni 2.3E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Cu 3.2E+0% in ore"
-      },
-      "target": {
-        "name": "Nickel"
-      }
-    },
-    {
-      "source": {
-        "name": "Pt, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
-      },
-      "target": {
-        "name": "Platinum"
-      }
-    },
-    {
-      "source": {
-        "name": "Rh, Rh 2.0E-5%, Pt 2.5E-4%, Pd 7.3E-4%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
-      },
-      "target": {
-        "name": "Rhodium"
+        "name": "Monochlorobenzene"
       }
     },
     {
@@ -3045,202 +2574,10 @@
     },
     {
       "source": {
-        "name": "Magnesium, 0.13% in water"
-      },
-      "target": {
-        "name": "Magnesium"
-      }
-    },
-    {
-      "source": {
-        "name": "Methane, difluoro-, HFC-32"
-      },
-      "target": {
-        "name": "Difluoromethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Molybdenum, 0.016% in sulfide, Mo 8.2E-3% and Cu 0.27% in crude ore"
-      },
-      "target": {
-        "name": "Molybdenum"
-      }
-    },
-    {
-      "source": {
-        "name": "Nickel, Ni 2.5E+0%, in mixed ore"
-      },
-      "target": {
-        "name": "Nickel"
-      }
-    },
-    {
-      "source": {
-        "name": "Methane, dichlorodifluoro-, CFC-12"
-      },
-      "target": {
-        "name": "Dichlorodifluoromethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Copper, 0.99% in sulfide, Cu 0.36% and Mo 8.2E-3% in crude ore"
-      },
-      "target": {
-        "name": "Copper"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, hexachloro-"
-      },
-      "target": {
-        "name": "Hexachloroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Fluorine, 4.5% in apatite, 3% in crude ore"
-      },
-      "target": {
-        "name": "Fluorine"
-      }
-    },
-    {
-      "source": {
-        "name": "Gold, Au 6.8E-4%, Ag 1.5E-4%, in ore"
-      },
-      "target": {
-        "name": "Gold"
-      }
-    },
-    {
-      "source": {
-        "name": "Methane, trichlorofluoro-, CFC-11"
-      },
-      "target": {
-        "name": "Trichlorofluoromethane"
-      }
-    },
-    {
-      "source": {
         "name": "Europium, 0.06% in bastnasite, 0.006% in crude ore"
       },
       "target": {
         "name": "Europium"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, 1,1-dichloro-1-fluoro-, HCFC-141b"
-      },
-      "target": {
-        "name": "1,1-Dichloro-1-fluoroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "2-Methyl-1-propanol"
-      },
-      "target": {
-        "name": "Isobutanol"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, 2,2-dichloro-1,1,1-trifluoro-, HCFC-123"
-      },
-      "target": {
-        "name": "2,2-Dichloro-1,1,1-trifluoroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Ethane, 1,1,2-trichloro-"
-      },
-      "target": {
-        "name": "1,1,2-Trichloroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Gold, Au 5.4E-4%, Ag 1.5E-5%, in ore"
-      },
-      "target": {
-        "name": "Gold"
-      }
-    },
-    {
-      "source": {
-        "name": "Iron, 72% in magnetite, 14% in crude ore"
-      },
-      "target": {
-        "name": "Iron"
-      }
-    },
-    {
-      "source": {
-        "name": "Phosphorus, 18% in apatite, 12% in crude ore"
-      },
-      "target": {
-        "name": "Phosphorus"
-      }
-    },
-    {
-      "source": {
-        "name": "Praseodymium, 0.42% in bastnasite, 0.042% in crude ore"
-      },
-      "target": {
-        "name": "Praseodymium"
-      }
-    },
-    {
-      "source": {
-        "name": "Molybdenum, 0.022% in sulfide, Mo 8.2E-3% and Cu 0.22% in crude ore"
-      },
-      "target": {
-        "name": "Molybdenum"
-      }
-    },
-    {
-      "source": {
-        "name": "Gold, Au 6.7E-4%, in ore"
-      },
-      "target": {
-        "name": "Gold"
-      }
-    },
-    {
-      "source": {
-        "name": "Propene"
-      },
-      "target": {
-        "name": "Propylene"
-      }
-    },
-    {
-      "source": {
-        "name": "Benzene, ethyl-"
-      },
-      "target": {
-        "name": "Ethyl benzene"
-      }
-    },
-    {
-      "source": {
-        "name": "Chloroethylene"
-      },
-      "target": {
-        "name": "Vinyl chloride"
-      }
-    },
-    {
-      "source": {
-        "name": "Lead, 5.0% in sulfide, Pb 3.0%, Zn, Ag, Cd, In"
-      },
-      "target": {
-        "name": "Lead"
       }
     },
     {
@@ -3253,42 +2590,10 @@
     },
     {
       "source": {
-        "name": "Ethane, pentafluoro-, HFC-125"
+        "name": "Pt, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
       },
       "target": {
-        "name": "Pentafluoroethane"
-      }
-    },
-    {
-      "source": {
-        "name": "Silver, Ag 1.5E-5%, Au 5.4E-4%, in ore"
-      },
-      "target": {
-        "name": "Silver"
-      }
-    },
-    {
-      "source": {
-        "name": "Chlorosilane, trimethyl-"
-      },
-      "target": {
-        "name": "Trimethylchlorosilane"
-      }
-    },
-    {
-      "source": {
-        "name": "Kieserite, 25% in crude ore"
-      },
-      "target": {
-        "name": "Kieserite"
-      }
-    },
-    {
-      "source": {
-        "name": "2-Propanol"
-      },
-      "target": {
-        "name": "Isopropanol"
+        "name": "Platinum"
       }
     },
     {
@@ -3301,71 +2606,31 @@
     },
     {
       "source": {
-        "name": "AOX, Adsorbable Organic Halogen"
+        "name": "Fluorine, 4.5% in apatite, 3% in crude ore"
       },
       "target": {
-        "name": "AOX, Adsorbable Organic Halides"
+        "name": "Fluorine"
       }
     },
     {
       "source": {
-        "name": "Pt, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
+        "name": "Copper, Cu 6.8E-1%, in mixed ore"
       },
       "target": {
-        "name": "Platinum"
+        "name": "Copper"
       }
     },
     {
       "source": {
-        "name": "Tellurium, 0.5ppm in sulfide, Te 0.2ppm, Cu and Ag, in crude ore"
+        "name": "Fosetyl-aluminium"
       },
       "target": {
-        "name": "Tellurium"
+        "name": "Fosetyl-Al"
       }
     },
     {
       "source": {
-        "name": "Iron, 46% in ore, 25% in crude ore"
-      },
-      "target": {
-        "name": "Iron"
-      }
-    },
-    {
-      "source": {
-        "name": "Nickel, 1.13% in sulfide, Ni 0.76% and Cu 0.76% in crude ore"
-      },
-      "target": {
-        "name": "Nickel"
-      }
-    },
-    {
-      "source": {
-        "name": "Indium, 0.005% in sulfide, In 0.003%, Pb, Zn, Ag, Cd"
-      },
-      "target": {
-        "name": "Indium"
-      }
-    },
-    {
-      "source": {
-        "name": "Cerium, 24% in bastnasite, 2.4% in crude ore"
-      },
-      "target": {
-        "name": "Cerium"
-      }
-    },
-    {
-      "source": {
-        "name": "Sodium sulphate, various forms"
-      },
-      "target": {
-        "name": "Sodium sulfate"
-      }
-    },
-    {
-      "source": {
-        "name": "Silver, Ag 7.6E-5%, Au 9.7E-5%, in ore"
+        "name": "Silver, Ag 1.8E-6%, in mixed ore"
       },
       "target": {
         "name": "Silver"
@@ -3381,15 +2646,7 @@
     },
     {
       "source": {
-        "name": "Fresh water (obsolete)"
-      },
-      "target": {
-        "name": "Water"
-      }
-    },
-    {
-      "source": {
-        "name": "Copper, 0.97% in sulfide, Cu 0.36% and Mo 4.1E-2% in crude ore"
+        "name": "Cu, Cu 3.2E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0% in ore"
       },
       "target": {
         "name": "Copper"
@@ -3397,18 +2654,26 @@
     },
     {
       "source": {
-        "name": "Magnesite, 60% in crude ore"
+        "name": "1,3-Dioxolan-2-one"
       },
       "target": {
-        "name": "Magnesite"
+        "name": "Ethylene carbonate"
       }
     },
     {
       "source": {
-        "name": "Chlortoluron"
+        "name": "Ethyne"
       },
       "target": {
-        "name": "Chlorotoluron"
+        "name": "Acetylene"
+      }
+    },
+    {
+      "source": {
+        "name": "Cyclohexane (for all cycloalkanes)"
+      },
+      "target": {
+        "name": "Hydrocarbons, aliphatic, alkanes, cyclic"
       }
     },
     {
@@ -3421,50 +2686,34 @@
     },
     {
       "source": {
-        "name": "Ethane, 1,2-dichloro-"
+        "name": "2,4-D amines"
       },
       "target": {
-        "name": "Ethylene dichloride"
+        "name": "2,4-D dimethylamine salt"
       }
     },
     {
       "source": {
-        "name": "Gold, Au 4.9E-5%, in ore"
+        "name": "Aluminium, 24% in bauxite, 11% in crude ore"
       },
       "target": {
-        "name": "Gold"
+        "name": "Aluminium"
       }
     },
     {
       "source": {
-        "name": "Helium, 0.08% in natural gas"
+        "name": "1,2-Dichlorobenzene"
       },
       "target": {
-        "name": "Helium, in natural gas"
+        "name": "o-Dichlorobenzene"
       }
     },
     {
       "source": {
-        "name": "Bicyclorpyrone"
+        "name": "Pt, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
       },
       "target": {
-        "name": "Bicyclopyrone"
-      }
-    },
-    {
-      "source": {
-        "name": "Molybdenum, 0.025% in sulfide, Mo 8.2E-3% and Cu 0.39% in crude ore"
-      },
-      "target": {
-        "name": "Molybdenum"
-      }
-    },
-    {
-      "source": {
-        "name": "Silver, 0.007% in sulfide, Ag 0.004%, Pb, Zn, Cd, In"
-      },
-      "target": {
-        "name": "Silver"
+        "name": "Platinum"
       }
     },
     {
@@ -3477,10 +2726,1058 @@
     },
     {
       "source": {
+        "name": "Sodium sulphate, various forms"
+      },
+      "target": {
+        "name": "Sodium sulfate"
+      }
+    },
+    {
+      "source": {
+        "name": "Dimethenamid"
+      },
+      "target": {
+        "name": "Dimethenamide"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, 1,1-dichloro-1-fluoro-, HCFC-141b"
+      },
+      "target": {
+        "name": "1,1-Dichloro-1-fluoroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Propylamine"
+      },
+      "target": {
+        "name": "Propyl amine"
+      }
+    },
+    {
+      "source": {
+        "name": "2-Propanol"
+      },
+      "target": {
+        "name": "Isopropanol"
+      }
+    },
+    {
+      "source": {
         "name": "Zinc, 9.0% in sulfide, Zn 5.3%, Pb, Ag, Cd, In"
       },
       "target": {
         "name": "Zinc"
+      }
+    },
+    {
+      "source": {
+        "name": "Cu, Cu 5.2E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Ni 3.7E-2% in ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 1.4E-4%, in ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, 0.99% in sulfide, Cu 0.36% and Mo 8.2E-3% in crude ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "Iron, 46% in ore, 25% in crude ore"
+      },
+      "target": {
+        "name": "Iron"
+      }
+    },
+    {
+      "source": {
+        "name": "Magnesium, 0.13% in water"
+      },
+      "target": {
+        "name": "Magnesium"
+      }
+    },
+    {
+      "source": {
+        "name": "Ni, Ni 3.7E-2%, Pt 4.8E-4%, Pd 2.0E-4%, Rh 2.4E-5%, Cu 5.2E-2% in ore"
+      },
+      "target": {
+        "name": "Nickel"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, 2.19% in sulfide, Cu 1.83% and Mo 8.2E-3% in crude ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "Phosphorus, 18% in apatite, 4% in crude ore"
+      },
+      "target": {
+        "name": "Phosphorus"
+      }
+    },
+    {
+      "source": {
+        "name": "Methane, monochloro-, R-40"
+      },
+      "target": {
+        "name": "Methylchloride"
+      }
+    },
+    {
+      "source": {
+        "name": "Argon-40"
+      },
+      "target": {
+        "name": "Argon"
+      }
+    },
+    {
+      "source": {
+        "name": "Chlortoluron"
+      },
+      "target": {
+        "name": "Chlorotoluron"
+      }
+    },
+    {
+      "source": {
+        "name": "Methyl borate"
+      },
+      "target": {
+        "name": "Trimethyl borate"
+      }
+    },
+    {
+      "source": {
+        "name": "Rhodium, Rh 1.6E-7%, in mixed ore"
+      },
+      "target": {
+        "name": "Rhodium"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 4.9E-5%, in ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 4.3E-4%, in ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, 1.18% in sulfide, Cu 0.39% and Mo 8.2E-3% in crude ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "2-Amino-3-chloro-1,4-naphthoquinone"
+      },
+      "target": {
+        "name": "Quinoclamine"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, pentafluoro-, HFC-125"
+      },
+      "target": {
+        "name": "Pentafluoroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Molybdenum, 0.022% in sulfide, Mo 8.2E-3% and Cu 0.36% in crude ore"
+      },
+      "target": {
+        "name": "Molybdenum"
+      }
+    },
+    {
+      "source": {
+        "name": "Ni, Ni 2.3E+0%, Pt 2.5E-4%, Pd 7.3E-4%, Rh 2.0E-5%, Cu 3.2E+0% in ore"
+      },
+      "target": {
+        "name": "Nickel"
+      }
+    },
+    {
+      "source": {
+        "name": "Chlorosilane, trimethyl-"
+      },
+      "target": {
+        "name": "Trimethylchlorosilane"
+      }
+    },
+    {
+      "source": {
+        "name": "Benzene, ethyl-"
+      },
+      "target": {
+        "name": "Ethyl benzene"
+      }
+    },
+    {
+      "source": {
+        "name": "Acetic acid, trifluoro-"
+      },
+      "target": {
+        "name": "Trifluoroacetic acid"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, 0.97% in sulfide, Cu 0.36% and Mo 4.1E-2% in crude ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "Cobalt, Co 5.0E-2%, in mixed ore"
+      },
+      "target": {
+        "name": "Cobalt"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, 1,1,1-trifluoro-, HFC-143a"
+      },
+      "target": {
+        "name": "1,1,1-Trifluoroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Methane, difluoro-, HFC-32"
+      },
+      "target": {
+        "name": "Difluoromethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Methane, trichlorofluoro-, CFC-11"
+      },
+      "target": {
+        "name": "Trichlorofluoromethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Phthalate, dibutyl-"
+      },
+      "target": {
+        "name": "Dibutyl phthalate"
+      }
+    },
+    {
+      "source": {
+        "name": "2-chlorobenzaldehyde"
+      },
+      "target": {
+        "name": "o-Chlorobenzaldehyde"
+      }
+    },
+    {
+      "source": {
+        "name": "t-Butylamine"
+      },
+      "target": {
+        "name": "t-Butyl amine"
+      }
+    },
+    {
+      "source": {
+        "name": "Monophenyltin"
+      },
+      "target": {
+        "name": "Phenyltin"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 5.4E-4%, Ag 1.5E-5%, in ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, 1.25% in sulfide, Cu 0.24% and Zn 0,1% in crude ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, hexachloro-"
+      },
+      "target": {
+        "name": "Hexachloroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Methane, chlorodifluoro-, HCFC-22"
+      },
+      "target": {
+        "name": "Chlorodifluoromethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Iron, 72% in magnetite, 14% in crude ore"
+      },
+      "target": {
+        "name": "Iron"
+      }
+    },
+    {
+      "source": {
+        "name": "Rhenium, in crude ore"
+      },
+      "target": {
+        "name": "Rhenium"
+      }
+    },
+    {
+      "source": {
+        "name": "Silver, Ag 9.7E-4%, in mixed ore"
+      },
+      "target": {
+        "name": "Silver"
+      }
+    },
+    {
+      "source": {
+        "name": "Helium, 0.08% in natural gas"
+      },
+      "target": {
+        "name": "Helium, in natural gas"
+      }
+    },
+    {
+      "source": {
+        "name": "Iodine, 0.03% in water"
+      },
+      "target": {
+        "name": "Iodine"
+      }
+    },
+    {
+      "source": {
+        "name": "Molybdenum, 0.025% in sulfide, Mo 8.2E-3% and Cu 0.39% in crude ore"
+      },
+      "target": {
+        "name": "Molybdenum"
+      }
+    },
+    {
+      "source": {
+        "name": "Platinum, Pt 4.7E-7%, in mixed ore"
+      },
+      "target": {
+        "name": "Platinum"
+      }
+    },
+    {
+      "source": {
+        "name": "Phenol, pentachloro-"
+      },
+      "target": {
+        "name": "Pentachlorophenol"
+      }
+    },
+    {
+      "source": {
+        "name": "Chromium IV"
+      },
+      "target": {
+        "name": "Chromium VI"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, 2-chloro-1,1,1,2-tetrafluoro-, HCFC-124"
+      },
+      "target": {
+        "name": "2-Chloro-1,1,1,2-tetrafluoroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Molybdenum, 0.016% in sulfide, Mo 8.2E-3% and Cu 0.27% in crude ore"
+      },
+      "target": {
+        "name": "Molybdenum"
+      }
+    },
+    {
+      "source": {
+        "name": "Methane, chlorotrifluoro-, CFC-13"
+      },
+      "target": {
+        "name": "Chlorotrifluoromethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Molybdenum, 0.11% in sulfide, Mo 4.1E-2% and Cu 0.36% in crude ore"
+      },
+      "target": {
+        "name": "Molybdenum"
+      }
+    },
+    {
+      "source": {
+        "name": "Methane, dichlorofluoro-, HCFC-21"
+      },
+      "target": {
+        "name": "Dichlorofluoromethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, 2,2-dichloro-1,1,1-trifluoro-, HCFC-123"
+      },
+      "target": {
+        "name": "2,2-Dichloro-1,1,1-trifluoroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 1.8E-4%, in mixed ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "Molybdenum, 0.022% in sulfide, Mo 8.2E-3% and Cu 0.22% in crude ore"
+      },
+      "target": {
+        "name": "Molybdenum"
+      }
+    },
+    {
+      "source": {
+        "name": "Zirconium, 50% in zircon, 0.39% in crude ore"
+      },
+      "target": {
+        "name": "Zirconium"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, 0.52% in sulfide, Cu 0.27% and Mo 8.2E-3% in crude ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 1.1E-4%, Ag 4.2E-3%, in ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "Lead, Pb 3.6E-1%, in mixed ore"
+      },
+      "target": {
+        "name": "Lead"
+      }
+    },
+    {
+      "source": {
+        "name": "Silver, Ag 4.6E-5%, Au 1.3E-4%, in ore"
+      },
+      "target": {
+        "name": "Silver"
+      }
+    },
+    {
+      "source": {
+        "name": "Propene"
+      },
+      "target": {
+        "name": "Propylene"
+      }
+    },
+    {
+      "source": {
+        "name": "Magnesite, 60% in crude ore"
+      },
+      "target": {
+        "name": "Magnesite"
+      }
+    },
+    {
+      "source": {
+        "name": "Silver, Ag 2.1E-4%, Au 2.1E-4%, in ore"
+      },
+      "target": {
+        "name": "Silver"
+      }
+    },
+    {
+      "source": {
+        "name": "Gadolinium, 0.15% in bastnasite, 0.015% in crude ore"
+      },
+      "target": {
+        "name": "Gadolinium"
+      }
+    },
+    {
+      "source": {
+        "name": "Neodymium, 4% in bastnasite, 0.4% in crude ore"
+      },
+      "target": {
+        "name": "Neodymium"
+      }
+    },
+    {
+      "source": {
+        "name": "Phthalate, dioctyl-"
+      },
+      "target": {
+        "name": "Dioctyl phthalate"
+      }
+    },
+    {
+      "source": {
+        "name": "Bromine, 0.23% in water"
+      },
+      "target": {
+        "name": "Bromine"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, 1.42% in sulfide, Cu 0.81% and Mo 8.2E-3% in crude ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "2-Methylpentane"
+      },
+      "target": {
+        "name": "Isohexane"
+      }
+    },
+    {
+      "source": {
+        "name": "Fresh water (obsolete)"
+      },
+      "target": {
+        "name": "Water"
+      }
+    },
+    {
+      "source": {
+        "name": "Coal, hard, unspecified"
+      },
+      "target": {
+        "name": "Coal, hard"
+      }
+    },
+    {
+      "source": {
+        "name": "2,2,4-Trimethyl pentane"
+      },
+      "target": {
+        "name": "2,2,4-Trimethylpentane"
+      }
+    },
+    {
+      "source": {
+        "name": "Fluorspar, 92%"
+      },
+      "target": {
+        "name": "Fluorspar"
+      }
+    },
+    {
+      "source": {
+        "name": "Lithium, 0.15% in brine"
+      },
+      "target": {
+        "name": "Lithium"
+      }
+    },
+    {
+      "source": {
+        "name": "Rh, Rh 2.4E-5%, Pt 4.8E-4%, Pd 2.0E-4%, Ni 3.7E-2%, Cu 5.2E-2% in ore"
+      },
+      "target": {
+        "name": "Rhodium"
+      }
+    },
+    {
+      "source": {
+        "name": "Methane, chloro-fluoro-, HCFC-31"
+      },
+      "target": {
+        "name": "Chloro-fluoromethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Manganese, 35.7% in sedimentary deposit, 14.2% in crude ore"
+      },
+      "target": {
+        "name": "Manganese"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, 1,1,1-trichloro-, HCFC-140"
+      },
+      "target": {
+        "name": "1,1,1-Trichloroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Elemental carbon"
+      },
+      "target": {
+        "name": "Carbon"
+      }
+    },
+    {
+      "source": {
+        "name": "TiO2, 54% in ilmenite, 18% in crude ore"
+      },
+      "target": {
+        "name": "Titanium"
+      }
+    },
+    {
+      "source": {
+        "name": "Phosphorus, 18% in apatite, 12% in crude ore"
+      },
+      "target": {
+        "name": "Phosphorus"
+      }
+    },
+    {
+      "source": {
+        "name": "Dipropylamine"
+      },
+      "target": {
+        "name": "Dipropyl amine"
+      }
+    },
+    {
+      "source": {
+        "name": "Nickel, 1.13% in sulfide, Ni 0.76% and Cu 0.76% in crude ore"
+      },
+      "target": {
+        "name": "Nickel"
+      }
+    },
+    {
+      "source": {
+        "name": "Silver, 0.007% in sulfide, Ag 0.004%, Pb, Zn, Cd, In"
+      },
+      "target": {
+        "name": "Silver"
+      }
+    },
+    {
+      "source": {
+        "name": "Cyhalothrin, gamma-"
+      },
+      "target": {
+        "name": "Gamma-cyhalothrin"
+      }
+    },
+    {
+      "source": {
+        "name": "Praseodymium, 0.42% in bastnasite, 0.042% in crude ore"
+      },
+      "target": {
+        "name": "Praseodymium"
+      }
+    },
+    {
+      "source": {
+        "name": "Rh, Rh 2.0E-5%, Pt 2.5E-4%, Pd 7.3E-4%, Ni 2.3E+0%, Cu 3.2E+0% in ore"
+      },
+      "target": {
+        "name": "Rhodium"
+      }
+    },
+    {
+      "source": {
+        "name": "Molybdenum, 0.010% in sulfide, Mo 8.2E-3% and Cu 1.83% in crude ore"
+      },
+      "target": {
+        "name": "Molybdenum"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 2.1E-4%, Ag 2.1E-4%, in ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "2-Methyl-1-propanol"
+      },
+      "target": {
+        "name": "Isobutanol"
+      }
+    },
+    {
+      "source": {
+        "name": "Benzene, hexachloro-"
+      },
+      "target": {
+        "name": "Hexachlorobenzene"
+      }
+    },
+    {
+      "source": {
+        "name": "Butylcarbamate, iodopropynyl"
+      },
+      "target": {
+        "name": "Iodopropynyl butylcarbamate"
+      }
+    },
+    {
+      "source": {
+        "name": "Tantalum, 81.9% in tantalite, 1.6E-4% in crude ore"
+      },
+      "target": {
+        "name": "Tantalum"
+      }
+    },
+    {
+      "source": {
+        "name": "Bicyclorpyrone"
+      },
+      "target": {
+        "name": "Bicyclopyrone"
+      }
+    },
+    {
+      "source": {
+        "name": "TiO2, 54% in ilmenite, 2.6% in crude ore"
+      },
+      "target": {
+        "name": "Titanium"
+      }
+    },
+    {
+      "source": {
+        "name": "Tin, 79% in cassiterite, 0.1% in crude ore"
+      },
+      "target": {
+        "name": "Tin"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, 0.59% in sulfide, Cu 0.22% and Mo 8.2E-3% in crude ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "Cadmium, 0.30% in sulfide, Cd 0.18%, Pb, Zn, Ag, In"
+      },
+      "target": {
+        "name": "Cadmium"
+      }
+    },
+    {
+      "source": {
+        "name": "Pyrethrins"
+      },
+      "target": {
+        "name": "Pyrethrum"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, Cu 0.2%, in mixed ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "Sylvite, 25 % in sylvinite"
+      },
+      "target": {
+        "name": "Sylvite"
+      }
+    },
+    {
+      "source": {
+        "name": "Silver, 0.01% in crude ore"
+      },
+      "target": {
+        "name": "Silver"
+      }
+    },
+    {
+      "source": {
+        "name": "Toluene, 2-chloro"
+      },
+      "target": {
+        "name": "o-Chlorotoluene"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, 1,1-difluoro-, HFC-152a"
+      },
+      "target": {
+        "name": "1,1-Difluoroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Nickel, Ni 2.5E+0%, in mixed ore"
+      },
+      "target": {
+        "name": "Nickel"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, chloropentafluoro-, CFC-115"
+      },
+      "target": {
+        "name": "Monochloropentafluoroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Silver, Ag 5.4E-3%, in mixed ore"
+      },
+      "target": {
+        "name": "Silver"
+      }
+    },
+    {
+      "source": {
+        "name": "Zinc, Zn 0.63%, in mixed ore"
+      },
+      "target": {
+        "name": "Zinc"
+      }
+    },
+    {
+      "source": {
+        "name": "Methane, dichlorodifluoro-, CFC-12"
+      },
+      "target": {
+        "name": "Dichlorodifluoromethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Silver, Ag 7.6E-5%, Au 9.7E-5%, in ore"
+      },
+      "target": {
+        "name": "Silver"
+      }
+    },
+    {
+      "source": {
+        "name": "Kieserite, 25% in crude ore"
+      },
+      "target": {
+        "name": "Kieserite"
+      }
+    },
+    {
+      "source": {
+        "name": "Kaolinite, 24% in crude ore"
+      },
+      "target": {
+        "name": "Kaolinite"
+      }
+    },
+    {
+      "source": {
+        "name": "Lead, Pb 0.014%, in mixed ore"
+      },
+      "target": {
+        "name": "Lead"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, Cu 0.38%, in mixed ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "TiO2, 95% in rutile, 0.40% in crude ore"
+      },
+      "target": {
+        "name": "Titanium"
+      }
+    },
+    {
+      "source": {
+        "name": "Copper, 1.13% in sulfide, Cu 0.76% and Ni 0.76% in crude ore"
+      },
+      "target": {
+        "name": "Copper"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, 1,2-dichloro-"
+      },
+      "target": {
+        "name": "Ethylene dichloride"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, 1-chloro-1,1-difluoro-, HCFC-142b"
+      },
+      "target": {
+        "name": "1-Chloro-1,1-difluoroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Cerium, 24% in bastnasite, 2.4% in crude ore"
+      },
+      "target": {
+        "name": "Cerium"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 7.1E-4%, in ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, 1,1,1,2-tetrafluoro-, HFC-134a"
+      },
+      "target": {
+        "name": "1,1,1,2-Tetrafluoroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 9.7E-5%, Ag 7.6E-5%, in ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, hexafluoro-, HFC-116"
+      },
+      "target": {
+        "name": "Hexafluoroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Lead, 5.0% in sulfide, Pb 3.0%, Zn, Ag, Cd, In"
+      },
+      "target": {
+        "name": "Lead"
+      }
+    },
+    {
+      "source": {
+        "name": "Gold, Au 6.7E-4%, in ore"
+      },
+      "target": {
+        "name": "Gold"
+      }
+    },
+    {
+      "source": {
+        "name": "Ethane, 1,1,2-trichloro-"
+      },
+      "target": {
+        "name": "1,1,2-Trichloroethane"
+      }
+    },
+    {
+      "source": {
+        "name": "Tellurium, 0.5ppm in sulfide, Te 0.2ppm, Cu and Ag, in crude ore"
+      },
+      "target": {
+        "name": "Tellurium"
+      }
+    },
+    {
+      "source": {
+        "name": "Nickel, 1.98% in silicates, 1.04% in crude ore"
+      },
+      "target": {
+        "name": "Nickel"
       }
     }
   ]

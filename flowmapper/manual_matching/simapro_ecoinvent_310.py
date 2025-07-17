@@ -21,6 +21,7 @@ def generate_simapro_ecoinvent_310_manual_matches(
         "regionalized_random.json",
         "unit_conversions.json",
         "water_misc.json",
+        "ores.json",
     ]
     non_resources = {
         'Caesium': 'Caesium I',

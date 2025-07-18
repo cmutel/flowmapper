@@ -1,5 +1,9 @@
 # flowmapper Changelog
 
+## [0.4.1] - 2025-08-18
+
+* Updated some manual SimaPro - ecoinvent 3.10 matches
+
 ## [0.4] - 2025-03-03
 
 * Add ability to build manual matchings as input transformations

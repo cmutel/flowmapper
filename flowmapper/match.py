@@ -9,6 +9,10 @@ from flowmapper.utils import (
     rm_parentheses_roman_numerals,
     rm_roman_numerals_ionic_state,
 )
+from flowmapper.preferred_synonyms import (
+    match_identical_names_in_preferred_synonyms,
+    match_identical_names_in_synonyms,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -23,17 +27,6 @@ def format_match_result(s: Flow, t: Flow, conversion_factor: float, match_info: 
 
 def match_identical_identifier(s: Flow, t: Flow, comment: str = "Identical identifier"):
     if s.identifier and (s.identifier == t.identifier):
-        return {"comment": comment}
-
-
-def match_identical_names_in_synonyms(
-    s: Flow, t: Flow, comment: str = "Identical synonyms"
-):
-    if (
-        (t.synonyms and s.name in t.synonyms and s.context == t.context)
-        or (s.synonyms and t.name in s.synonyms and s.context == t.context)
-        # and not math.isnan(s.unit.conversion_factor(t.unit)):
-    ):
         return {"comment": comment}
 
 
@@ -247,5 +240,6 @@ def match_rules():
         match_identical_cas_numbers,
         match_non_ionic_state,
         match_biogenic_to_non_fossil,
+        match_identical_names_in_preferred_synonyms,
         match_identical_names_in_synonyms,
     ]

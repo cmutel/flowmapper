@@ -1,6 +1,11 @@
 # flowmapper Changelog
 
-## [0.4.1] - 2025-08-18
+## [0.4.2] - 2025-07-28
+
+* Remove conflicting synonyms when parsing ecospold2
+* Prioritize ionic-form synonyms over more generic synonyms
+
+## [0.4.1] - 2025-07-18
 
 * Updated some manual SimaPro - ecoinvent 3.10 matches
 

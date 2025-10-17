@@ -1,14 +1,6 @@
 [
   {
     "source": {
-      "name": "Barite"
-    },
-    "target": {
-      "name": "Barium"
-    }
-  },
-  {
-    "source": {
       "name": "Bauxite"
     },
     "target": {
